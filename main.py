@@ -1,3 +1,5 @@
+## UCITAVANJE PODATAKA IZ FAJLOVA ##
+
 # liste za podatke iz .json fajlova
 korisnici   = []
 filmovi     = []
@@ -11,6 +13,7 @@ import json
 def ucitaj_podatke():
     # iz svih fajlova se podaci ucitavaju u prethodno navedene liste
     # lste su globalne funkcija ne vraca nista
+    # liste su globalne
     global korisnici
     global filmovi
     global sale
@@ -19,7 +22,6 @@ def ucitaj_podatke():
     global karte
 
     # ucitavanje podataka iz fajlova
-    # podatke prevodimo u klase 
     with open('data/korisnik.json') as korisnici_fajl:
         korisnici = json.load(korisnici_fajl)
     with open('data/film.json') as filmovi_fajl:
@@ -34,6 +36,10 @@ def ucitaj_podatke():
         karte = json.load(karte_fajl)
     return 0
 
+##########################################################################
+
+## FUNCKIJE ZA NEREGISTROVANE KORISNIKE ##
+
 def registracija():
     # funckija za registraciju korisnika
     # u telu funkcije treba da idu osnovni podaci o korisniku
@@ -43,3 +49,17 @@ def registracija():
 
     return 0
 
+##########################################################################
+
+
+print('1. Prijava na sistem')
+print('2. Registracija na sistem')
+print('3. Izlazak iz aplikacije')
+
+i = int(input('Izaberite: '))
+while i>3 or i<=0:
+    i = int(input('Nepravilan izbor, probajte ponovo: '))
+
+if i==2:
+    registracija()
+    

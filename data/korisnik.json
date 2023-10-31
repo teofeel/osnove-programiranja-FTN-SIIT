@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "korisnicko_ime" : "teo",
+        "lozinka" : "idi",
+        "ime" : "teodor",
+        "prezime" : "perunicic",
+        "uloga" : "menadzer"
+    }
+]

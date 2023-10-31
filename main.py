@@ -34,11 +34,10 @@ def ucitaj_podatke():
         termini = json.load(termin_fajl)
     with open('data/karta.json') as karte_fajl:
         karte = json.load(karte_fajl)
-    return 0
 
 ##########################################################################
 
-## FUNCKIJE ZA NEREGISTROVANE KORISNIKE ##
+## FUNCKIJE ZA SVE KORISNIKE ##
 
 def registracija():
     # funckija za registraciju korisnika
@@ -51,15 +50,23 @@ def registracija():
 
 ##########################################################################
 
+import korisnik
 
-print('1. Prijava na sistem')
-print('2. Registracija na sistem')
-print('3. Izlazak iz aplikacije')
+def main():
+    ucitaj_podatke()  
+    i = 0
+    while i!=3:
+        print('/////////////////////')
+        print('1. Prijava na sistem')
+        print('2. Registracija na sistem')
+        print('3. Izlazak iz aplikacije')
+        print('/////////////////////')
 
-i = int(input('Izaberite: '))
-while i>3 or i<=0:
-    i = int(input('Nepravilan izbor, probajte ponovo: '))
+        i = int(input('Izaberite: '))
+        if i==1:
+            korisnik.prijava(korisnici)
+        elif i==2: 
+            registracija()
+        
 
-if i==2:
-    registracija()
-    
+main()

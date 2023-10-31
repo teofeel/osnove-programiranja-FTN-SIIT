@@ -2,27 +2,13 @@
 # koristi se za logovane korisnike, prodavce i menadzere
 # sve njihove funkcionalnosti ce biti u ovoj klasi
 
-#funckija za ispisivanje mogucnosti kao registrovan korisnik
-def ulogovan_main():
-    print('Ulogovani ste!!!!!!')
-    unos = 0
-    while unos!=3:
-        print('Ulogovani korisnik')
-        unos = int(input('Izaberite: '))
-
-    izlazak()
-
-# funkcija za prijavu korisnika
-def prijava(korisnici):
-    korisnicko_ime = input('Unesite korisnicko ime: ')
-    lozinka = input('Unesite lozinku: ')
-
-    for korisnik in korisnici:
-        if korisnik['korisnicko_ime'] == korisnicko_ime and korisnik['lozinka']==lozinka:
-            ulogovan_main()
-    return 0
-        
-def izlazak():
-    exit()
+class Korisnik:
+    def __init__(self, korisnicko_ime, lozinka, ime, prezime, uloga):
+        self.korisnicko_ime = korisnicko_ime
+        self.lozinka        = lozinka
+        self.ime            = ime
+        self.prezime        = prezime
+        self.uloga          = uloga
+    
         
 

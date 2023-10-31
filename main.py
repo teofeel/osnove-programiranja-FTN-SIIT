@@ -9,6 +9,7 @@ termini     = []
 karte       = []
 
 import json
+from korisnik import Korisnik
 # funckija za ucitavanje podataka iz json fajlova
 def ucitaj_podatke():
     # iz svih fajlova se podaci ucitavaju u prethodno navedene liste
@@ -22,18 +23,21 @@ def ucitaj_podatke():
     global karte
 
     # ucitavanje podataka iz fajlova
-    with open('data/korisnik.json') as korisnici_fajl:
-        korisnici = json.load(korisnici_fajl)
-    with open('data/film.json') as filmovi_fajl:
-        filmovi = json.load(filmovi_fajl)
-    with open('data/sala.json') as sale_fajl:
-        sale = json.load(sale_fajl)
-    with open('data/projekcija.json') as projekcije_fajl:
-        projekcije = json.load(projekcije_fajl)
-    with open('data/termin_projekcije.json') as termin_fajl:
-        termini = json.load(termin_fajl)
-    with open('data/karta.json') as karte_fajl:
-        karte = json.load(karte_fajl)
+    with open('data/korisnici.txt') as korisnici_fajl:
+        lines = korisnici_fajl.readlines()
+        for line in lines:
+            data = line.split(';')
+            korisnici.append(Korisnik(data[0],data[1],data[2],data[3],data[4])) 
+    #with open('data/film.json') as filmovi_fajl:
+        #filmovi = json.load(filmovi_fajl)
+    #with open('data/sala.json') as sale_fajl:
+        #sale = json.load(sale_fajl)
+    #with open('data/projekcija.json') as projekcije_fajl:
+        #projekcije = json.load(projekcije_fajl)
+    #with open('data/termin_projekcije.json') as termin_fajl:
+        #termini = json.load(termin_fajl)
+    #with open('data/karta.json') as karte_fajl:
+        #karte = json.load(karte_fajl)
 
 ##########################################################################
 
@@ -50,10 +54,11 @@ def registracija():
 
 ##########################################################################
 
-import korisnik
+from functions import ulogovani_korisnik
 
 def main():
     ucitaj_podatke()  
+    
     i = 0
     while i!=3:
         print('/////////////////////')
@@ -64,9 +69,8 @@ def main():
 
         i = int(input('Izaberite: '))
         if i==1:
-            korisnik.prijava(korisnici)
+            ulogovani_korisnik.prijava(korisnici)
         elif i==2: 
             registracija()
         
-
 main()

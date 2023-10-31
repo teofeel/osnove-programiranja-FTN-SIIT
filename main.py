@@ -45,10 +45,9 @@ def ucitaj_podatke():
 
 def registracija():
     # funckija za registraciju korisnika
-    # u telu funkcije treba da idu osnovni podaci o korisniku
-    # nakon sto se kreira objekat, on je ubacen u listu objekata kupaca
+    # nakon sto se kreira objekat, on je ubacen u listu objekata korisnika
     # jedinstveno korisnicko ime
-    # jedinstvena lozinka preko 6 karakyera sa jednom cifrom
+    # jedinstvena lozinka preko 6 karaktera sa jednom cifrom
     # zabranjeni karakter ;
 
     korisnicko_ime = input('Unesite korisnicko ime (; nije dozvoljen u imenu): ')
@@ -68,8 +67,8 @@ def registracija():
         prezime = input('Unesite opet prezime: ')
 
     lozinka = input('Lozinka: ')
-    while ';'in lozinka or lozinka.isdigit():
-        lozinka = input('Unesite opet lozinku. Lozinka ne sme da sadrzi ; i mora sadrzati barem jednu cifru: ')
+    while ';'in lozinka or lozinka.isdigit() or len(lozinka)<6:
+        lozinka = input('Lozinka mora biti duza od 6 karaktera, ne sme da sadrzi ; i mora sadrzati barem jednu cifru. Unesite opet lozinku. : ')
 
     return 0
 
@@ -85,6 +84,10 @@ def main():
         print('/////////////////////')
         print('1. Prijava na sistem')
         print('2. Registracija na sistem')
+        #
+        #
+        #
+        #
         print('3. Izlazak iz aplikacije')
         print('/////////////////////')
 

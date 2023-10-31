@@ -49,6 +49,27 @@ def registracija():
     # nakon sto se kreira objekat, on je ubacen u listu objekata kupaca
     # jedinstveno korisnicko ime
     # jedinstvena lozinka preko 6 karakyera sa jednom cifrom
+    # zabranjeni karakter ;
+
+    korisnicko_ime = input('Unesite korisnicko ime (; nije dozvoljen u imenu): ')
+    # provera da li je korisnicko ime vec registrovano
+    for korisnik in korisnici:
+        while korisnicko_ime == korisnik.getKorisnickoIme():
+            korisnicko_ime = input('Korisnicko ime je vec registrovano. Unesite opet korisnicko ime: ')
+    while ';'in korisnicko_ime:
+        korisnicko_ime = input('Ime sadrzi nedozvoljeni karakter ; . Unesite opet korisnicko ime: ')
+
+    ime = input('Unesite ime: ')
+    while ';'in ime:
+        ime = input('Unesite opet ime: ')
+
+    prezime = input('Unesite prezime: ')
+    while ';'in prezime:
+        prezime = input('Unesite opet prezime: ')
+
+    lozinka = input('Lozinka: ')
+    while ';'in lozinka or lozinka.isdigit():
+        lozinka = input('Unesite opet lozinku. Lozinka ne sme da sadrzi ; i mora sadrzati barem jednu cifru: ')
 
     return 0
 

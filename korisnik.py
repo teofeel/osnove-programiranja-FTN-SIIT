@@ -10,5 +10,7 @@ class Korisnik:
         self.prezime        = prezime
         self.uloga          = uloga
     
+    def getKorisnickoIme(self):
+        return self.korisnicko_ime
         
 

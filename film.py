@@ -16,3 +16,17 @@ def ucitaj_filmove():
                 "godina":data[6],
                 "opis":data[7]
             })
+
+def pregled_filmova():
+    if filmovi == []:
+        return 0
+    
+    for film in filmovi:
+        for i in film:
+            print(str(i).upper()+":", end=" ")
+            print(film[i], end="\n")
+        print('//////////////////////',end="\n")
+
+def pretraga_filmova_filter():
+    return 0
+    

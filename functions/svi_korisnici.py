@@ -1,7 +1,29 @@
 from korisnik import korisnici
 from korisnik import novi_korisnik
-from functions import ulogovani_korisnik
+from functions import kupac
 from film import filmovi
+
+# funkcija za prijavu korisnika
+def prijava():
+    tryagn='y'
+    while tryagn!='n':
+        korisnicko_ime = input('Unesite korisnicko ime: ')
+        lozinka = input('Unesite lozinku: ')
+
+        for korisnik in korisnici:
+            postoji = korisnik['korisnicko_ime'] == korisnicko_ime and korisnik['lozinka']==lozinka
+            if postoji and korisnik['uloga']=='registrovani kupac':
+                return kupac.main()
+            elif postoji and korisnik['uloga']=='prodavac':
+                return
+            elif postoji and korisnik['uloga']=='menadzer':
+                return
+            
+        tryagn = input('Korisnicko ime ili lozinka je pogresna. Da li hocete opet da probate (y/n): ')
+    if(tryagn=='n'):
+        return 1
+    return 0
+
 def registracija():
     # funckija za registraciju korisnika
     # nakon sto se kreira objekat, on je ubacen u listu objekata korisnika
@@ -39,13 +61,35 @@ def registracija():
 
     novi_korisnik(korisnik)
 
-    ulogovani_korisnik.ulogovan_main()
+    kupac.main()
 
+#######################################
+# Funkcije za sve (ne)ulogovane korisnike bilo kada
 
-def pregled_filmova():
-    for film in filmovi:
-        for i in film:
-            print(str(i).upper()+":", end=" ")
-            print(film[i], end="\n")
-        print('//////////////////////',end="\n")
-    return 0
+from film import pregled_filmova
+def pregled_filmova_main():
+    if pregled_filmova()==0:
+        print('Trenutno nema dostupnih filmova')
+    
+
+def pretraga_filmova():
+    print('Dostupni filteri: Naziv Filma | Zanr | Trajanje | Reziser | Uloge | Zemlja Porekla | Godina Proizvodnje')
+    print('Ako odustajete unesite ;')
+
+    i = 0
+    while i==0:
+        filter = input('Unesite filter: ')
+        if filter == ';':
+            return 
+        elif filter == '':
+            pregled_filmova_main()
+            i=1
+
+        elif filter.upper() == 'TRAJANJE':
+            # ovo treba zavrsiti
+            i=0
+            
+        elif filter == 'godina':
+            vrednost = int(input('Unesite vrednost: '))
+        else:
+            vrednost = input('Unesite vrednost: ')

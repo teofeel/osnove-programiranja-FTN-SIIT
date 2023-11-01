@@ -33,7 +33,11 @@ def main():
         print('7. Izlazak iz aplikacije')
         print('/////////////////////')
 
-        i = int(input('Izaberite: '))
+        i = input('Izaberite: ')
+        if not i.isdigit():
+            continue
+        
+        i= int(i)
         if i==1:
             if not svi_korisnici.prijava():
                 print('Prijava nije uspesna. Probajte opet')

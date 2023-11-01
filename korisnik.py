@@ -1,16 +1,24 @@
 # fajl korisnik
 # koristi se za logovane korisnike, prodavce i menadzere
 # sve njihove funkcionalnosti ce biti u ovoj klasi
+korisnici = []
+def ucitaj_korisnike():
+    global korisnici
+    with open('data/korisnici.txt') as korisnici_fajl:
+        lines = korisnici_fajl.readlines()
+        for line in lines:
+            data = line.split(';')
+            korisnici.append({
+                "korisnicko_ime":data[0], 
+                "lozinka":data[1],
+                "ime":data[2],
+                "prezime":data[3],
+                "uloga":data[4]
+            }) 
 
-class Korisnik:
-    def __init__(self, korisnicko_ime, lozinka, ime, prezime, uloga):
-        self.korisnicko_ime = korisnicko_ime
-        self.lozinka        = lozinka
-        self.ime            = ime
-        self.prezime        = prezime
-        self.uloga          = uloga
-    
-    def getKorisnickoIme(self):
-        return self.korisnicko_ime
-        
+def novi_korisnik(korisnik):
+        global korisnici
+        korisnici.append(korisnik)
+
+     
 

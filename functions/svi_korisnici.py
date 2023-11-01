@@ -104,6 +104,7 @@ def pretraga_filmova():
                 print('1.) Maksimalno trajanje | 2.) Minimalno trajanje | 3.) Granicno trajanje')
 
                 izbor = input('Unesite vrednost: ')
+                if izbor==';': return
                 if not izbor.isdigit(): continue
                 izbor = int(izbor)
                 if izbor<1 or izbor>3: continue
@@ -113,6 +114,7 @@ def pretraga_filmova():
                 j=0
                 while j==0:
                     min_vrednost = input('Maksimalno trajanje filma: ')
+                    if min_vrednost==';': return
                     if not min_vrednost.isdigit(): continue
                     min_vrednost = int(min_vrednost)
 
@@ -123,6 +125,7 @@ def pretraga_filmova():
                 j=0
                 while j==0:
                     max_vrednost = input('Minimalno trajanje filma: ')
+                    if max_vrednost==';': return
                     if not max_vrednost.isdigit(): continue
                     max_vrednost = int(max_vrednost)
                     
@@ -133,8 +136,10 @@ def pretraga_filmova():
                 j=0
                 while j==0:
                     min_vrednost = input('Minimalno trajanje filma: ')
+                    if min_vrednost==';': return
                     if not min_vrednost.isdigit(): continue
                     max_vrednost = input('Maksimalno trajanje filma: ')
+                    if max_vrednost==';': return
                     if not max_vrednost.isdigit(): continue
                     min_vrednost = int(min_vrednost)
                     max_vrednost = int(max_vrednost)

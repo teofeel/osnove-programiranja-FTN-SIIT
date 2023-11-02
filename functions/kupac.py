@@ -9,8 +9,9 @@ def main():
         print('1. Pregled filmova')
         print('2. Odjava')
         print('3. Izlazak iz aplikacije')
-        unos = int(input('Izaberite: '))
-
+        unos = input('Izaberite: ')
+        if not unos.isdigit(): continue
+        unos = int(unos)
         if unos==1:
             svi_korisnici.pregled_filmova()
         elif unos==2:

@@ -13,7 +13,7 @@ def ucitaj_korisnike():
                 "lozinka":data[1],
                 "ime":data[2],
                 "prezime":data[3],
-                "uloga":data[4]
+                "uloga":data[4].split('\n')[0]
             }) 
 
 def novi_korisnik(korisnik):

@@ -138,9 +138,11 @@ def pretraga_filmova():
                     min_vrednost = input('Minimalno trajanje filma: ')
                     if min_vrednost==';': return
                     if not min_vrednost.isdigit(): continue
+
                     max_vrednost = input('Maksimalno trajanje filma: ')
                     if max_vrednost==';': return
                     if not max_vrednost.isdigit(): continue
+
                     min_vrednost = int(min_vrednost)
                     max_vrednost = int(max_vrednost)
 
@@ -163,3 +165,6 @@ def pretraga_filmova():
         else:
             vrednost = input('Unesite vrednost: ')
             return pretraga_filmova_filter(filter, vrednost)
+        
+def pretraga_filmova_vise():
+    return 0

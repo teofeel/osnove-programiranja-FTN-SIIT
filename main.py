@@ -44,8 +44,10 @@ def main():
         elif i==2: 
             svi_korisnici.registracija()
         elif i==3:
-            svi_korisnici.pregled_filmova()
+            svi_korisnici.pregled_filmova_main()
         elif i==4:
-            svi_korisnici.pretraga_filmova()
+            svi_korisnici.pretraga_filmova(0)
+        elif i==5:
+            svi_korisnici.pretraga_filmova(1)
         
 main()

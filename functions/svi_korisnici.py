@@ -78,12 +78,14 @@ def pregled_filmova_main():
     if pregled_filmova()==0:
         print('Trenutno nema dostupnih filmova')
     
-from film import pretraga_filmova_filter
-def pretraga_filmova():
+from film import pretraga_filmova_filter, pretraga_filmova_visekrit
+def pretraga_filmova(vise_krit):
     print('Dostupni filteri: 1.) Naziv Filma | 2.) Zanr | 3.) Trajanje | 4.) Reziser | 5.) Uloge | 6.) Zemlja Porekla | 7.) Godina Proizvodnje')
     print('Ako odustajete unesite bilo koje slovo')
 
-    i = 0
+    filteri = []
+    vrednosti = []
+
     while True:
         filter = input('Unesite filter: ')
         if filter=='':
@@ -109,6 +111,7 @@ def pretraga_filmova():
                 izbor = int(izbor)
                 if izbor<1 or izbor>3: continue
                 j=1
+            
 
             if izbor==1:
                 j=0
@@ -149,7 +152,7 @@ def pretraga_filmova():
                     vrednost = {"izbor":izbor, "vrednost":[min_vrednost, max_vrednost]}
                     j=1
             
-            return pretraga_filmova_filter(filter, vrednost)
+            #return pretraga_filmova_filter(filter, vrednost)
             
         elif filter == 7:
             j=0
@@ -160,11 +163,22 @@ def pretraga_filmova():
                 vrednost = int(vrednost)
                 j=1
                 
-            return pretraga_filmova_filter(filter, vrednost)
+            #return pretraga_filmova_filter(filter, vrednost)
         
         else:
             vrednost = input('Unesite vrednost: ')
-            return pretraga_filmova_filter(filter, vrednost)
-        
-def pretraga_filmova_vise():
-    return 0
+            #return pretraga_filmova_filter(filter, vrednost)
+
+        if vise_krit:
+            filteri.append(filter)
+            vrednosti.append(vrednost)
+            nastavi=input('Da li ocete jos kriterijuma da dodate y/n: ')
+            if nastavi=='n': break
+        else: break
+
+    if not vise_krit:
+        print('//////////////////////////////////')
+        return pretraga_filmova_filter(filter,vrednost)
+    if vise_krit:
+        print('//////////////////////////////////')
+        return pretraga_filmova_visekrit(filteri,vrednosti)

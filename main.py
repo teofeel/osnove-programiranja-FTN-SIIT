@@ -3,11 +3,14 @@ from korisnik import korisnici
 import korisnik
 from film import filmovi
 import film
+from projekcija import projekcije
+import projekcija
 
 def ucitaj_podatke():
     # iz svih fajlova se podaci ucitavaju u prethodno navedene liste
     korisnik.ucitaj_korisnike()    
     film.ucitaj_filmove()
+    projekcija.ucitaj_projekcije()
 
 ##########################################################################
 
@@ -49,5 +52,7 @@ def main():
             svi_korisnici.pretraga_filmova(0)
         elif i==5:
             svi_korisnici.pretraga_filmova(1)
+        elif i==6:
+            svi_korisnici.pretraga_termina()
         
 main()

@@ -26,7 +26,6 @@ def pretraga_filmova_(filteri, vrednosti):
                 print(film[i], end="\n")
             print('//////////////////////',end="\n")
 
-    filmovi_stampanje = []
     for film in filmovi:
         uslovi = 0
         for i in range(0, len(filteri)):

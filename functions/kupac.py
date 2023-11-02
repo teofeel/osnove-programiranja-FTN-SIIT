@@ -13,7 +13,7 @@ def main():
         if not unos.isdigit(): continue
         unos = int(unos)
         if unos==1:
-            svi_korisnici.pregled_filmova()
+            svi_korisnici.pregled_filmova_main()
         elif unos==2:
             return
     izlazak()

@@ -2,6 +2,7 @@ from korisnik import korisnici
 from korisnik import novi_korisnik
 from functions import kupac
 from film import filmovi
+from projekcija import projekcije
 
 # funkcija za prijavu korisnika
 def prijava():
@@ -184,3 +185,36 @@ def pretraga_filmova(vise_krit):
     if vise_krit:
         print('//////////////////////////////////')
         return pretraga_filmova_(filteri,vrednosti)
+
+
+from projekcija import ispisi_uslov
+def pretraga_termina():
+    while True:
+        print('1) Film | 2) Sala projekcije | 3) Datum odrzavanje | 4) Vreme pocetka | 5) Vreme kraja')
+        print('Da odustanete unesite ; bilo kada')
+        izbor = input('Izaberite: ')
+        if izbor==';': return
+        elif not izbor.isdigit(): continue
+        izbor=int(izbor)
+
+        if izbor == 1:
+            for film in filmovi:
+                print(film['naziv'], end=' | ')
+            print('\n')
+            vrednost = input('Unesite naziv filma: ')
+            if vrednost==';': return
+            if not ispisi_uslov('film',vrednost):
+                print('Nema odabranih termina bioskopske projekcije')
+        
+        elif izbor == 2:
+            #for sala in sale
+            continue
+        
+        elif izbor==3: 
+            continue
+        elif izbor==4:
+            continue
+        elif izbor==5:
+            continue
+                        
+    return 

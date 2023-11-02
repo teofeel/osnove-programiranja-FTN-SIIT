@@ -26,49 +26,41 @@ def pretraga_filmova_(filteri, vrednosti):
                 print(film[i], end="\n")
             print('//////////////////////',end="\n")
 
-    for i in range(0, len(filteri)):
-        print(1)
-        if filteri[i] == 3:
-            if vrednosti[i]['izbor']==1:
-                for film in filmovi:
+    filmovi_stampanje = []
+    for film in filmovi:
+        uslovi = 0
+        for i in range(0, len(filteri)):
+            if filteri[i] == 3:
+                if vrednosti[i]['izbor']==1:
                     if int(film['trajanje'])<vrednosti[i]['vrednost'][0]:
-                        for d in film:
-                            print(str(d).upper()+":", end=" ")
-                            print(film[d], end="\n")
-                        print('//////////////////////',end="\n")
-                
-            elif vrednosti[i]['izbor']==2:
-                for film in filmovi:
+                        uslovi+=1
+
+                elif vrednosti[i]['izbor']==2:
                     if int(film['trajanje'])>vrednosti[i]['vrednost'][0]:
-                        for d in film:
-                            print(str(d).upper()+":", end=" ")
-                            print(film[d], end="\n")
-                        print('//////////////////////',end="\n")
-                
-            elif vrednosti[i]['izbor']==3:
-                for film in filmovi:
+                        uslovi+=1
+                        
+                elif vrednosti[i]['izbor']==3:
                     if (int(film['trajanje'])>vrednosti[i]['vrednost'][0]
                         and int(film['trajanje'])<vrednosti[i]['vrednost'][1]):
-                            
-                        for d in film:
-                            print(str(d).upper()+":", end=" ")
-                            print(film[d], end="\n")
-                        print('//////////////////////',end="\n")
-            continue
+                        uslovi+=1
+                continue
 
-        if filteri[i]==1: filteri[i]='naziv'
-        elif filteri[i]==2: filteri[i]='zanr'
-        elif filteri[i]==3: filteri[i]='trajanje'
-        elif filteri[i]==4: filteri[i]='reziser'
-        elif filteri[i]==5: filteri[i]='uloge'
-        elif filteri[i]==6: filteri[i]='zemlja porekla'
-        elif filteri[i]==7: filteri[i]='godina'
-
-        for film in filmovi:
+            if filteri[i]==1: filteri[i]='naziv'
+            elif filteri[i]==2: filteri[i]='zanr'
+            elif filteri[i]==3: filteri[i]='trajanje'
+            elif filteri[i]==4: filteri[i]='reziser'
+            elif filteri[i]==5: filteri[i]='uloge'
+            elif filteri[i]==6: filteri[i]='zemlja porekla'
+            elif filteri[i]==7: filteri[i]='godina'
+            
+            
             if vrednosti[i].upper() in film[filteri[i]].upper(): #filter prevesti u vrednost
-                for d in film:
-                    print(str(d).upper()+":", end=" ")
-                    print(film[d], end="\n")
-                print('//////////////////////',end="\n")
-    
+                uslovi+=1
+
+        if uslovi == len(filteri):
+            for j in film:
+                print(str(j).upper()+":", end=" ")
+                print(film[j], end="\n")
+            print('//////////////////////',end="\n")
+        
     return 

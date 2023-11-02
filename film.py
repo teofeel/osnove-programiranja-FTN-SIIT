@@ -38,21 +38,23 @@ def pretraga_filmova_(filteri, vrednosti):
                 elif vrednosti[i]['izbor']==2:
                     if int(film['trajanje'])>vrednosti[i]['vrednost'][0]:
                         uslovi+=1
-                        
+
                 elif vrednosti[i]['izbor']==3:
                     if (int(film['trajanje'])>vrednosti[i]['vrednost'][0]
                         and int(film['trajanje'])<vrednosti[i]['vrednost'][1]):
                         uslovi+=1
                 continue
 
+            elif filteri[i]==7:
+                if int(film['godina'])==vrednosti[i]: 
+                    uslovi+=1
+                continue
+             
             if filteri[i]==1: filteri[i]='naziv'
             elif filteri[i]==2: filteri[i]='zanr'
-            elif filteri[i]==3: filteri[i]='trajanje'
             elif filteri[i]==4: filteri[i]='reziser'
             elif filteri[i]==5: filteri[i]='uloge'
             elif filteri[i]==6: filteri[i]='zemlja porekla'
-            elif filteri[i]==7: filteri[i]='godina'
-            
             
             if vrednosti[i].upper() in film[filteri[i]].upper(): #filter prevesti u vrednost
                 uslovi+=1

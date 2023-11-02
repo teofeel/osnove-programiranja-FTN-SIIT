@@ -73,20 +73,19 @@ def registracija():
 #######################################
 # Funkcije za sve (ne)ulogovane korisnike bilo kada
 
-from film import pregled_filmova
+from film import pretraga_filmova_
 def pregled_filmova_main():
-    if pregled_filmova()==0:
+    if pretraga_filmova_([],[])==0:
         print('Trenutno nema dostupnih filmova')
     
-from film import pretraga_filmova_filter, pretraga_filmova_visekrit
 def pretraga_filmova(vise_krit):
-    print('Dostupni filteri: 1.) Naziv Filma | 2.) Zanr | 3.) Trajanje | 4.) Reziser | 5.) Uloge | 6.) Zemlja Porekla | 7.) Godina Proizvodnje')
-    print('Ako odustajete unesite bilo koje slovo')
-
     filteri = []
     vrednosti = []
 
     while True:
+        print('Dostupni filteri: 1.) Naziv Filma | 2.) Zanr | 3.) Trajanje | 4.) Reziser | 5.) Uloge | 6.) Zemlja Porekla | 7.) Godina Proizvodnje')
+        print('Ako odustajete unesite bilo koje slovo')
+
         filter = input('Unesite filter: ')
         if filter=='':
             return pregled_filmova_main()
@@ -174,11 +173,14 @@ def pretraga_filmova(vise_krit):
             vrednosti.append(vrednost)
             nastavi=input('Da li ocete jos kriterijuma da dodate y/n: ')
             if nastavi=='n': break
-        else: break
+        else:
+            filteri.append(filter)
+            vrednosti.append(vrednost) 
+            break
 
     if not vise_krit:
         print('//////////////////////////////////')
-        return pretraga_filmova_filter(filter,vrednost)
+        return pretraga_filmova_(filteri,vrednosti)
     if vise_krit:
         print('//////////////////////////////////')
-        return pretraga_filmova_visekrit(filteri,vrednosti)
+        return pretraga_filmova_(filteri,vrednosti)

@@ -3,12 +3,13 @@ from korisnik import novi_korisnik
 from functions import kupac
 from film import filmovi
 from projekcija import projekcije
+from sala import sale
 
 # funkcija za prijavu korisnika
 def prijava():
     tryagn='y'
     while tryagn!='n':
-        print('Za prekidanje prijave unesite ;')
+        print('Za prekidanje prijave unesite ; bilo kad')
         korisnicko_ime = input('Unesite korisnicko ime: ')
         if korisnicko_ime == ';': return
         lozinka = input('Unesite lozinku: ')
@@ -24,6 +25,7 @@ def prijava():
                 return
             
         tryagn = input('Korisnicko ime ili lozinka je pogresna. Da li hocete opet da probate (y/n): ')
+        if tryagn ==';': return 1
     if(tryagn=='n'):
         return 1
     return 0
@@ -188,6 +190,7 @@ def pretraga_filmova(vise_krit):
 
 
 from projekcija import ispisi_uslov
+from sala import sala_ispis_po
 def pretraga_termina():
     while True:
         print('1) Film | 2) Sala projekcije | 3) Datum odrzavanje | 4) Vreme pocetka | 5) Vreme kraja')
@@ -207,7 +210,15 @@ def pretraga_termina():
                 print('Nema odabranih termina bioskopske projekcije')
         
         elif izbor == 2:
-            #for sala in sale
+            while True:
+                vrednost = input('Unesite sifru ili naziv sale: ')
+                if vrednost == ';': return
+
+                if not ispisi_uslov('sala', vrednost): print('Trazena sala ne postoji')
+                yn = input('Da li zelite da nastavite sa pretragom po salama y/n: ')
+                if yn == 'y':continue
+                else: break
+
             continue
         
         elif izbor==3: 

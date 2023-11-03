@@ -5,12 +5,15 @@ from film import filmovi
 import film
 from projekcija import projekcije
 import projekcija
+from sala import sale
+import sala
 
 def ucitaj_podatke():
     # iz svih fajlova se podaci ucitavaju u prethodno navedene liste
     korisnik.ucitaj_korisnike()    
     film.ucitaj_filmove()
     projekcija.ucitaj_projekcije()
+    sala.ucitaj_sale()
 
 ##########################################################################
 

@@ -1,2 +1,2 @@
 1111;Sala1;19:55;22:15;Ponedeljak Sreda Petak;fight club;500
-1221;Sala2;17:45;20:45;Utorak Cetvrtak;wolf of the wall street;600
+1221; ;17:45;20:45;Utorak Cetvrtak;wolf of the wall street;600

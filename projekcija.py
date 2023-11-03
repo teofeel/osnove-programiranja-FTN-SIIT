@@ -17,7 +17,7 @@ def ucitaj_projekcije():
             })
 
 from sala import getSala_naziv_sifra
-def ispisi_uslov(filter,uslov):
+def projekcija_ispisi_uslov(filter,uslov):
     br=0
     for projekcija in projekcije:
         if filter=='sala':

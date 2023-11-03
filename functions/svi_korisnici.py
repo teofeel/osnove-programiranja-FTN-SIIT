@@ -189,7 +189,7 @@ def pretraga_filmova(vise_krit):
         return pretraga_filmova_(filteri,vrednosti)
 
 
-from projekcija import ispisi_uslov
+from projekcija import projekcija_ispisi_uslov
 from sala import sala_ispis_po
 def pretraga_termina():
     while True:
@@ -206,7 +206,7 @@ def pretraga_termina():
             print('\n')
             vrednost = input('Unesite naziv filma: ')
             if vrednost==';': return
-            if not ispisi_uslov('film',vrednost):
+            if not projekcija_ispisi_uslov('film',vrednost):
                 print('Nema odabranih termina bioskopske projekcije')
         
         elif izbor == 2:
@@ -214,7 +214,7 @@ def pretraga_termina():
                 vrednost = input('Unesite sifru ili naziv sale: ')
                 if vrednost == ';': return
 
-                if not ispisi_uslov('sala', vrednost): print('Trazena sala ne postoji')
+                if not sala_ispis_po('sala', vrednost): print('Trazena sala ne postoji')
                 yn = input('Da li zelite da nastavite sa pretragom po salama y/n: ')
                 if yn == 'y':continue
                 else: break

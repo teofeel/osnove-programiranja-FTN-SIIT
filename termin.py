@@ -8,12 +8,12 @@ def ucitaj_termine():
             data = line.split(';')
             termini.append({
                 'sifra':data[0],
-                'datum':data[1],
+                'datum':data[1].replace('\n',''),
             })
 
 from projekcija import projekcije
-def pretrazi_projekcije(filter, vrednost):
-    def dan_projekcije(vrednost):
+def pretrazi_termine(filter, vrednost):
+    def dan_projekcije(dan):
         if dan.upper() == 'PONEDELJAK': return 0
         elif dan.upper() == 'UTORAK': return 1
         elif dan.upper() == 'SREDA': return 2
@@ -23,14 +23,26 @@ def pretrazi_projekcije(filter, vrednost):
         elif dan.upper() == 'NEDELJA': return 6
 
     for projekcija in projekcije:
-        if vrednost.upper() in projekcija[filter].upper():
-                for termin in termini:
-                    datum_str = termin['datum'].split('.')
-                    for dan in projekcija['dani'].split(' '):
-                        if (datetime(int(datum_str[2]),int(datum_str[1]),int(datum_str[0])).weekday() 
-                            == dan_projekcije(dan)):  
-                            print('Naziv: ' + projekcija['film'])
-                            print('Sala: '+projekcija['sala'])
-                            print('Pocetak termina: '+projekcija['pocetak'])
-                            print('Kraj termina: '+projekcija['kraj'])
-                            print('Datum: '+ termin['datum'])
+        if filter == 'datum': 
+            for termin in termini:
+                if termin['datum'] == vrednost and projekcija['sifra'] in termin['sifra']:
+                    print('Naziv: ' + projekcija['film'])
+                    print('Sala: '+projekcija['sala'])
+                    print('Pocetak termina: '+projekcija['pocetak'])
+                    print('Kraj termina: '+projekcija['kraj'])
+                    print('Datum: '+ termin['datum'])
+                    print('////////////////////////////')
+
+        elif vrednost.upper() in projekcija[filter].upper():
+            for termin in termini:
+                datum_str = termin['datum'].split('.')
+                for dan in projekcija['dani'].split(' '):
+                    if (datetime(int(datum_str[2]),int(datum_str[1]),int(datum_str[0])).weekday() 
+                        == dan_projekcije(dan)):  
+                        print('Naziv: ' + projekcija['film'])
+                        print('Sala: '+projekcija['sala'])
+                        print('Pocetak termina: '+projekcija['pocetak'])
+                        print('Kraj termina: '+projekcija['kraj'])
+                        print('Datum: '+ termin['datum'])
+                        print('////////////////////////////')
+

@@ -205,24 +205,36 @@ def pretraga_termina():
             for film in filmovi:
                 print(film['naziv'], end=' | ')
             print('\n')
-            vrednost = input('Unesite naziv filma: ')
-            if vrednost==';': return
-            termin.pretrazi_projekcije('film', vrednost)
+            while True:
+                vrednost = input('Unesite naziv filma: ')
+                if vrednost==';': return
+                termin.pretrazi_termine('film', vrednost)
+
+                yn = input('Da li zelite da nastavite sa pretragom po filmovima y/n: ')
+                if yn == 'y':continue
+                else: break
         
         elif izbor == 2:
             while True:
                 vrednost = input('Unesite sifru ili naziv sale: ')
                 if vrednost == ';': return
 
-                if not sala_ispis_po('sala', vrednost): print('Trazena sala ne postoji')
-                yn = input('Da li zelite da nastavite sa pretragom po salama y/n: ')
-                if yn == 'y':continue
-                else: break
+                termin.pretrazi_termine('sala', vrednost)
+                # if not sala_ispis_po('sala', vrednost): print('Trazena sala ne postoji')
+                
 
             continue
         
         elif izbor==3: 
-            continue
+            while True:
+                vrednost = input('Unesite datum odrzavanja: ')
+                if vrednost==';': return
+
+                termin.pretrazi_termine('datum', vrednost)
+                yn = input('Da li zelite da nastavite sa pretragom po salama y/n: ')
+                if yn == 'y':continue
+                else: break
+
         elif izbor==4:
             continue
         elif izbor==5:

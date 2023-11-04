@@ -191,6 +191,7 @@ def pretraga_filmova(vise_krit):
 
 from projekcija import projekcija_ispisi_uslov
 from sala import sala_ispis_po
+import termin
 def pretraga_termina():
     while True:
         print('1) Film | 2) Sala projekcije | 3) Datum odrzavanje | 4) Vreme pocetka | 5) Vreme kraja')
@@ -206,8 +207,7 @@ def pretraga_termina():
             print('\n')
             vrednost = input('Unesite naziv filma: ')
             if vrednost==';': return
-            if not projekcija_ispisi_uslov('film',vrednost):
-                print('Nema odabranih termina bioskopske projekcije')
+            termin.pretrazi_projekcije('film', vrednost)
         
         elif izbor == 2:
             while True:

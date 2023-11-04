@@ -7,6 +7,8 @@ from projekcija import projekcije
 import projekcija
 from sala import sale
 import sala
+from termin import termini
+import termin
 
 def ucitaj_podatke():
     # iz svih fajlova se podaci ucitavaju u prethodno navedene liste
@@ -14,7 +16,7 @@ def ucitaj_podatke():
     film.ucitaj_filmove()
     projekcija.ucitaj_projekcije()
     sala.ucitaj_sale()
-
+    termin.ucitaj_termine()
 ##########################################################################
 
 ## FUNCKIJE ZA SVE KORISNIKE ##

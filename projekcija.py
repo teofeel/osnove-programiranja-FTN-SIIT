@@ -15,27 +15,3 @@ def ucitaj_projekcije():
                 'film':data[5],
                 'cena':data[6]
             })
-
-from sala import getSala_naziv_sifra
-def projekcija_ispisi_uslov(filter,uslov):
-    br=0
-    for projekcija in projekcije:
-        if filter=='sala':
-            if getSala_naziv_sifra(uslov)['naziv'] in projekcija[filter]:
-                print('Sala: '+projekcija['sala'])
-                print('Pocetak termina: '+projekcija['pocetak'])
-                print('Kraj termina: '+projekcija['kraj'])
-                print('Dani: '+projekcija['dani'])
-                print('Film: '+projekcija['film'])
-                print('Sala: '+projekcija['cena'])
-                return 1
-
-        if uslov in projekcija[filter]:
-            print('Sala: '+projekcija['sala'])
-            print('Pocetak termina: '+projekcija['pocetak'])
-            print('Kraj termina: '+projekcija['kraj'])
-            print('Dani: '+projekcija['dani'])
-            print('Film: '+projekcija['film'])
-            print('Sala: '+projekcija['cena'])
-            br+=1    
-    if br==0: return 0

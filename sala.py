@@ -22,12 +22,3 @@ def sala_ispis_po(filteri, vrednosti):
                     print(sala[j], end='\n')
                 print('//////////////////////',end="\n")
                 
-def getSala_naziv_sifra(sifra):
-    # treba popraviti
-    for s in sale:
-        if sifra.isdigit():
-            if s['sifra']==sifra:
-                return s
-        else:
-            if s['naziv'].upper()==sifra.upper():
-                return s

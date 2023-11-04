@@ -17,8 +17,13 @@ def ucitaj_korisnike():
             }) 
 
 def novi_korisnik(korisnik):
-        global korisnici
-        korisnici.append(korisnik)
+    global korisnici
+    korisnici.append(korisnik)
+
+def izmeni_podatke(id,podatak,vrednost):
+    for korisnik in korisnici:
+        if korisnik['korisnicko_ime'] == id:
+            korisnik[podatak]=vrednost 
 
      
 

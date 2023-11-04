@@ -189,8 +189,6 @@ def pretraga_filmova(vise_krit):
         return pretraga_filmova_(filteri,vrednosti)
 
 
-from projekcija import projekcija_ispisi_uslov
-from sala import sala_ispis_po
 import termin
 def pretraga_termina():
     while True:

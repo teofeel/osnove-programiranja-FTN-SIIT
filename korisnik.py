@@ -19,6 +19,12 @@ def ucitaj_korisnike():
 def novi_korisnik(korisnik):
     global korisnici
     korisnici.append(korisnik)
+    korisnici_fajl = open('data/korisnici.txt', 'w')
+    for k in korisnici:
+        korisnici_fajl.write(k['korisnicko_ime']+';'+k['lozinka']+';'+k['ime']+';'+k['prezime']+';'+k['uloga']+'\n')
+        
+
+
 
 def izmeni_podatke(id,podatak,vrednost):
     for korisnik in korisnici:

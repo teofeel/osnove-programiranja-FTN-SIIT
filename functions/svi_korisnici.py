@@ -1,5 +1,5 @@
 from korisnik import korisnici
-from korisnik import novi_korisnik
+import korisnik
 from functions import kupac
 from film import filmovi
 from projekcija import projekcije
@@ -40,8 +40,8 @@ def registracija():
     korisnicko_ime = input('Unesite korisnicko ime (; nije dozvoljen u imenu): ')
     # provera da li je korisnicko ime vec registrovano
     if korisnicko_ime == ';': return
-    for korisnik in korisnici:
-        while korisnicko_ime == korisnik["korisnicko_ime"]:
+    for k in korisnici:
+        while korisnicko_ime == k["korisnicko_ime"]:
             korisnicko_ime = input('Korisnicko ime je vec registrovano. Unesite opet korisnicko ime: ')
     while ';'in korisnicko_ime:
         korisnicko_ime = input('Ime sadrzi nedozvoljeni karakter ; . Unesite opet korisnicko ime: ')
@@ -61,7 +61,7 @@ def registracija():
     while ';'in lozinka or (not any(i.isdigit() for i in lozinka)) or len(lozinka)<6:
         lozinka = input('Lozinka mora biti duza od 6 karaktera, ne sme da sadrzi ; i mora sadrzati barem jednu cifru. Unesite opet lozinku. : ')
 
-    korisnik={
+    new_korisnik={
         "korisnicko_ime":korisnicko_ime, 
         "lozinka":lozinka,
         "ime":ime,
@@ -69,7 +69,7 @@ def registracija():
         "uloga":"registrovani kupac"
     }
 
-    novi_korisnik(korisnik)
+    korisnik.novi_korisnik(new_korisnik)
 
     kupac.main(korisnicko_ime)
 

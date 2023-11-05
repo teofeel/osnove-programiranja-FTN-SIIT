@@ -191,6 +191,18 @@ def pretraga_filmova(vise_krit):
 
 import termin
 def pretraga_termina():
+    def unos_vreme():
+        while True:
+            sati = input('Unesite vreme u satima: ')
+            if sati==';': return ';',';'
+            if not sati.isdigit(): continue
+                    
+            minuti = input('Unesite vreme u minutima: ')
+            if minuti==';': return ';',';'
+            elif not (minuti.isdigit() or minuti==''): continue
+
+            return sati, minuti
+
     while True:
         print('1) Film | 2) Sala projekcije | 3) Datum odrzavanje | 4) Vreme pocetka | 5) Vreme kraja')
         print('Da odustanete unesite ; bilo kada')
@@ -216,7 +228,7 @@ def pretraga_termina():
                 vrednost = input('Unesite sifru ili naziv sale: ')
                 if vrednost == ';': return
                 termin.pretrazi_termine('sala', vrednost)
-                yn = input('Da li zelite da nastavite sa pretragom po filmovima y/n: ')
+                yn = input('Da li zelite da nastavite sa pretragom po salama y/n: ')
                 if yn == 'y':continue
                 else: break
         
@@ -225,23 +237,24 @@ def pretraga_termina():
                 vrednost = input('Unesite datum odrzavanja: ')
                 if vrednost==';': return
                 termin.pretrazi_termine('datum', vrednost)
-                yn = input('Da li zelite da nastavite sa pretragom po salama y/n: ')
+                yn = input('Da li zelite da nastavite sa pretragom po datumu y/n: ')
                 if yn == 'y':continue
                 else: break
 
         elif izbor==4:
             while True:
-                sati = input('Unesite vreme u satima: ')
+                sati, minuti = unos_vreme()
                 if sati==';': return
-                if not sati.isdigit(): continue
-                
-                minuti = input('Unesite vreme u minutima: ')
-                if minuti==';': return
-                elif not (minuti.isdigit() or minuti==''): continue
-
                 termin.pretraga_vreme('pocetak', sati,minuti)
-                yn = input('Da li zelite da nastavite sa pretragom po salama y/n: ')
-                if yn == 'y':continue
+                yn = input('Da li zelite da nastavite sa pretragom po pocetku y/n: ')
+                if yn == 'y': continue
                 else: break
+
         elif izbor==5:
-            continue
+             while True:
+                sati, minuti = unos_vreme()
+                if sati==';': return
+                termin.pretraga_vreme('kraj', sati,minuti)
+                yn = input('Da li zelite da nastavite sa pretragom po kraju y/n: ')
+                if yn == 'y': continue
+                else: break

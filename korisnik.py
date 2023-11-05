@@ -22,8 +22,13 @@ def novi_korisnik(korisnik):
 
 def izmeni_podatke(id,podatak,vrednost):
     for korisnik in korisnici:
-        if korisnik['korisnicko_ime'] == id:
+        if podatak=='lozinka' and korisnik['korisnicko_ime'] == id:
+            if not korisnik['lozinka'] == vrednost[0]: return 0
+            korisnik['lozinka'] = vrednost[1]
+            return 1
+        elif korisnik['korisnicko_ime'] == id:
             korisnik[podatak]=vrednost 
+            return 1
 
      
 

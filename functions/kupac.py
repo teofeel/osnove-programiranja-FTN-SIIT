@@ -1,7 +1,12 @@
 from korisnik import korisnici
 from functions import svi_korisnici
+from functions import ulogovani_korisnici
 #funckija za ispisivanje mogucnosti kao registrovan korisnik
-def main():
+_id = ''
+
+def main(korisnicko_ime):
+    global _id
+    _id = korisnicko_ime
     print('///////////////////')
     unos = 0
     while unos!=3:
@@ -10,8 +15,9 @@ def main():
         print('2. Pretraga filmova')
         print('3. Visekriterijumska pretraga filmova')
         print('4. Pretraga termina')
-        print('5. Odjava')
-        print('6. Izlazak iz aplikacije')
+        print('5. Izmeni licne podatke')
+        print('6. Odjava')
+        print('7. Izlazak iz aplikacije')
         unos = input('Izaberite: ')
         if not unos.isdigit(): continue
         unos = int(unos)
@@ -25,8 +31,11 @@ def main():
         elif unos==4:
             svi_korisnici.pretraga_termina()
         elif unos==5:
-            return
+            ulogovani_korisnici.izmena_licnih_podataka(_id)
         elif unos==6:
+            _id = ''
+            return
+        elif unos==7:
             izlazak()
 
       

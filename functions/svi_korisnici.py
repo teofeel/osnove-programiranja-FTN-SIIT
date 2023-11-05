@@ -18,7 +18,7 @@ def prijava():
         for korisnik in korisnici:
             postoji = korisnik['korisnicko_ime'] == korisnicko_ime and korisnik['lozinka']==lozinka
             if postoji and korisnik['uloga']=='registrovani kupac':
-                return kupac.main()
+                return kupac.main(korisnik['korisnicko_ime'])
             elif postoji and korisnik['uloga']=='prodavac':
                 return
             elif postoji and korisnik['uloga']=='menadzer':
@@ -58,7 +58,7 @@ def registracija():
 
     lozinka = input('Lozinka: ')
     if lozinka == ';': return
-    while ';'in lozinka or lozinka.isdigit() or len(lozinka)<6:
+    while ';'in lozinka or (not any(i.isdigit() for i in lozinka)) or len(lozinka)<6:
         lozinka = input('Lozinka mora biti duza od 6 karaktera, ne sme da sadrzi ; i mora sadrzati barem jednu cifru. Unesite opet lozinku. : ')
 
     korisnik={
@@ -71,7 +71,7 @@ def registracija():
 
     novi_korisnik(korisnik)
 
-    kupac.main()
+    kupac.main(korisnicko_ime)
 
 #######################################
 # Funkcije za sve (ne)ulogovane korisnike bilo kada

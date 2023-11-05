@@ -49,12 +49,12 @@ def registracija():
     ime = input('Unesite ime: ')
     if ime == ';': return
     while ';'in ime:
-        ime = input('Unesite opet ime: ')
+        ime = input('Unesite opet ime (; nije dozvoljeno u imenu): ')
 
     prezime = input('Unesite prezime: ')
     if prezime == ';': return
     while ';'in prezime:
-        prezime = input('Unesite opet prezime: ')
+        prezime = input('Unesite opet prezime (; nije dozvoljeno u prezimenu): ')
 
     lozinka = input('Lozinka: ')
     if lozinka == ';': return
@@ -181,12 +181,8 @@ def pretraga_filmova(vise_krit):
             vrednosti.append(vrednost) 
             break
 
-    if not vise_krit:
-        print('//////////////////////////////////')
-        return pretraga_filmova_(filteri,vrednosti)
-    if vise_krit:
-        print('//////////////////////////////////')
-        return pretraga_filmova_(filteri,vrednosti)
+    print('//////////////////////////////////')
+    return pretraga_filmova_(filteri,vrednosti)
 
 
 import termin

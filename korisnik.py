@@ -16,12 +16,15 @@ def ucitaj_korisnike():
                 "uloga":data[4].split('\n')[0]
             }) 
 
-def novi_korisnik(korisnik):
-    global korisnici
-    korisnici.append(korisnik)
+def pisi_fajl():
     korisnici_fajl = open('data/korisnici.txt', 'w')
     for k in korisnici:
         korisnici_fajl.write(k['korisnicko_ime']+';'+k['lozinka']+';'+k['ime']+';'+k['prezime']+';'+k['uloga']+'\n')
+        
+def novi_korisnik(korisnik):
+    global korisnici
+    korisnici.append(korisnik)
+    pisi_fajl()
         
 
 
@@ -31,10 +34,11 @@ def izmeni_podatke(id,podatak,vrednost):
         if podatak=='lozinka' and korisnik['korisnicko_ime'] == id:
             if not korisnik['lozinka'] == vrednost[0]: return 0
             korisnik['lozinka'] = vrednost[1]
-            return 1
+            pisi_fajl()
         elif korisnik['korisnicko_ime'] == id:
             korisnik[podatak]=vrednost 
-            return 1
+            pisi_fajl()
+
 
      
 

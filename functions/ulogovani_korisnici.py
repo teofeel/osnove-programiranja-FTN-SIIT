@@ -8,7 +8,7 @@ def izmena_licnih_podataka(_id):
                 print(k['ime'],' | ', k['prezime'])
 
         print('1) Ime | 2) Prezime | 3) Sifra')
-        podatak = input('Unesite sta ocete da izmenite: ')
+        podatak = input('Unesite sta ocete da izmenite (za povratak unesite ;): ')
         if podatak==';': return 
         elif not podatak.isdigit(): continue
         podatak = int(podatak)

@@ -4,4 +4,6 @@ kupac1;nekaSifra1;Kupac;kupovac;registrovani kupac
 pera;peraSifra12;Petar;Petrovic;registrovani kupac
 mare;sifraMoja1;Marko;Markovic;registrovani kupac
 jole;klkl123;Jovana;Jovanovic;registrovani kupac
-teoo;idinahoi1;teo;perun;registrovani kupac
+menadzer;idi;Teodor;perun;menadzer
+prodavac1;marinaJank1;Marina;Jankovic;prodavac
+janko;jaranbrat1;Janko;Jankovic;prodavac

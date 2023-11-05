@@ -230,6 +230,18 @@ def pretraga_termina():
                 else: break
 
         elif izbor==4:
-            continue
+            while True:
+                sati = input('Unesite vreme u satima: ')
+                if sati==';': return
+                if not sati.isdigit(): continue
+                
+                minuti = input('Unesite vreme u minutima: ')
+                if minuti==';': return
+                elif not (minuti.isdigit() or minuti==''): continue
+
+                termin.pretraga_vreme('pocetak', sati,minuti)
+                yn = input('Da li zelite da nastavite sa pretragom po salama y/n: ')
+                if yn == 'y':continue
+                else: break
         elif izbor==5:
             continue

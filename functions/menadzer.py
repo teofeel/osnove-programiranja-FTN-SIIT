@@ -8,8 +8,8 @@ def main(korisnicko_ime):
         print('Ulogovani Menadzer')
         print('1. Dodaj novog prodavca')
         print('2. Izmena licnih podataka')
-        print('2. Odjava')
-        print('3. Izlazak iz aplikacije')
+        print('3. Odjava')
+        print('4. Izlazak iz aplikacije')
 
         unos = input('Izaberite: ')
         if not unos.isdigit(): continue

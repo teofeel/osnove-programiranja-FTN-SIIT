@@ -4,7 +4,7 @@ from functions import kupac
 from film import filmovi
 from projekcija import projekcije
 from sala import sale
-from functions import menadzer
+from functions import menadzer, prodavac
 # funkcija za prijavu korisnika
 def prijava():
     tryagn='y'
@@ -18,11 +18,14 @@ def prijava():
         for korisnik in korisnici:
             postoji = korisnik['korisnicko_ime'] == korisnicko_ime and korisnik['lozinka']==lozinka
             if postoji and korisnik['uloga']=='registrovani kupac':
-                return kupac.main(korisnik['korisnicko_ime'])
+                kupac.main(korisnik['korisnicko_ime'])
+                return 1
             elif postoji and korisnik['uloga']=='prodavac':
-                return
+                prodavac.main(korisnik['korisnicko_ime'])
+                return 1
             elif postoji and korisnik['uloga']=='menadzer':
                 menadzer.main(korisnik['korisnicko_ime'])
+                return 1
             
         tryagn = input('Korisnicko ime ili lozinka je pogresna. Da li hocete opet da probate (y/n): ')
         if tryagn ==';': return 1

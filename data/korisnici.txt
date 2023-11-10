@@ -1,10 +1,10 @@
-teo;idi;teodor1;perunicic;registrovani kupac
+teo;idi;teodor1;perunicic;menadzer
 nikola;sifra1;nikola;nikolic;registrovani kupac
 kupac1;nekaSifra1;Kupac;kupovac;registrovani kupac
 pera;peraSifra12;Petar;Petrovic;registrovani kupac
 mare;sifraMoja1;Marko;Markovic;registrovani kupac
 jole;klkl123;Jovana;Jovanovic;registrovani kupac
-menadzer;idi;Teodor;perun;menadzer
-prodavac1;marinaJank1;Marina;Jankovic;prodavac
+menadzer;idi;Teodor;perun;prodavac
+prodavac1;marinaJank1;Marina;Jankovic;registrovani kupac
 janko;jaranbrat1;Jaran;Jankovic;prodavac
 nikolaos;sifraneka1;nikola;petrovic;menadzer

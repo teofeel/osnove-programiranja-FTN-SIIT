@@ -59,5 +59,6 @@ def main():
             svi_korisnici.pretraga_filmova(1)
         elif i==6:
             svi_korisnici.pretraga_termina()
-        
-main()
+
+if __name__ == '__main__':      
+    main()

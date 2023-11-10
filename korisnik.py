@@ -39,6 +39,10 @@ def izmeni_podatke(id,podatak,vrednost):
             korisnik[podatak]=vrednost 
             pisi_fajl()
 
-
-     
-
+def promovisi(korisnicko_ime, zaposleni='prodavac'):
+    for korisnik in korisnici:
+        if korisnik['korisnicko_ime'] == korisnicko_ime:
+            korisnik['uloga']=zaposleni
+            pisi_fajl()
+            return 1
+    return 0

@@ -37,11 +37,6 @@ def dodaj_zaposlenog(zaposleni='prodavac'):
         korisnicko_ime = input('Unesite korisnicko ime (karakter ; u korisnickom imenu je zabranjen): ')
         if korisnicko_ime==';':return
         for k in korisnik.korisnici:
-            if korisnicko_ime == k["korisnicko_ime"]:
-                promovisi = input('Da li ocete njega da promovisete u '+zaposleni+'a? (y/n): ')
-                if promovisi.upper() == 'Y':
-                    korisnik.promovisi(korisnicko_ime,zaposleni)
-                    return
             while korisnicko_ime == k["korisnicko_ime"]:
                 korisnicko_ime = input('Korisnicko ime je vec registrovano. Unesite opet korisnicko ime: ')
         while ';'in korisnicko_ime:

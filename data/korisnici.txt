@@ -1,4 +1,4 @@
-teo;idi;teodor1;perunicic;menadzer
+teo;idi;teodor;perunicic;menadzer
 nikola;sifra1;nikola;nikolic;registrovani kupac
 kupac1;nekaSifra1;Kupac;kupovac;registrovani kupac
 pera;peraSifra12;Petar;Petrovic;registrovani kupac

@@ -19,12 +19,6 @@ def ucitaj_filmove():
 
 def pretraga_filmova_(filteri, vrednosti):
     if filmovi == []: return 0
-    if filteri==[] or vrednosti==[]:
-        for film in filmovi:
-            for i in film:
-                print(str(i).upper()+":", end=" ")
-                print(film[i], end="\n")
-            print('//////////////////////',end="\n")
 
     for film in filmovi:
         uslovi = 0

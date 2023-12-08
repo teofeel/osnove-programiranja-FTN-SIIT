@@ -42,5 +42,14 @@ def sedista_sale(sifra_sale, rezervisana_sedista):
                     print(sediste, end=' ')
                 print(end='\n')
 
-                            
+def postoji_sediste(sifra_sale, sediste_provera):
+    for sala in sale:
+        if sala['sifra'] == str(sifra_sale):
+            for i in range(int(sala['redovi'])+1):
+                for j in range(1,int(sala['sedista'])):
+                    pocetno = 'A'
+                    sediste = chr(ord(pocetno)+i)+str(j)
+                    if sediste == sediste_provera:
+                        return True
+    return False
                     

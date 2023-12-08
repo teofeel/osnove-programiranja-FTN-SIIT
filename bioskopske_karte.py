@@ -22,23 +22,12 @@ def pisi_fajl():
 import re
 import termin
 def provera_slobodnog_mesta(sifra_termina, sediste):
-    if sediste.isdigit(): 
-        print('o')
-        return False
-    if not (sediste[0]>='A' or sediste[0]<='Z'): 
-        print('or')
-        return False
-    if not sediste[1].isdigit(): 
-        print(sediste[1])
-        return False
-
-    termin.slobodna_sedista(sifra_termina, sediste)
-
     for karta in karte:
         if karta['termin']==sifra_termina:
             if karta['sediste']==sediste:
                 return False
-    return True
+            
+    return termin.slobodna_sedista(sifra_termina, sediste)
 
 import datetime
 def rezervisi_kartu(ime, sifra_termina, sediste):

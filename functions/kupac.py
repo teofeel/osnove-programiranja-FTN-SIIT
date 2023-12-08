@@ -33,7 +33,7 @@ def main(korisnicko_ime):
         elif unos==4:
             svi_korisnici.pretraga_termina()
         elif unos==5:
-            ulogovani_korisnici.rezervisi_kartu(_id)
+            ulogovani_korisnici.rezervisi_kartu(_id,0)
         elif unos==6:
             ulogovani_korisnici.izmena_licnih_podataka(_id)
         elif unos==7:

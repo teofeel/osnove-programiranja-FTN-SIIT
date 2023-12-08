@@ -91,7 +91,8 @@ def slobodna_sedista(sifra_termina, sediste):
             rezervisana_sedista.append(karta['sediste'])
 
     if not sediste == None:
-        return
+        return sala.postoji_sediste(sifra_sale,sediste)
+        
     else: sala.sedista_sale(sifra_sale,rezervisana_sedista)
 
 

@@ -48,7 +48,7 @@ def izmena_licnih_podataka(_id):
                 break
 
 import termin
-def rezervisi_kartu(ime):
+def rezervisi_kartu(ime, prodavac):
         while True:
             print('1. Direktan unos sifre termina | 2. Pretraga termina')
             unos = input('Odaberite opciju 1 ili 2: ')
@@ -58,18 +58,21 @@ def rezervisi_kartu(ime):
             unos = int(unos)
 
             if unos==2:
-                while True:
-                    svi_korisnici.pretraga_termina()
+                svi_korisnici.pretraga_termina()
 
             sifra_termina = input('Unesite sifru termina: ')
             if sifra_termina == ';': return
-
-            termin.slobodna_sedista(sifra_termina, None)
+            
+            if prodavac==1:
+                ime = input('Unesite ime i prezime za neregistrovanog, odnosno korisnicko ime za registrovanog kupca: ')
+                if ime ==';':return
+                
+            termin.slobodna_sedista(sifra_termina.upper(), None)
 
             sediste = input('Unesite vrednost sedista (; da se vratite na pocetak): ')
             if sediste == ';': continue
 
-            while not bioskopske_karte.provera_slobodnog_mesta(sifra_termina, sediste.upper()):
+            while not bioskopske_karte.provera_slobodnog_mesta(sifra_termina.upper(), sediste.upper()):
                 sediste = input('Sediste se ne moze rezervisati. Rezervisite drugo (; za izlazak): ')
                 if sediste == ';': return
 

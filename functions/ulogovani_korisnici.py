@@ -64,7 +64,7 @@ def rezervisi_kartu(ime, prodavac):
             if sifra_termina == ';': return
             
             if prodavac==1:
-                ime = input('Unesite ime i prezime za neregistrovanog, odnosno korisnicko ime za registrovanog kupca: ')
+                ime = input('Unesite ime i prezime za neregistrovanog, odnosno korisnicko ime za registrovanog kupca: ').upper()
                 if ime ==';':return
                 
             termin.slobodna_sedista(sifra_termina.upper(), None)
@@ -76,7 +76,7 @@ def rezervisi_kartu(ime, prodavac):
                 sediste = input('Sediste se ne moze rezervisati. Rezervisite drugo (; za izlazak): ')
                 if sediste == ';': return
 
-            bioskopske_karte.rezervisi_kartu(ime, sifra_termina, sediste.upper())
+            bioskopske_karte.rezervisi_kartu(ime, sifra_termina.upper(), sediste.upper())
 
             ponovo = input('Da li zelite jos da rezerviste (Y/N): ')
             if ponovo.upper() == 'N':return

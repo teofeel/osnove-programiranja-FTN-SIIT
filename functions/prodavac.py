@@ -1,4 +1,6 @@
 from functions import svi_korisnici, ulogovani_korisnici
+import bioskopske_karte
+
 _id=''
 def main(korisnicko_ime):
     global _id
@@ -32,7 +34,8 @@ def main(korisnicko_ime):
         elif unos==5:
             ulogovani_korisnici.rezervisi_kartu(None,1)
         elif unos==6:
-            continue
+            ime = input('Unesite ime i prezime kupca: ').upper()
+            bioskopske_karte.pregled_rezervacija(ime, 1)
         elif unos==7:
             ulogovani_korisnici.izmena_licnih_podataka(_id)
         elif unos==8:

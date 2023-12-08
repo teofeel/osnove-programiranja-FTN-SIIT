@@ -1,5 +1,6 @@
 from korisnik import korisnici
 from bioskopske_karte import karte
+import bioskopske_karte
 from functions import svi_korisnici
 from functions import ulogovani_korisnici
 #funckija za ispisivanje mogucnosti kao registrovan korisnik
@@ -17,9 +18,10 @@ def main(korisnicko_ime):
         print('3. Visekriterijumska pretraga filmova')
         print('4. Pretraga termina')
         print('5. Rezervisi sediste')
-        print('6. Izmeni licne podatke')
-        print('7. Odjava')
-        print('8. Izlazak iz aplikacije')
+        print('6. Pregled rezervacija')
+        print('7. Izmeni licne podatke')
+        print('8. Odjava')
+        print('9. Izlazak iz aplikacije')
         unos = input('Izaberite: ')
         if not unos.isdigit(): continue
         unos = int(unos)
@@ -35,11 +37,13 @@ def main(korisnicko_ime):
         elif unos==5:
             ulogovani_korisnici.rezervisi_kartu(_id,0)
         elif unos==6:
-            ulogovani_korisnici.izmena_licnih_podataka(_id)
+            bioskopske_karte.pregled_rezervacija(_id, None)
         elif unos==7:
+            ulogovani_korisnici.izmena_licnih_podataka(_id)
+        elif unos==8:
             _id = ''
             return
-        elif unos==8:
+        elif unos==9:
             izlazak()
 
       

@@ -29,15 +29,47 @@ def provera_slobodnog_mesta(sifra_termina, sediste):
             
     return termin.slobodna_sedista(sifra_termina, sediste)
 
-import datetime
+from datetime import datetime
 def rezervisi_kartu(ime, sifra_termina, sediste):
     nova_rezervcaija = {
         'ime':ime,
         'termin':sifra_termina,
         'sediste':sediste,
-        'datum_prodaje':'08.12.2023.',
+        'datum_prodaje':str(datetime.now().day)+'.'+str(datetime.now().month)+'.'+str(datetime.now().year)+'.',      # izmeniti datum
         'status':'rezervisana'
     }
 
     karte.append(nova_rezervcaija)
     pisi_fajl()
+
+from projekcija import projekcije
+from termin import termini
+def pregled_rezervacija(ime, prodavac):
+    print('////////////////////////')
+    for karta in karte:
+        if karta['ime'] == ime and karta['status']=='rezervisana':
+            oznaka_termina = karta['termin']
+
+            for termin in termini:
+                if termin['sifra'] == karta['termin']:
+                    datum = termin['datum']
+
+            for projekcija in projekcije:
+
+                if projekcija['sifra']==karta['termin'][0:4]:
+                    naziv_filma = projekcija['film']
+                    vreme_pocetka = projekcija['pocetak']
+                    vreme_kraja = projekcija['kraj']
+            
+            print('Termin bioskopske projekcije: '+oznaka_termina)
+            if prodavac:
+                print('Ime kupca: '+ime)
+            print('Naziv filma: '+ naziv_filma)
+            print('Datum: '+datum)
+            print('Vreme pocetka: '+vreme_pocetka)
+            print('Vreme kraja: '+vreme_kraja)
+            print('Sediste: '+karta['sediste'])
+            print('////////////////////////')
+        print(end='\n')
+
+    return

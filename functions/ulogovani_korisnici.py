@@ -1,5 +1,8 @@
 from korisnik import korisnici
 import korisnik
+from bioskopske_karte import karte
+import bioskopske_karte
+from functions import svi_korisnici
 
 def izmena_licnih_podataka(_id):
     while True:
@@ -43,3 +46,35 @@ def izmena_licnih_podataka(_id):
                     print('Stara lozinka je pogresna, pokusajte opet')
                     continue
                 break
+
+import termin
+def rezervisi_kartu(ime):
+        while True:
+            print('1. Direktan unos sifre termina | 2. Pretraga termina')
+            unos = input('Odaberite opciju 1 ili 2: ')
+
+            if unos == ';': return
+            if not unos.isdigit(): continue
+            unos = int(unos)
+
+            if unos==2:
+                while True:
+                    svi_korisnici.pretraga_termina()
+
+            sifra_termina = input('Unesite sifru termina: ')
+            if sifra_termina == ';': return
+
+            termin.slobodna_sedista(sifra_termina, None)
+
+            sediste = input('Unesite vrednost sedista (; da se vratite na pocetak): ')
+            if sediste == ';': continue
+
+            while not bioskopske_karte.provera_slobodnog_mesta(sifra_termina, sediste.upper()):
+                sediste = input('Sediste se ne moze rezervisati. Rezervisite drugo (; za izlazak): ')
+                if sediste == ';': return
+
+            bioskopske_karte.rezervisi_kartu(ime, sifra_termina, sediste.upper())
+
+            ponovo = input('Da li zelite jos da rezerviste (Y/N): ')
+            if ponovo.upper() == 'N':return
+

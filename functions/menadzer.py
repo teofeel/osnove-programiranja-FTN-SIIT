@@ -8,10 +8,9 @@ def main(korisnicko_ime):
         print('Ulogovani Menadzer')
         print('1. Dodaj novog prodavca')
         print('2. Dodaj novog menadzera')
-        print('3. Demovisi/Otpusti')
-        print('4. Izmena licnih podataka')
-        print('5. Odjava')
-        print('6. Izlazak iz aplikacije')
+        print('3. Izmena licnih podataka')
+        print('4. Odjava')
+        print('5. Izlazak iz aplikacije')
 
         unos = input('Izaberite: ')
         if not unos.isdigit(): continue
@@ -22,12 +21,10 @@ def main(korisnicko_ime):
         elif unos==2:
             dodaj_zaposlenog('menadzer')
         elif unos==3:
-            otpusti_zaposlenog()
-        elif unos==4:
             ulogovani_korisnici.izmena_licnih_podataka(_id)
-        elif unos==5:
+        elif unos==4:
             return
-        elif unos==6:
+        elif unos==5:
             exit()
 
 def dodaj_zaposlenog(zaposleni='prodavac'):
@@ -69,25 +66,3 @@ def dodaj_zaposlenog(zaposleni='prodavac'):
         if korisnik.novi_korisnik(novi_prodavac):
             print('Novi korisnik je dodat')
         return
-        
-def otpusti_zaposlenog():
-    while True:
-        print('1.) Promeni mu ulogu | 2.) Otpusti')
-        unos = input('Koja ce sudbina biti: ')
-        if unos == ';': return
-        elif not unos.isdigit(): continue
-
-        unos = int(unos)
-        korisnicko_ime = input('Koga je zadesila sudbina: ')
-
-        if unos==1:
-            if not korisnik.promovisi(korisnicko_ime, 'prodavac'):
-                opet = input('Uloga nije promenjena, ocete opet probati?(y/n): ')
-                if opet.upper()=='Y': continue
-            return
-                
-        if unos==2:
-            if not korisnik.promovisi(korisnicko_ime, 'registrovani kupac'):
-                opet = input('Zaposleni nije otpusten, ocete opet probati?(y/n): ')
-                if opet.upper()=='Y': continue
-            return

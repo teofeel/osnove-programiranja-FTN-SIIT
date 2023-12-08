@@ -30,7 +30,8 @@ def main(korisnicko_ime):
         elif unos==4:
             svi_korisnici.pretraga_termina()
         elif unos==5:
-            continue
+            ime = input('Unesite ime kupca: ')
+            ulogovani_korisnici.rezervisi_kartu(ime)
         elif unos==6:
             continue
         elif unos==7:

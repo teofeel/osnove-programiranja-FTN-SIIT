@@ -22,3 +22,25 @@ def sala_ispis_po(filteri, vrednosti):
                     print(sala[j], end='\n')
                 print('//////////////////////',end="\n")
                 
+def sedista_sale(sifra_sale, rezervisana_sedista):
+    for sala in sale:
+        if sala['sifra'] == str(sifra_sale):
+            for i in range(int(sala['redovi'])+1):
+                for j in range(1,int(sala['sedista'])):
+                    pocetno = 'A'
+                    sediste = chr(ord(pocetno)+i)+str(j)
+                    x_na_to = False
+
+                    for sedista in rezervisana_sedista:
+                        if sedista == sediste:
+                            x_na_to = True
+                            break
+                    if x_na_to:
+                        print('X', end=' ')
+                        continue
+                        
+                    print(sediste, end=' ')
+                print(end='\n')
+
+                            
+                    

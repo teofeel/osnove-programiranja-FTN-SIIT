@@ -10,6 +10,8 @@ import sala
 from termin import termini
 import termin
 
+import bioskopske_karte
+
 def ucitaj_podatke():
     # iz svih fajlova se podaci ucitavaju u prethodno navedene liste
     korisnik.ucitaj_korisnike()    
@@ -17,6 +19,7 @@ def ucitaj_podatke():
     projekcija.ucitaj_projekcije()
     sala.ucitaj_sale()
     termin.ucitaj_termine()
+    bioskopske_karte.ucitaj_karte()
 ##########################################################################
 
 ## FUNCKIJE ZA SVE KORISNIKE ##
@@ -45,7 +48,7 @@ def main():
         if not i.isdigit():
             continue
         
-        i= int(i)
+        i = int(i)
         if i==1:
             if not svi_korisnici.prijava():
                 print('Prijava nije uspesna. Probajte opet')
@@ -59,6 +62,8 @@ def main():
             svi_korisnici.pretraga_filmova(1)
         elif i==6:
             svi_korisnici.pretraga_termina()
+        elif i==8:
+            sala.sedista_sale(5643,0)
 
 if __name__ == '__main__':      
     main()

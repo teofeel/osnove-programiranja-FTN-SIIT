@@ -31,6 +31,7 @@ def pretrazi_termine(filter, vrednost):
                     print('Pocetak termina: '+projekcija['pocetak'])
                     print('Kraj termina: '+projekcija['kraj'])
                     print('Datum: '+ termin['datum'])
+                    print('Sifra termina: '+ termin['sifra'])
                     print('////////////////////////////')
         elif vrednost.upper() in projekcija[filter].upper():
             for termin in termini:
@@ -43,6 +44,7 @@ def pretrazi_termine(filter, vrednost):
                         print('Pocetak termina: '+projekcija['pocetak'])
                         print('Kraj termina: '+projekcija['kraj'])
                         print('Datum: '+ termin['datum'])
+                        print('Sifra termina: '+ termin['sifra'])
                         print('////////////////////////////')
 
 def pretraga_vreme(filter, sati, minuti):
@@ -60,6 +62,36 @@ def pretraga_vreme(filter, sati, minuti):
                             print('Pocetak termina: '+projekcija['pocetak'])
                             print('Kraj termina: '+projekcija['kraj'])
                             print('Datum: '+ termin['datum'])
+                            print('Sifra termina: '+ termin['sifra'])
                             print('////////////////////////////')
     else: print('Doslo je do greske')
+
+
+from bioskopske_karte import karte
+from sala import sale
+import sala
+def slobodna_sedista(sifra_termina, sediste):
+    for termin in termini:
+        if termin['sifra']==sifra_termina:
+            sifra_projekcije = termin['sifra'][0:4]
+            break
+
+    if sifra_projekcije == None: return
+
+    for projekcija in projekcije:
+        if projekcija['sifra']==sifra_projekcije:
+            for sala_l in sale:
+                if sala_l['naziv']==projekcija['sala']:
+                    sifra_sale = sala_l['sifra']
+                    break
+    
+    rezervisana_sedista = []
+    for karta in karte:
+        if karta['termin']==sifra_termina:
+            rezervisana_sedista.append(karta['sediste'])
+
+    if not sediste == None:
+        return
+    else: sala.sedista_sale(sifra_sale,rezervisana_sedista)
+
 

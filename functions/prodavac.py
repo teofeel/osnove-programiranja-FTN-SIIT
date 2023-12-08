@@ -34,8 +34,7 @@ def main(korisnicko_ime):
         elif unos==5:
             ulogovani_korisnici.rezervisi_kartu(None,1)
         elif unos==6:
-            ime = input('Unesite ime i prezime kupca: ').upper()
-            bioskopske_karte.pregled_rezervacija(ime, 1)
+            ulogovani_korisnici.pregled_rezervacija(None,1)
         elif unos==7:
             ulogovani_korisnici.izmena_licnih_podataka(_id)
         elif unos==8:

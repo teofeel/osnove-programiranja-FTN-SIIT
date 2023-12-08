@@ -81,3 +81,22 @@ def rezervisi_kartu(ime, prodavac):
             ponovo = input('Da li zelite jos da rezerviste (Y/N): ')
             if ponovo.upper() == 'N':return
 
+
+
+def pregled_rezervacija(ime,prodavac):
+    while True:
+        if prodavac==1:
+            print('1. Pregled svih rezervacija | 2. Pregled rezervacija kupca')
+            unos = input('Odaberite opciju: ')
+            if unos==';': return
+            if not unos.isdigit(): continue
+
+            unos=int(unos)
+            if unos==1: bioskopske_karte.pregled_rezervacija(None, 1,1)
+            elif unos==2:
+                ime = input('Unesite ime i prezime kupca (korisnicko ime za registrovanog): ').upper()
+                if ime==';':return
+                bioskopske_karte.pregled_rezervacija(ime,0,1)
+        else:
+            bioskopske_karte.pregled_rezervacija(ime, 0,0)
+            return

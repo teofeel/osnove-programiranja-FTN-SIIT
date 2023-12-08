@@ -44,10 +44,10 @@ def rezervisi_kartu(ime, sifra_termina, sediste):
 
 from projekcija import projekcije
 from termin import termini
-def pregled_rezervacija(ime, prodavac):
+def pregled_rezervacija(ime, pregled_svih, prodavac):
     print('////////////////////////')
     for karta in karte:
-        if karta['ime'] == ime and karta['status']=='rezervisana':
+        if pregled_svih or (karta['ime'].upper() == ime.upper() and karta['status']=='rezervisana'):
             oznaka_termina = karta['termin']
 
             for termin in termini:
@@ -63,7 +63,7 @@ def pregled_rezervacija(ime, prodavac):
             
             print('Termin bioskopske projekcije: '+oznaka_termina)
             if prodavac:
-                print('Ime kupca: '+ime)
+                print('Ime kupca: '+karta['ime'])
             print('Naziv filma: '+ naziv_filma)
             print('Datum: '+datum)
             print('Vreme pocetka: '+vreme_pocetka)

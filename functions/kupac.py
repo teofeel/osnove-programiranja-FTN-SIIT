@@ -37,7 +37,7 @@ def main(korisnicko_ime):
         elif unos==5:
             ulogovani_korisnici.rezervisi_kartu(_id,0)
         elif unos==6:
-            bioskopske_karte.pregled_rezervacija(_id, None)
+            ulogovani_korisnici.pregled_rezervacija(_id, 0)
         elif unos==7:
             ulogovani_korisnici.izmena_licnih_podataka(_id)
         elif unos==8:

@@ -19,9 +19,10 @@ def main(korisnicko_ime):
         print('4. Pretraga termina')
         print('5. Rezervisi sediste')
         print('6. Pregled rezervacija')
-        print('7. Izmeni licne podatke')
-        print('8. Odjava')
-        print('9. Izlazak iz aplikacije')
+        print('7. Ponisti rezervaciju')
+        print('8. Izmeni licne podatke')
+        print('9. Odjava')
+        print('10. Izlazak iz aplikacije')
         unos = input('Izaberite: ')
         if not unos.isdigit(): continue
         unos = int(unos)
@@ -39,11 +40,13 @@ def main(korisnicko_ime):
         elif unos==6:
             ulogovani_korisnici.pregled_rezervacija(_id, 0)
         elif unos==7:
-            ulogovani_korisnici.izmena_licnih_podataka(_id)
+            ulogovani_korisnici.ponisti_rezervaciju_prodaju(_id, True)
         elif unos==8:
+            ulogovani_korisnici.izmena_licnih_podataka(_id)
+        elif unos==9:
             _id = ''
             return
-        elif unos==9:
+        elif unos==10:
             izlazak()
 
       

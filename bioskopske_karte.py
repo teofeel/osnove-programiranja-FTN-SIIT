@@ -73,3 +73,13 @@ def pregled_rezervacija(ime, pregled_svih, prodavac):
         print(end='\n')
 
     return
+
+def ponisti_rezervaciju_kupovinu(ime, termin, sediste, status):
+    for karta in karte:
+        if karta['ime'].upper()==ime.upper() and karta['termin']==termin and karta['sediste']==sediste and karta['status']==status:
+            karte.remove(karta)
+            pisi_fajl()
+            return True 
+    return False
+    
+        

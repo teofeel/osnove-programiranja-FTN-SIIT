@@ -100,3 +100,50 @@ def pregled_rezervacija(ime,prodavac):
         else:
             bioskopske_karte.pregled_rezervacija(ime, 0,0)
             return
+
+def ponisti_rezervaciju_prodaju(ime, rezervacija):
+    while True:
+        if rezervacija:
+            print('1. Direktno obrisite rezervaciju unosom termina i sedista | 2. Pregled rezervacija')
+        else:
+            print('1. Direktno obrisite kupljenu kartu unosom termina i sedista | 2. Pregled rezervacija')
+        unos = input('Odaberite opciju (; za nazad): ')
+
+        if unos == ';':return
+        elif not unos.isdigit(): continue
+        unos = int(unos)
+
+        if unos==2:
+            bioskopske_karte.pregled_rezervacija(ime,0,0)
+        
+        termin = input('Unesite termin projekcije: ')
+        if termin==';': return
+
+        sediste = input('Unesite oznaku sedista: ')
+        if sediste == ';': return
+
+        if rezervacija:
+            while not bioskopske_karte.ponisti_rezervaciju_kupovinu(ime, termin, sediste, 'rezervisana'):
+                print('Nije moguce ponistiti rezervaciju (Termin ili sediste ne odgovara ni jednoj postojecoj rezervaciji)\n')
+                termin = input('Unesite opet termin projekcije: ')
+                if termin==';': return
+
+                sediste = input('Unesite opet oznaku sedista: ')
+                if sediste == ';': return
+
+            opet = input('Rezervacija je ponistena. Ocete jos neku da ponistite (y/n): ')
+            if opet.upper()=='Y': continue
+
+        else:
+            while not bioskopske_karte.ponisti_rezervaciju_kupovinu(ime, termin, sediste, 'kupljena'):
+                print('Nije moguce ponistiti kupovinu (Termin ili sediste ne odgovara ni jednoj postojecoj rezervaciji)\n')
+                termin = input('Unesite opet termin projekcije: ')
+                if termin==';': return
+
+                sediste = input('Unesite opet oznaku sedista: ')
+                if sediste == ';': return
+
+            opet = input('Kupovina je ponistena. Ocete jos neku da ponistite (y/n): ')
+            if opet.upper()=='Y': continue
+        
+        return

@@ -14,9 +14,10 @@ def main(korisnicko_ime):
         print('4. Pretraga termina')
         print('5. Rezervacija karata')
         print('6. Pregled rezervacija')
-        print('7. Izmeni licne podatke')
-        print('8. Odjava')
-        print('9. Izlazak iz aplikacije ')
+        print('7. Ponistite rezervaciju / kupljenu kartu')
+        print('8. Izmeni licne podatke')
+        print('9. Odjava')
+        print('10. Izlazak iz aplikacije ')
 
         unos = input('Vas izbor: ')
         if not unos.isdigit(): continue
@@ -36,9 +37,24 @@ def main(korisnicko_ime):
         elif unos==6:
             ulogovani_korisnici.pregled_rezervacija(None,1)
         elif unos==7:
-            ulogovani_korisnici.izmena_licnih_podataka(_id)
+            ime, rezervacija = ponistavanje_rezervacija_kupvoina()
+            ulogovani_korisnici.ponisti_rezervaciju_prodaju(ime, rezervacija)
         elif unos==8:
+            ulogovani_korisnici.izmena_licnih_podataka(_id)
+        elif unos==9:
             _id=''
             return
-        elif unos==9:
+        elif unos==10:
             exit()
+
+
+def ponistavanje_rezervacija_kupvoina():
+    ime = input('Unesite ime ')
+    rezervacija = input('Da li je rezervacija y/n: ')
+
+    while not (rezervacija.upper()=='Y' or rezervacija.upper()=='N'):
+        rezervacija = input('Da li je rezervacija y/n: ')
+    if rezervacija.upper()=='Y': rezervacija=True
+    else: rezervacija=False
+
+    return ime, rezervacija

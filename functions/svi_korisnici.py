@@ -5,6 +5,7 @@ from film import filmovi
 from projekcija import projekcije
 from sala import sale
 from functions import menadzer, prodavac
+from prettytable import PrettyTable
 # funkcija za prijavu korisnika
 def prijava():
     tryagn='y'
@@ -211,9 +212,12 @@ def pretraga_termina():
         izbor=int(izbor)
 
         if izbor == 1:
+            t = PrettyTable(['Naziv'])
+
             for film in filmovi:
-                print(film['naziv'], end=' | ')
-            print('\n')
+                t.add_row([film['naziv']])
+            print(t)
+
             while True:
                 vrednost = input('Unesite naziv filma: ')
                 if vrednost==';': return

@@ -1,4 +1,5 @@
 # klasa za film
+from prettytable import PrettyTable
 filmovi = []
 def ucitaj_filmove():
     global filmovi
@@ -12,14 +13,14 @@ def ucitaj_filmove():
                 "trajanje":data[2],
                 "reziser":data[3],
                 "uloge":data[4],
-                "zemlja poerkla":data[5],
+                "zemlja porekla":data[5],
                 "godina":data[6],
                 "opis":data[7]
             })
 
 def pretraga_filmova_(filteri, vrednosti):
     if filmovi == []: return 0
-
+    t = PrettyTable(['Naziv', 'Zanr','Trajanje','Reziser','Uloge','Zemlja porekla','Godina', 'Opis'])
     for film in filmovi:
         uslovi = 0
         for i in range(0, len(filteri)):
@@ -53,9 +54,7 @@ def pretraga_filmova_(filteri, vrednosti):
                 uslovi+=1
 
         if uslovi == len(filteri):
-            for j in film:
-                print(str(j).upper()+":", end=" ")
-                print(film[j], end="\n")
-            print('//////////////////////',end="\n")
-        
+            t.add_row([film['naziv'],film['zanr'],film['trajanje'],film['reziser'],film['uloge'],film['zemlja porekla'], film['godina'], film['opis']])
+            
+    print(t)
     return 

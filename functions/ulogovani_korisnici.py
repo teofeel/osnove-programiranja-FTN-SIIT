@@ -125,7 +125,7 @@ def ponisti_rezervaciju_prodaju(ime, rezervacija):
         if sediste == ';': return
 
         if rezervacija:
-            while not bioskopske_karte.ponisti_rezervaciju_kupovinu(ime, termin, sediste, 'rezervisana'):
+            while not bioskopske_karte.ponisti_rezervaciju_kupovinu(ime.upper(), termin.upper(), sediste.upper(), 'rezervisana'):
                 print('Nije moguce ponistiti rezervaciju (Termin ili sediste ne odgovara ni jednoj postojecoj rezervaciji)\n')
                 termin = input('Unesite opet termin projekcije: ')
                 if termin==';': return
@@ -137,7 +137,7 @@ def ponisti_rezervaciju_prodaju(ime, rezervacija):
             if opet.upper()=='Y': continue
 
         else:
-            while not bioskopske_karte.ponisti_rezervaciju_kupovinu(ime, termin, sediste, 'kupljena'):
+            while not bioskopske_karte.ponisti_rezervaciju_kupovinu(ime.upper(), termin.upper(), sediste.upper(), 'kupljena'):
                 print('Nije moguce ponistiti kupovinu (Termin ili sediste ne odgovara ni jednoj postojecoj rezervaciji)\n')
                 termin = input('Unesite opet termin projekcije: ')
                 if termin==';': return

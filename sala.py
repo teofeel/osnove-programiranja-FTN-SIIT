@@ -1,3 +1,5 @@
+from prettytable import PrettyTable
+
 sale = []
 def ucitaj_sale():
     global sale
@@ -24,12 +26,14 @@ def sala_ispis_po(filteri, vrednosti):
                 
 def sedista_sale(sifra_sale, rezervisana_sedista):
     print('Slobodna sedista: ')
+    t = PrettyTable()
     for sala in sale:
-        if sala['sifra'] == str(sifra_sale):
-            for i in range(int(sala['redovi'])+1):
-                for j in range(1,int(sala['sedista'])):
+        if sala['sifra']==str(sifra_sale):
+            for i in range(1,int(sala['sedista'])):
+                sedista_arr=[]
+                for j in range(int(sala['redovi'])):
                     pocetno = 'A'
-                    sediste = chr(ord(pocetno)+i)+str(j)
+                    sediste = chr(ord(pocetno)+j)+str(i)
                     x_na_to = False
 
                     for sedista in rezervisana_sedista:
@@ -37,11 +41,11 @@ def sedista_sale(sifra_sale, rezervisana_sedista):
                             x_na_to = True
                             break
                     if x_na_to:
-                        print('X', end=' ')
-                        continue
-                        
-                    print(sediste, end=' ')
-                print(end='\n')
+                        sedista_arr.append('X')
+                    else:
+                        sedista_arr.append(sediste)
+                t.add_column('Red '+str(i),sedista_arr)
+    print(t)
 
 def postoji_sediste(sifra_sale, sediste_provera):
     for sala in sale:

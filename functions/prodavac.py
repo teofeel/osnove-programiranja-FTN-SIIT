@@ -81,7 +81,6 @@ def pretraga_karata():
                 svi_korisnici.pretraga_termina()
 
             termin = input('Unesite termin: ')
-            print('/////////////')
             bioskopske_karte.pronadji_karte(termin, None, None, None)
             return
         

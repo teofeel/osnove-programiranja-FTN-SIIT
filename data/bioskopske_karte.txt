@@ -1,4 +1,4 @@
-teo;1111AS;A5;08.12.2023.;rezervisana
 TEODOR PERUNICIC;1111AS;L2;8.12.2023.;rezervisana
 nikola;1111AS;B6;9.12.2023.;rezervisana
-TEO;1111AS;A9;9.12.2023.;rezervisana
+TEO;1221WK;A5;9.12.2023.;rezervisana
+TEODOR;1111AS;A6;9.12.2023.;kupljena

@@ -1,4 +1,4 @@
-
+from prettytable import PrettyTable
 karte = []
 def ucitaj_karte():
     global karte
@@ -45,7 +45,8 @@ def rezervisi_kartu(ime, sifra_termina, sediste):
 from projekcija import projekcije
 from termin import termini
 def pregled_rezervacija(ime, pregled_svih, prodavac):
-    print('////////////////////////')
+    t = PrettyTable(['Termin bioskopske projekcije','Naziv filma', 'Datum', 'Vreme pocetka', 'Vreme Kraja', 'Sediste'])
+    ime_kupca_column = []
     for karta in karte:
         if pregled_svih or (karta['ime'].upper() == ime.upper() and karta['status']=='rezervisana'):
             oznaka_termina = karta['termin']
@@ -61,17 +62,20 @@ def pregled_rezervacija(ime, pregled_svih, prodavac):
                     vreme_pocetka = projekcija['pocetak']
                     vreme_kraja = projekcija['kraj']
             
-            print('Termin bioskopske projekcije: '+oznaka_termina)
+            t.add_row([oznaka_termina, naziv_filma, datum, vreme_pocetka, vreme_kraja, karta['sediste']])
+            #print('Termin bioskopske projekcije: '+oznaka_termina)
             if prodavac:
-                print('Ime kupca: '+karta['ime'])
-            print('Naziv filma: '+ naziv_filma)
-            print('Datum: '+datum)
-            print('Vreme pocetka: '+vreme_pocetka)
-            print('Vreme kraja: '+vreme_kraja)
-            print('Sediste: '+karta['sediste'])
-            print('////////////////////////')
-        print(end='\n')
-
+                ime_kupca_column.append(karta['ime'])
+                #print('Ime kupca: '+karta['ime'])
+            #print('Naziv filma: '+ naziv_filma)
+            #print('Datum: '+datum)
+            #print('Vreme pocetka: '+vreme_pocetka)
+            #print('Vreme kraja: '+vreme_kraja)
+            #print('Sediste: '+karta['sediste'])
+            #print('////////////////////////')
+        #print(end='\n')
+    if prodavac: t.add_column('Ime Kupca', ime_kupca_column)
+    print(t)
     return
 
 def ponisti_rezervaciju_kupovinu(ime, termin, sediste, status):
@@ -90,29 +94,33 @@ def pronadji_karte(termin, ime, datum, status):
         print('Status: ' + karta['status'])
         print('\n')
 
+    t = PrettyTable(['Termin','Ime','Sediste','Datum','Status'])
+
     if termin:
         for karta in karte:
-            if karta['termin'] == termin:
-                ispisi_kartu(karta)
-        print('//////////////')
+            if karta['termin'].upper() == termin.upper():
+                t.add_row([karta['termin'],karta['ime'],karta['sediste'],karta['datum_prodaje'],karta['status']])
+
 
     elif ime:
         for karta in karte:
             if karta['ime'].upper() == ime.upper():
-                ispisi_kartu(karta)
-        print('//////////////')
+                t.add_row([karta['termin'],karta['ime'],karta['sediste'],karta['datum_prodaje'],karta['status']])
+
     
     elif datum:
         for karta in karte:
             if karta['datum_prodaje']==datum:
-                ispisi_kartu(karta)
-        print('/////////////')
+                t.add_row([karta['termin'],karta['ime'],karta['sediste'],karta['datum_prodaje'],karta['status']])
+
 
     elif status:
         for karta in karte:
             if karta['status']==status:
-                ispisi_kartu(karta)
-        print('/////////////')
+                t.add_row([karta['termin'],karta['ime'],karta['sediste'],karta['datum_prodaje'],karta['status']])
+
+
+    print(t)
         
 def prodaj_kartu(ime, termin, sediste):
     karta = {

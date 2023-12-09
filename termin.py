@@ -1,4 +1,5 @@
 from datetime import datetime
+from prettytable import PrettyTable
 
 termini = []
 def ucitaj_termine():
@@ -22,30 +23,39 @@ def dan_projekcije(dan):
 
 from projekcija import projekcije
 def pretrazi_termine(filter, vrednost):
+    t = PrettyTable(['Naziv','Sala','Pocetak termina','Kraj Termina','Datum','Sifra termina'])
     for projekcija in projekcije:
         if filter == 'datum': 
             for termin in termini:
                 if termin['datum'] == vrednost and projekcija['sifra'] in termin['sifra']:
-                    print('Naziv: ' + projekcija['film'])
-                    print('Sala: '+projekcija['sala'])
-                    print('Pocetak termina: '+projekcija['pocetak'])
-                    print('Kraj termina: '+projekcija['kraj'])
-                    print('Datum: '+ termin['datum'])
-                    print('Sifra termina: '+ termin['sifra'])
-                    print('////////////////////////////')
+                    t.add_row([projekcija['film'], projekcija['sala'], projekcija['pocetak'], 
+                               projekcija['kraj'], termin['datum'], termin['sifra']])
+                    #print('Naziv: ' + projekcija['film'])
+                    #print('Sala: '+projekcija['sala'])
+                    #print('Pocetak termina: '+projekcija['pocetak'])
+                    #print('Kraj termina: '+projekcija['kraj'])
+                    #print('Datum: '+ termin['datum'])
+                    #print('Sifra termina: '+ termin['sifra'])
+                    #print('////////////////////////////')
         elif vrednost.upper() in projekcija[filter].upper():
             for termin in termini:
                 datum_str = termin['datum'].split('.')
                 for dan in projekcija['dani'].split(' '):
                     if (datetime(int(datum_str[2]),int(datum_str[1]),int(datum_str[0])).weekday() 
                         == dan_projekcije(dan)):  
-                        print('Naziv: ' + projekcija['film'])
-                        print('Sala: '+projekcija['sala'])
-                        print('Pocetak termina: '+projekcija['pocetak'])
-                        print('Kraj termina: '+projekcija['kraj'])
-                        print('Datum: '+ termin['datum'])
-                        print('Sifra termina: '+ termin['sifra'])
-                        print('////////////////////////////')
+                        t.add_row([projekcija['film'], projekcija['sala'], projekcija['pocetak'], 
+                               projekcija['kraj'], termin['datum'], termin['sifra']])
+                        
+                        #print('Naziv: ' + projekcija['film'])
+                        #print('Sala: '+projekcija['sala'])
+                        #print('Pocetak termina: '+projekcija['pocetak'])
+                        #print('Kraj termina: '+projekcija['kraj'])
+                        #print('Datum: '+ termin['datum'])
+                        #print('Sifra termina: '+ termin['sifra'])
+                        #print('////////////////////////////')
+    print(t)
+
+
 
 def pretraga_vreme(filter, sati, minuti):
     if filter=='pocetak' or filter=='kraj':

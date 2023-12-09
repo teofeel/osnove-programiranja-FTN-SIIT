@@ -49,37 +49,39 @@ def izmena_licnih_podataka(_id):
 
 import termin
 def rezervisi_kartu(ime, prodavac):
-        while True:
-            print('1. Direktan unos sifre termina | 2. Pretraga termina')
-            unos = input('Odaberite opciju 1 ili 2: ')
+    while True:
+        print('1. Direktan unos sifre termina | 2. Pretraga termina')
+        unos = input('Odaberite opciju 1 ili 2: ')
 
-            if unos == ';': return
-            if not unos.isdigit(): continue
-            unos = int(unos)
+        if unos == ';': return
+        if not unos.isdigit(): continue
+        unos = int(unos)
 
-            if unos==2:
-                svi_korisnici.pretraga_termina()
+        if unos==2:
+            svi_korisnici.pretraga_termina()
 
-            sifra_termina = input('Unesite sifru termina: ')
-            if sifra_termina == ';': return
+        sifra_termina = input('Unesite sifru termina: ')
+        if sifra_termina == ';': return
             
-            if prodavac==1:
-                ime = input('Unesite ime i prezime za neregistrovanog, odnosno korisnicko ime za registrovanog kupca: ').upper()
-                if ime ==';':return
+        if prodavac==1:
+            ime = input('Unesite ime i prezime za neregistrovanog, odnosno korisnicko ime za registrovanog kupca: ').upper()
+            if ime ==';':return
                 
-            termin.slobodna_sedista(sifra_termina.upper(), None)
+        while not termin.slobodna_sedista(sifra_termina.upper(), None):
+            sifra_termina = input('Termin ne postoji. Unesite opet sifru termina: ')
+            if sifra_termina == ';': return
 
-            sediste = input('Unesite vrednost sedista (; da se vratite na pocetak): ')
-            if sediste == ';': continue
+        sediste = input('Unesite vrednost sedista (; da se vratite na pocetak): ')
+        if sediste == ';': continue
 
-            while not bioskopske_karte.provera_slobodnog_mesta(sifra_termina.upper(), sediste.upper()):
-                sediste = input('Sediste se ne moze rezervisati. Rezervisite drugo (; za izlazak): ')
-                if sediste == ';': return
+        while not bioskopske_karte.provera_slobodnog_mesta(sifra_termina.upper(), sediste.upper()):
+            sediste = input('Sediste se ne moze rezervisati. Rezervisite drugo (; za izlazak): ')
+            if sediste == ';': return
 
-            bioskopske_karte.rezervisi_kartu(ime, sifra_termina.upper(), sediste.upper())
+        bioskopske_karte.rezervisi_kartu(ime, sifra_termina.upper(), sediste.upper())
 
-            ponovo = input('Da li zelite jos da rezerviste (Y/N): ')
-            if ponovo.upper() == 'N':return
+        ponovo = input('Da li zelite jos da rezerviste (Y/N): ')
+        if ponovo.upper() == 'N':return
 
 
 

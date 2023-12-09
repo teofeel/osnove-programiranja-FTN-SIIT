@@ -114,4 +114,13 @@ def pronadji_karte(termin, ime, datum, status):
                 ispisi_kartu(karta)
         print('/////////////')
         
-        
+def prodaj_kartu(ime, termin, sediste):
+    karta = {
+        'ime':ime,
+        'termin':termin,
+        'sediste':sediste,
+        'datum_prodaje':str(datetime.now().day)+'.'+str(datetime.now().month)+'.'+str(datetime.now().year)+'.',
+        'status':'kupljena'
+    }
+    karte.append(karta)
+    pisi_fajl()

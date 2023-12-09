@@ -1,11 +1,10 @@
 from functions import svi_korisnici, ulogovani_korisnici
-import bioskopske_karte
+import bioskopske_karte, termin
 
 _id=''
 def main(korisnicko_ime):
     global _id
     _id = korisnicko_ime
-
     while True:
         print('Meni - Ulogovani Prodavac')
         print('1. Pregled dostupnih filmova')
@@ -16,9 +15,10 @@ def main(korisnicko_ime):
         print('6. Pregled rezervacija')
         print('7. Ponistite rezervaciju / kupljenu kartu')
         print('8. Pretraga karata')
-        print('9. Izmeni licne podatke')
-        print('10. Odjava')
-        print('11. Izlazak iz aplikacije ')
+        print('9. Prodaj kartu')
+        print('10. Izmeni licne podatke')
+        print('11. Odjava')
+        print('12. Izlazak iz aplikacije ')
 
         unos = input('Vas izbor: ')
         if not unos.isdigit(): continue
@@ -43,11 +43,13 @@ def main(korisnicko_ime):
         elif unos==8:
             pretraga_karata()
         elif unos==9:
-            ulogovani_korisnici.izmena_licnih_podataka(_id)
+            prodaja_karte(False)
         elif unos==10:
+            ulogovani_korisnici.izmena_licnih_podataka(_id)
+        elif unos==11:
             _id=''
             return
-        elif unos==11:
+        elif unos==12:
             exit()
 
 
@@ -111,6 +113,45 @@ def pretraga_karata():
             else: rezervacija='rezervisana'
 
             bioskopske_karte.pronadji_karte(None,None,None, rezervacija)
+    
+
+def prodaja_karte(rezervisana):
+    while True:
+        print('1. Direktan unos termina | 2. Pretraga termina projekcije')
+        unos = input('Odaberite opciju (; za nazad): ')
+        
+        if unos==';':return
+        if not unos.isdigit(): continue
+        unos = int(unos)
+
+        if unos==2: svi_korisnici.pretraga_termina()
+
+        sifra_termina=input('Unesite termin: ')
+        if sifra_termina==';': return
+
+        ime = input('Unesite ime i prezime za neregistrovanog, odnosno samo me za registrovanog korisnika: ')
+        if ime==';':return
+
+        while not termin.slobodna_sedista(sifra_termina.upper(), None):
+            sifra_termina=input('Termin ne postoji. Unesite opet termin: ')
+            if sifra_termina==';': return
+
+
+        sediste = input('Unesite sediste: ')
+        if sediste==';':return
+        while not termin.slobodna_sedista(sifra_termina.upper(), sediste.upper()):
+            sediste = input('Unesite sediste: ')
+            if sediste==';':return
+        
+        bioskopske_karte.prodaj_kartu(ime.upper(), sifra_termina.upper(), sediste.upper())
+
+        ponovo = input('Da li zelite jos da prodate (Y/N): ')
+        if ponovo.upper() == 'N':return
+
+        
+
+
+
 
 
         

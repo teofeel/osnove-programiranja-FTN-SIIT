@@ -72,11 +72,13 @@ from sala import sale
 import sala
 def slobodna_sedista(sifra_termina, sediste):
     for termin in termini:
+        br=0
         if termin['sifra']==sifra_termina:
             sifra_projekcije = termin['sifra'][0:4]
+            br=1
             break
 
-    if sifra_projekcije == None: return
+    if not br: return False
 
     for projekcija in projekcije:
         if projekcija['sifra']==sifra_projekcije:
@@ -93,6 +95,8 @@ def slobodna_sedista(sifra_termina, sediste):
     if not sediste == None:
         return sala.postoji_sediste(sifra_sale,sediste)
         
-    else: sala.sedista_sale(sifra_sale,rezervisana_sedista)
+    else: 
+        sala.sedista_sale(sifra_sale,rezervisana_sedista)
+        return True
 
 

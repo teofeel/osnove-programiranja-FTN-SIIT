@@ -23,6 +23,7 @@ def sala_ispis_po(filteri, vrednosti):
                 print('//////////////////////',end="\n")
                 
 def sedista_sale(sifra_sale, rezervisana_sedista):
+    print('Slobodna sedista: ')
     for sala in sale:
         if sala['sifra'] == str(sifra_sale):
             for i in range(int(sala['redovi'])+1):

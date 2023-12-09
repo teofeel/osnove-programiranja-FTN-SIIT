@@ -43,7 +43,7 @@ def main(korisnicko_ime):
         elif unos==8:
             pretraga_karata()
         elif unos==9:
-            prodaja_karte(False)
+            direktna_prodaja_karte()
         elif unos==10:
             ulogovani_korisnici.izmena_licnih_podataka(_id)
         elif unos==11:
@@ -115,7 +115,7 @@ def pretraga_karata():
             bioskopske_karte.pronadji_karte(None,None,None, rezervacija)
     
 
-def prodaja_karte(rezervisana):
+def direktna_prodaja_karte():
     while True:
         print('1. Direktan unos termina | 2. Pretraga termina projekcije')
         unos = input('Odaberite opciju (; za nazad): ')

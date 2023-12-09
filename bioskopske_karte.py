@@ -81,5 +81,37 @@ def ponisti_rezervaciju_kupovinu(ime, termin, sediste, status):
             pisi_fajl()
             return True 
     return False
+
+def pronadji_karte(termin, ime, datum, status):
+    def ispisi_kartu(karta):
+        print('Termin: ' + karta['termin'])
+        print('Ime: ' + karta['ime'])
+        print('Datum: ' + karta['datum_prodaje'])
+        print('Status: ' + karta['status'])
+        print('\n')
+
+    if termin:
+        for karta in karte:
+            if karta['termin'] == termin:
+                ispisi_kartu(karta)
+        print('//////////////')
+
+    elif ime:
+        for karta in karte:
+            if karta['ime'].upper() == ime.upper():
+                ispisi_kartu(karta)
+        print('//////////////')
     
+    elif datum:
+        for karta in karte:
+            if karta['datum_prodaje']==datum:
+                ispisi_kartu(karta)
+        print('/////////////')
+
+    elif status:
+        for karta in karte:
+            if karta['status']==status:
+                ispisi_kartu(karta)
+        print('/////////////')
+        
         

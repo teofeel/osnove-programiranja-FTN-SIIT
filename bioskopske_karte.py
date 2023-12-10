@@ -63,17 +63,9 @@ def pregled_rezervacija(ime, pregled_svih, prodavac):
                     vreme_kraja = projekcija['kraj']
             
             t.add_row([oznaka_termina, naziv_filma, datum, vreme_pocetka, vreme_kraja, karta['sediste']])
-            #print('Termin bioskopske projekcije: '+oznaka_termina)
             if prodavac:
                 ime_kupca_column.append(karta['ime'])
-                #print('Ime kupca: '+karta['ime'])
-            #print('Naziv filma: '+ naziv_filma)
-            #print('Datum: '+datum)
-            #print('Vreme pocetka: '+vreme_pocetka)
-            #print('Vreme kraja: '+vreme_kraja)
-            #print('Sediste: '+karta['sediste'])
-            #print('////////////////////////')
-        #print(end='\n')
+
     if prodavac: t.add_column('Ime Kupca', ime_kupca_column)
     print(t)
     return

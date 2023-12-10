@@ -17,9 +17,10 @@ def main(korisnicko_ime):
         print('8. Pretraga karata')
         print('9. Prodaj kartu')
         print('10. Prodaj rezervisanu kartu')
-        print('11. Izmeni licne podatke')
-        print('12. Odjava')
-        print('13. Izlazak iz aplikacije ')
+        print('11. Izmena karte')
+        print('12. Izmeni licne podatke')
+        print('13. Odjava')
+        print('14. Izlazak iz aplikacije ')
 
         unos = input('Vas izbor: ')
         if not unos.isdigit(): continue
@@ -48,11 +49,13 @@ def main(korisnicko_ime):
         elif unos==10:
             prodaja_rezervisane_karte()
         elif unos==11:
-            ulogovani_korisnici.izmena_licnih_podataka(_id)
+            izmeni_kartu()
         elif unos==12:
+            ulogovani_korisnici.izmena_licnih_podataka(_id)
+        elif unos==13:
             _id=''
             return
-        elif unos==13:
+        elif unos==14:
             exit()
 
 
@@ -140,8 +143,8 @@ def direktna_prodaja_karte():
 
         sediste = input('Unesite sediste: ')
         if sediste==';':return
-        while not termin.slobodna_sedista(sifra_termina.upper(), sediste.upper()):
-            sediste = input('Unesite sediste: ')
+        while not (bioskopske_karte.provera_slobodnog_mesta(sifra_termina.upper(), sediste.upper()) and termin.slobodna_sedista(sifra_termina.upper(), sediste.upper())):
+            sediste = input('Sediste se ne moze rezervisati: ')
             if sediste==';':return
         
         bioskopske_karte.prodaj_kartu(ime.upper(), sifra_termina.upper(), sediste.upper())
@@ -175,8 +178,90 @@ def prodaja_rezervisane_karte():
         return
 
     
+def izmeni_kartu():
+    def izmeni_info_karte(karta):
+        while True:
+            print('1. Termin | 2. Ime | 3. Sedise')
+            unos = input('Odaberite opciju (; za nazad): ')
+            if unos==';':return
+            if not unos.isdigit(): continue
+            unos = int(unos)
 
+            if unos==1:
+                print('1. Direktan unos termina | 2. Pretraga termina')
+                opcija = input('Odaberite opciju: ')
+                if opcija==';':return
+                if not opcija.isdigit(): continue
+                opcija=int(opcija)
 
+                if opcija==2: svi_korisnici.pretraga_termina()
+
+                sifra_termina = input('Unesite sifru termina: ')
+                if sifra_termina==';':return
+                while not termin.postojeci_termin(sifra_termina.upper()):
+                    sifra_termina=input('Termin ne postoji. Unesite opet termin: ')
+                    if sifra_termina==';': return
+
+                termin.slobodna_sedista(sifra_termina.upper(), None)
+                sediste = input('Unesite sediste: ')
+                if sediste==';':return
+                while not (bioskopske_karte.provera_slobodnog_mesta(sifra_termina.upper(), sediste.upper()) and 
+                           termin.slobodna_sedista(sifra_termina.upper(), sediste.upper())):
+                    sediste = input('Sediste se ne moze rezervisati: ')
+                    if sediste==';':return
+                
+                bioskopske_karte.izmeni_kartu(karta, sifra_termina.upper(), None, sediste.upper())
+
+            elif unos==2:
+                ime = input('Unesite ime kupca: ')
+                bioskopske_karte.izmeni_kartu(karta, None, ime.upper(), None)
+
+            elif unos==3: 
+                termin.slobodna_sedista(karta['termin'].upper(), None)
+                sediste = input('Unesite sediste: ')
+                if sediste==';':return
+                while not (bioskopske_karte.provera_slobodnog_mesta(karta['termin'].upper(), sediste.upper()) and
+                                termin.slobodna_sedista(karta['termin'].upper(), sediste.upper())):
+                    sediste = input('Sediste se ne moze rezervisati. Rezervisite drugo (; za izlazak): ')
+                    if sediste == ';': return
+
+                bioskopske_karte.izmeni_kartu(karta, None, None, sediste.upper())
+                
+
+            opet = input('Da li ocete jos polja da izmenite? (y/n): ')
+            if opet.lower()=='n': return
+            
+
+    while True:
+        print('1. Direktan unos karte | 2. Pregled karata')
+
+        unos = input('Odaberite opciju (; za nazad): ')
+        if unos==';':return
+        if not unos.isdigit():continue
+        unos=int(unos)
+
+        if unos==2: pretraga_karata()
+
+        sifra_termina = input('Unesite sifru termina: ')
+        if sifra_termina==';':return
+
+        ime = input('Unesite ime kupca: ')
+        if ime==';':return
+
+        sediste=input('Unesite sediste: ')
+        if sediste==';':return
+
+        karta = bioskopske_karte.postojeca_karta(sifra_termina.upper(), ime.upper(), sediste.upper())
+        print(karta)
+        if not karta:
+            probaj = input('Karta ne postoji. Ocete opet? (y/n): ')
+            if probaj.lower()=='n':return 
+            else:continue
+
+        izmeni_info_karte(karta)
+        
+        opet = input('Da li ocete jos karata da izmenite? (y/n): ')
+        if opet.lower()=='n': return
 
 
 

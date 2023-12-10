@@ -74,7 +74,8 @@ def rezervisi_kartu(ime, prodavac):
         sediste = input('Unesite vrednost sedista (; da se vratite na pocetak): ')
         if sediste == ';': continue
 
-        while not bioskopske_karte.provera_slobodnog_mesta(sifra_termina.upper(), sediste.upper()):
+        while not (bioskopske_karte.provera_slobodnog_mesta(sifra_termina.upper(), sediste.upper()) and
+                   termin.slobodna_sedista(sifra_termina.upper(), sediste.upper())):
             sediste = input('Sediste se ne moze rezervisati. Rezervisite drugo (; za izlazak): ')
             if sediste == ';': return
 

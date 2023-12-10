@@ -111,7 +111,6 @@ def pronadji_karte(termin, ime, datum, status):
             if karta['status']==status:
                 t.add_row([karta['termin'],karta['ime'],karta['sediste'],karta['datum_prodaje'],karta['status']])
 
-
     print(t)
         
 def prodaj_kartu(ime, termin, sediste):
@@ -135,4 +134,21 @@ def prodaj_rezervisanu(sifra_termin, sediste):
             pisi_fajl()
 
             return True
+    return False
+
+def postojeca_karta(sifra_termina, ime, sediste):
+    for karta in karte:
+        if karta['termin'].upper()==sifra_termina and karta['ime'].upper()==ime and karta['sediste'].upper()==sediste:
+            return karta
+    return False
+
+def izmeni_kartu(karta, sifra_termina, ime, sediste):
+    for k in karte:
+        if k==karta:
+            if sifra_termina: k['termin']=sifra_termina
+            if ime: k['ime']=ime
+            if sediste: k['sediste']=sediste
+
+            pisi_fajl()
+
     return False

@@ -30,13 +30,7 @@ def pretrazi_termine(filter, vrednost):
                 if termin['datum'] == vrednost and projekcija['sifra'] in termin['sifra']:
                     t.add_row([projekcija['film'], projekcija['sala'], projekcija['pocetak'], 
                                projekcija['kraj'], termin['datum'], termin['sifra']])
-                    #print('Naziv: ' + projekcija['film'])
-                    #print('Sala: '+projekcija['sala'])
-                    #print('Pocetak termina: '+projekcija['pocetak'])
-                    #print('Kraj termina: '+projekcija['kraj'])
-                    #print('Datum: '+ termin['datum'])
-                    #print('Sifra termina: '+ termin['sifra'])
-                    #print('////////////////////////////')
+                    
         elif vrednost.upper() in projekcija[filter].upper():
             for termin in termini:
                 datum_str = termin['datum'].split('.')
@@ -46,13 +40,6 @@ def pretrazi_termine(filter, vrednost):
                         t.add_row([projekcija['film'], projekcija['sala'], projekcija['pocetak'], 
                                projekcija['kraj'], termin['datum'], termin['sifra']])
                         
-                        #print('Naziv: ' + projekcija['film'])
-                        #print('Sala: '+projekcija['sala'])
-                        #print('Pocetak termina: '+projekcija['pocetak'])
-                        #print('Kraj termina: '+projekcija['kraj'])
-                        #print('Datum: '+ termin['datum'])
-                        #print('Sifra termina: '+ termin['sifra'])
-                        #print('////////////////////////////')
     print(t)
 
 
@@ -109,4 +96,8 @@ def slobodna_sedista(sifra_termina, sediste):
         sala.sedista_sale(sifra_sale,rezervisana_sedista)
         return True
 
-
+def postojeci_termin(sifra_termina):
+    for termin in termini:
+        if termin['sifra'].upper()==sifra_termina:
+            return True
+    return False

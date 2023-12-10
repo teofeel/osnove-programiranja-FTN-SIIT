@@ -152,3 +152,21 @@ def izmeni_kartu(karta, sifra_termina, ime, sediste):
             pisi_fajl()
 
     return False
+
+from projekcija import projekcije
+import projekcija
+def ponisti_rezervacije():
+    br=0
+    for karta in karte:
+        if (projekcija.vreme_do_projeckije(karta['termin'].upper()) and 
+            projekcija.vreme_do_projeckije(karta['termin'].upper())<30 and
+            karta['status']=='rezervisana'):
+
+            karte.remove(karta)
+            br+=1 
+    
+    if br>0:
+        print('Rezervacije su ponistene')
+        pisi_fajl()    
+        return
+    print('Nije bilo rezervacija za ponistavanje')

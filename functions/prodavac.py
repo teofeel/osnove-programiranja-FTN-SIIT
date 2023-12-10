@@ -18,9 +18,10 @@ def main(korisnicko_ime):
         print('9. Prodaj kartu')
         print('10. Prodaj rezervisanu kartu')
         print('11. Izmena karte')
-        print('12. Izmeni licne podatke')
-        print('13. Odjava')
-        print('14. Izlazak iz aplikacije ')
+        print('12. Ponisti rezervacije')
+        print('13. Izmeni licne podatke')
+        print('14. Odjava')
+        print('15. Izlazak iz aplikacije ')
 
         unos = input('Vas izbor: ')
         if not unos.isdigit(): continue
@@ -51,11 +52,13 @@ def main(korisnicko_ime):
         elif unos==11:
             izmeni_kartu()
         elif unos==12:
-            ulogovani_korisnici.izmena_licnih_podataka(_id)
+            bioskopske_karte.ponisti_rezervacije()
         elif unos==13:
+            ulogovani_korisnici.izmena_licnih_podataka(_id)
+        elif unos==14:
             _id=''
             return
-        elif unos==14:
+        elif unos==15:
             exit()
 
 

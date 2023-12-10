@@ -1,5 +1,5 @@
 TEODOR;1221WS;I11;8.12.2023.;rezervisana
-nikola;1111AS;B6;10.12.2023.;kupljena
+nikola;1111AS;B6;10.12.2023.;rezervisana
 TEO;1221WK;A5;9.12.2023.;rezervisana
 TEODOR;1111AS;A6;9.12.2023.;kupljena
 JOLE;1111AS;L7;10.12.2023.;kupljena

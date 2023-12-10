@@ -132,3 +132,15 @@ def prodaj_kartu(ime, termin, sediste):
     }
     karte.append(karta)
     pisi_fajl()
+
+def prodaj_rezervisanu(sifra_termin, sediste):
+    for karta in karte:
+        if (karta['termin']==sifra_termin and karta['sediste']==sediste and karta['status']=='rezervisana'):
+
+            karta['datum_prodaje'] = str(datetime.now().day)+'.'+str(datetime.now().month)+'.'+str(datetime.now().year)+'.'
+            karta['status']='kupljena'
+            
+            pisi_fajl()
+
+            return True
+    return False

@@ -1,16 +1,64 @@
 from datetime import datetime
 from prettytable import PrettyTable
+from projekcija import projekcije
+from datetime import datetime, timedelta
 
 termini = []
 def ucitaj_termine():
-    with open('data/termini_projekcije.txt') as termini_fajl:
-        lines = termini_fajl.readlines()
-        for line in lines:
-            data = line.split(';')
-            termini.append({
-                'sifra':data[0],
-                'datum':data[1].replace('\n',''),
-            })
+    #with open('data/termini_projekcije.txt') as termini_fajl:
+        #lines = termini_fajl.readlines()
+        #for line in lines:
+            #data = line.split(';')
+            #termini.append({
+             #   'sifra':data[0],
+              #  'datum':data[1].replace('\n',''),
+            #})
+    def incr_chr(c):
+        return chr(ord(c) + 1) if c != 'Z' else 'A'
+    def incr_str(s):
+        lpart = s.rstrip('Z')
+        num_replacements = len(s) - len(lpart)
+        new_s = lpart[:-1] + incr_chr(lpart[-1]) if lpart else 'A'
+        new_s += 'A' * num_replacements
+        return new_s
+
+    for projekcija in projekcije:
+        pocetna_sifra='AA'
+        dani_projekcije = projekcija['dani'].split(' ')
+
+        for d in dani_projekcije:
+            dan = dan_projekcije(d.upper())
+            dve_nedelje = datetime.now()
+
+            pocetak_projekcije_min = int(projekcija['pocetak'].split(':')[1])
+            pocetak_projekcije_sati = int(projekcija['pocetak'].split(':')[0])
+
+            if (dan == dve_nedelje.weekday() and (dve_nedelje.time().hour < pocetak_projekcije_sati or 
+                (dve_nedelje.time().hour==pocetak_projekcije_sati and dve_nedelje.time().minute<pocetak_projekcije_min))):
+                datum = str(dve_nedelje.date().day)+'.'+str(dve_nedelje.date().month)+'.'+str(dve_nedelje.date().year)+'.'
+                termini.append({
+                    'sifra':projekcija['sifra']+pocetna_sifra,
+                    'datum':datum+'\n'
+                })
+                pocetna_sifra = incr_str(pocetna_sifra)
+
+
+
+            for i in range(13):
+                dve_nedelje = dve_nedelje + timedelta(days=1)
+                datum = str(dve_nedelje.date().day)+'.'+str(dve_nedelje.date().month)+'.'+str(dve_nedelje.date().year)+'.'
+                if dan == dve_nedelje.weekday():
+                    termini.append({
+                        'sifra': projekcija['sifra']+pocetna_sifra,
+                        'datum':datum+'\n'
+                    })
+                    pocetna_sifra = incr_str(pocetna_sifra) 
+    upisi_termine() 
+
+def upisi_termine():
+    fajl = open('data/termini_projekcije.txt', 'w')
+    for t in termini:
+        fajl.write(t['sifra']+';'+t['datum'])
 
 def dan_projekcije(dan):
     if dan.upper() == 'PONEDELJAK': return 0

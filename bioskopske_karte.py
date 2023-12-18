@@ -79,13 +79,6 @@ def ponisti_rezervaciju_kupovinu(ime, termin, sediste, status):
     return False
 
 def pronadji_karte(termin, ime, datum, status):
-    def ispisi_kartu(karta):
-        print('Termin: ' + karta['termin'])
-        print('Ime: ' + karta['ime'])
-        print('Datum: ' + karta['datum_prodaje'])
-        print('Status: ' + karta['status'])
-        print('\n')
-
     t = PrettyTable(['Termin','Ime','Sediste','Datum','Status'])
 
     if termin:

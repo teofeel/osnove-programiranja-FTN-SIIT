@@ -18,23 +18,14 @@ def ucitaj_projekcije():
 
 import termin
 def vreme_do_projeckije(sifra_termina):
-    def dan_projeckije(dan):
-        if dan.upper() == 'PONEDELJAK': return 0
-        elif dan.upper() == 'UTORAK': return 1
-        elif dan.upper() == 'SREDA': return 2
-        elif dan.upper() == 'CETVRTAK': return 3
-        elif dan.upper() == 'PETAK': return 4
-        elif dan.upper() == 'SUBOTA': return 5
-        elif dan.upper() == 'NEDELJA': return 6
-
     for t in termin.termini:
         if t['sifra'].upper() == sifra_termina.upper():
             datum_str = t['datum'].split('.')
     
     for projekcija in projekcije:
         for dan in projekcija['dani'].split(' '):
-            if (datetime(int(datum_str[2]),int(datum_str[1]),int(datum_str[0])).weekday()
-                == datetime.now().weekday()):
+            if (datetime(int(datum_str[2]),int(datum_str[1]),int(datum_str[0])).date()
+                == datetime.now().date()):
                 
                 pocetak = projekcija['pocetak'].split(':')
                 

@@ -13,7 +13,7 @@ def ucitaj_projekcije():
                 'kraj': data[3],
                 'dani':data[4],
                 'film':data[5],
-                'cena':data[6]
+                'cena':data[6].replace('\n','')
             })
 
 import termin
@@ -35,6 +35,19 @@ def vreme_do_projeckije(sifra_termina):
                 minuti = int(pocetak[1])-datetime.now().minute
                 
                 return sati+minuti
-    
+
+def upisi_projekcije():
+    fajl = open('data/projekcije.txt', 'w')
+    for p in projekcije:
+        fajl.write(p['sifra']+';'+p['sala']+';'+p['pocetak']+';'+p['kraj']+';'+p['dani']+';'+p['film']+';'+p['cena']+'\n')
+
+
+def obrisi_projekciju(naziv_filma):
+    for projekcija in projekcije:
+        if projekcija['film'].upper() == naziv_filma:
+            termin.obrisi_termin(projekcija['sifra'])
+            projekcije.remove(projekcija)
+    upisi_projekcije()
+
 
 

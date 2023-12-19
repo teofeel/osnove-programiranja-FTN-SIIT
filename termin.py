@@ -149,3 +149,15 @@ def postojeci_termin(sifra_termina):
         if termin['sifra'].upper()==sifra_termina:
             return True
     return False
+
+def obrisi_termin(sifra):
+    obrisani = []
+    for t in termini:
+        if sifra in t['sifra']:
+            obrisani.append(t)
+
+    for o in obrisani:
+        termini.remove(o)
+    print(termini)
+    upisi_termine()
+    

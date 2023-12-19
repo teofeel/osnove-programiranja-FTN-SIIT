@@ -8,9 +8,11 @@ def main(korisnicko_ime):
         print('Ulogovani Menadzer')
         print('1. Dodaj novog prodavca')
         print('2. Dodaj novog menadzera')
-        print('3. Izmena licnih podataka')
-        print('4. Odjava')
-        print('5. Izlazak iz aplikacije')
+        print('3. Izmena filma')
+        print('4. Izmena bioskopske projekcije')
+        print('5. Izmena licnih podataka')
+        print('6. Odjava')
+        print('7. Izlazak iz aplikacije')
 
         unos = input('Izaberite: ')
         if not unos.isdigit(): continue
@@ -20,11 +22,14 @@ def main(korisnicko_ime):
             dodaj_zaposlenog()
         elif unos==2:
             dodaj_zaposlenog('menadzer')
-        elif unos==3:
-            ulogovani_korisnici.izmena_licnih_podataka(_id)
-        elif unos==4:
-            return
+        elif unos==3: 
+            izmena_filma()
+        elif unos==4: continue
         elif unos==5:
+            ulogovani_korisnici.izmena_licnih_podataka(_id)
+        elif unos==6:
+            return
+        elif unos==7:
             exit()
 
 def dodaj_zaposlenog(zaposleni='prodavac'):
@@ -66,3 +71,40 @@ def dodaj_zaposlenog(zaposleni='prodavac'):
         if korisnik.novi_korisnik(novi_prodavac):
             print('Novi korisnik je dodat')
         return
+    
+from functions import svi_korisnici
+import film
+def izmena_filma():
+    while True:
+        print('1. Dodaj novi film | 2. Izmeni podatke o filmu | 3. Obrisi film')
+
+        unos = input('odaberite opciju (; za nazad) ')
+        if unos==';':return
+        if not unos.isdigit(): continue
+        unos = int(unos)
+
+        if unos==1: continue
+        if unos==2: 
+            print('1. Direktna izmena | 2. Prikaz svih filmova')
+            unos = input('Odaberite: ')
+            if unos==';':return
+            if not unos.isdigit(): continue
+            unos = int(unos)
+
+            if unos==2: 
+                svi_korisnici.pregled_filmova_main()
+
+        if unos==3: 
+            print('1. Direktna izmena | 2. Prikaz svih filmova')
+            unos = input('Odaberite: ')
+            if unos==';':return
+            if not unos.isdigit(): continue
+            unos = int(unos)
+
+            if unos==2: svi_korisnici.pregled_filmova_main()
+
+            naziv_filma = input('Unesite naziv filma: ')
+
+            film.obrisi_film(naziv_filma)
+
+

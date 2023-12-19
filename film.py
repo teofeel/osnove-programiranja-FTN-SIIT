@@ -15,7 +15,7 @@ def ucitaj_filmove():
                 "uloge":data[4],
                 "zemlja porekla":data[5],
                 "godina":data[6],
-                "opis":data[7]
+                "opis":data[7].replace('\n','')
             })
 
 def pretraga_filmova_(filteri, vrednosti):
@@ -58,3 +58,23 @@ def pretraga_filmova_(filteri, vrednosti):
             
     print(t)
     return 
+
+def dodaj_film(naziv, zanr, trajanje, reziser, uloge, zemlja_porekla, godina, opis):
+    return
+
+def upisi_filmove():
+    fajl = open('data/filmovi.txt','w')
+    for f in filmovi:
+        fajl.write(f['naziv']+';'+f['zanr']+';'+f['trajanje']+';'+f['reziser']+';'+f['uloge']+';'+f['zemlja porekla']+';'+f['godina']+';'+f['opis']+'\n')
+
+import projekcija
+from bioskopske_karte import karte
+
+def obrisi_film(naziv):
+    for film in filmovi:
+        print(film['naziv'] == naziv)
+        if film['naziv'].upper() == naziv.upper():
+            projekcija.obrisi_projekciju(naziv.upper())
+            filmovi.remove(film)
+    upisi_filmove()   
+                

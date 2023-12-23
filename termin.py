@@ -158,6 +158,6 @@ def obrisi_termin(sifra):
 
     for o in obrisani:
         termini.remove(o)
-    print(termini)
+    
     upisi_termine()
     

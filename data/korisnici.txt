@@ -6,5 +6,5 @@ mare;sifraMoja1;Marko;Markovic;registrovani kupac
 jole;klkl123;Jovana;Jovanovic;registrovani kupac
 menadzer;idi;Teodor;perun;prodavac
 prodavac1;marinaJank1;Marina;Jankovic;registrovani kupac
-janko;jaranbrat1;Jaran;Jankovic;prodavac
+janko;janko1;Jaran;Jankovic;prodavac
 nikolaos;sifraneka1;nikola;petrovic;menadzer

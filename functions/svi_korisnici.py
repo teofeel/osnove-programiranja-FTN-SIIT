@@ -186,7 +186,7 @@ def pretraga_filmova(vise_krit):
             break
 
     print('//////////////////////////////////')
-    return pretraga_filmova_(filteri,vrednosti)
+    pretraga_filmova_(filteri,vrednosti)
 
 
 import termin

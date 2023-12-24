@@ -11,7 +11,7 @@ def main(korisnicko_ime):
     _id = korisnicko_ime
     print('///////////////////')
     unos = 0
-    while unos!=3:
+    while True:
         print('Ulogovani korisnik')
         print('1. Pregled filmova')
         print('2. Pretraga filmova')

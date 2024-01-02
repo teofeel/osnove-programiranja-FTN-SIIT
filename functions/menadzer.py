@@ -213,7 +213,7 @@ def izmena_projekcije():
         unos= int(unos)
 
         if unos==1:
-            continue
+            dodaj_projekciju()
         elif unos==2:
             continue
         elif unos==3:
@@ -223,7 +223,57 @@ def izmena_projekcije():
             if not unos.isdigit(): continue
             unos=int(unos)
             if unos==2: svi_korisnici.pregled_filmova_main()
-            
+
             naziv = input('Unesite naziv filma: ')
             if naziv==';':return
             projekcija.obrisi_projekciju(naziv)
+
+import re
+from datetime import datetime
+def dodaj_projekciju():
+    sifra = input('Unesite sifru: ')
+    if sifra==';': return
+    while not sifra.isdigit(): sifra = input('Unesite sifru: ')
+
+    sala = input('Unesite salu: ')
+    if sala==';':return
+
+    pocetak = unos_vremena('pocetak')
+    if pocetak ==';':return
+    kraj = unos_vremena('kraj')
+    if kraj == ';':return
+
+    dani = unos_dana()
+    if dani==';':return
+
+    naziv_filma = input('Unesite naziv: ')
+    if naziv_filma==';':return
+    
+    cena = input('Unesite cenu: ')
+    if cena==';':return
+    while not cena.isdigit(): cena = input('Unesite cenu: ')
+
+    projekcija.dodaj_projekciju(sifra, sala.upper(), pocetak, kraj, naziv_filma, cena)
+
+def unos_vremena(koji):
+    while True:
+        vreme = input('Unesite '+ koji + ' (S:M format): ')
+        if vreme==';':return vreme
+        try:
+            datetime.strptime(vreme, '%H:%M')
+            return vreme
+        except ValueError:
+            continue
+
+def unos_dana():
+    while True:
+        dani = input('Unesite dane (razdavajnje sa ` `): ')
+        if dani==';':return dani
+
+        br=1
+        for d in dani.split(' '):
+            if not (d=='Ponedeljak' or d=='Utorak' or d=='Sreda' or 
+                    d=='Cetvrtak' or d=='Petak' or d=='Subota' or d=='Nedelja'):
+                br=0
+        if br==0: continue
+        return dani

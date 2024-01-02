@@ -47,7 +47,62 @@ def obrisi_projekciju(naziv_filma):
         if projekcija['film'].upper() == naziv_filma.upper():
             termin.obrisi_termin(projekcija['sifra'])
             projekcije.remove(projekcija)
+    termin.ucitaj_termine()
     upisi_projekcije()
 
 
+def dodaj_projekciju(sifra, sala, pocetak, kraj, dani, film, cena):
+    for projekcija in projekcije:
+        if projekcija['sifra']==sifra:
+            return False
+        if projekcija['film'].lower()==film.lower():
+            return False
+        
+        vreme_pocetka_projekcija = projekcija['pocetak'].split(':')
+        sati_pocetka_projekcija = int(vreme_pocetka_projekcija[0])
+        minuti_pocetka_projekcija = int(vreme_pocetka_projekcija[1])
 
+        vreme_pocetka = pocetak.split(':') 
+        sati_pocetka = int(vreme_pocetka[0])
+        minuti_pocetka = int(vreme_pocetka[1])
+
+        vreme_kraja_projekcija = projekcija['kraj'].split(':')
+        sati_kraja_projekcija = int(vreme_kraja_projekcija[0])
+        minuti_kraja_projekcija = int(vreme_kraja_projekcija[1])
+
+        vreme_kraja = kraj.split(':')
+        sati_kraja = int(vreme_kraja[0])
+        minuti_kraja = int(vreme_kraja[1])
+
+        pocetak_dok_traje = ((sati_pocetka>sati_pocetka_projekcija and sati_pocetka<sati_kraja_projekcija) or
+                             (sati_pocetka==sati_pocetka_projekcija and minuti_pocetka>minuti_pocetka_projekcija and sati_pocetka<sati_kraja_projekcija) or 
+                             (sati_pocetka==sati_pocetka_projekcija and minuti_pocetka>minuti_pocetka_projekcija and 
+                              sati_pocetka==sati_kraja_projekcija and minuti_pocetka<minuti_kraja_projekcija))
+
+        kraj_dok_traje = ((sati_kraja>sati_pocetka_projekcija and sati_kraja<sati_kraja_projekcija) or 
+                          (sati_kraja==sati_pocetka_projekcija and minuti_kraja>minuti_pocetka_projekcija and sati_kraja<sati_kraja_projekcija) or
+                          (sati_kraja==sati_pocetka_projekcija and minuti_kraja>minuti_pocetka_projekcija and 
+                           sati_kraja==sati_kraja_projekcija and minuti_kraja<minuti_kraja_projekcija))
+        
+        dani_projekcije_postojece = projekcija['dani'].split(' ')
+        dani_projekcije = dani.split(' ')
+
+        dan_postoji=False
+        for d in dani_projekcije_postojece:
+            for d1 in dani_projekcije:
+                if d==d1: dan_postoji=True
+
+        if projekcija['sala'].upper() == sala.upper() and pocetak_dok_traje and kraj_dok_traje and dan_postoji:
+            return False
+        
+    projekcije.append({
+        'sifra':sifra,
+        'sala':sala.upper(),
+        'pocetak':pocetak,
+        'kraj':kraj,
+        'dani':dani,
+        'film':film,
+        'cena':cena
+    })
+    upisi_projekcije()
+    return True

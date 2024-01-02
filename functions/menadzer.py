@@ -94,6 +94,9 @@ def izmena_filma():
             if unos==2: 
                 svi_korisnici.pregled_filmova_main()
 
+            naziv = input('Unesite naziv filma: ')
+            if naziv==';': return
+            izmena_polja_filma(naziv)
         if unos==3: 
             print('1. Direktna izmena | 2. Prikaz svih filmova')
             unos = input('Odaberite: ')
@@ -120,7 +123,7 @@ def dodaj_film():
 
     reziser = input('Reziser: ')
     if reziser==';':return
-    uloge = input('Glumci: ')
+    uloge = input('Glumci (Odvajajte sa zarezom i razmakom, npr. `, `): ')
     if uloge==';':return
     zemlja_porekla = input('Zemlja porekla filma: ')
     if zemlja_porekla==';':return
@@ -136,3 +139,68 @@ def dodaj_film():
     if not film.dodaj_film(naziv,zanr,trajanje,reziser,
                            uloge,zemlja_porekla,godina,opis):
         print('Film vec postoji')
+
+def izmena_polja_filma(naziv_original):
+    filter = []
+    vrednosti = []
+    while True:
+        print('1. Naziv | 2. Zanr | 3. Trajanje | 4. Reziser | 5. Uloge | 6. Zemlja porekla | 7. Godina | 8. Opis')
+        unos = input('Izaberite: ')
+        if unos==';':return
+        elif not unos.isdigit():continue
+
+        unos=int(unos)
+
+        if unos==1:
+            filter.append('naziv')
+            naziv = input('Unesi naziv: ')
+            if naziv==';':return
+
+            vrednosti.append(naziv)
+        elif unos==2:
+            filter.append('zanr')
+            naziv = input('Unesi zanr: ')
+            if naziv==';':return
+            
+            vrednosti.append(naziv)
+        elif unos==3:
+            filter.append('trajanje')
+            naziv = input('Unesi trajanje: ')
+            if naziv==';':return
+            while not naziv.isdigit(): naziv = input('Unesi trajanje')
+            vrednosti.append(naziv)
+        elif unos==4:
+            filter.append('reziser')
+            naziv = input('Unesi rezisera: ')
+            if naziv==';':return
+            
+            vrednosti.append(naziv)
+        elif unos==5:
+            filter.append('uloge')
+            naziv = input('Unesi uloge(Odvajaj po `, `): ')
+            if naziv==';':return
+            
+            vrednosti.append(naziv)
+        elif unos==6:
+            filter.append('zemlja_porekla')
+            naziv = input('Unesi zemlju porekla: ')
+            if naziv==';':return
+            
+            vrednosti.append(naziv)
+        elif unos==7:
+            filter.append('godina')
+            godina = input('Unesi godinu: ')
+            if godina==';':return
+            while not godina.isdigit(): godina = input('Unesite godinu: ')
+            vrednosti.append(godina)
+        elif unos==8:
+            filter.append('opis')
+            opis = input('Unesi opis: ')
+            if opis==';':return
+            
+            vrednosti.append(opis)
+
+        opet = input('Da li zelite jos nesta da promenite (y/n): ')
+        if opet.lower()=='n': film.izmeni_film(naziv_original, filter, vrednosti)    
+        
+        

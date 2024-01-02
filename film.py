@@ -92,3 +92,9 @@ def obrisi_film(naziv):
             filmovi.remove(film)
     upisi_filmove()   
                 
+def izmeni_film(naziv, filteri, vrednosti):
+    for film in filmovi:
+        if film['naziv'].lower()==naziv.lower():
+            for i in range(len(filteri)):
+                film[filteri[i]]=vrednosti[i]
+    upisi_filmove()

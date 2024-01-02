@@ -50,14 +50,25 @@ def obrisi_projekciju(naziv_filma):
     termin.ucitaj_termine()
     upisi_projekcije()
 
-
+from sala import sale
+from film import filmovi
 def dodaj_projekciju(sifra, sala, pocetak, kraj, dani, film, cena):
     for projekcija in projekcije:
         if projekcija['sifra']==sifra:
             return False
-        if projekcija['film'].lower()==film.lower():
-            return False
         
+        s_br=0
+        for s in sale:
+            if s['naziv']==sala.upper(): s_br+=1
+        if s_br==0: 
+            return False
+
+        f_br=0
+        for f in filmovi:
+            if f['naziv'].upper()==film.upper(): f_br+=1
+        if f_br==0: 
+            return False
+
         vreme_pocetka_projekcija = projekcija['pocetak'].split(':')
         sati_pocetka_projekcija = int(vreme_pocetka_projekcija[0])
         minuti_pocetka_projekcija = int(vreme_pocetka_projekcija[1])
@@ -90,9 +101,9 @@ def dodaj_projekciju(sifra, sala, pocetak, kraj, dani, film, cena):
         dan_postoji=False
         for d in dani_projekcije_postojece:
             for d1 in dani_projekcije:
-                if d==d1: dan_postoji=True
+                if d.upper()==d1.upper(): dan_postoji=True
 
-        if projekcija['sala'].upper() == sala.upper() and pocetak_dok_traje and kraj_dok_traje and dan_postoji:
+        if projekcija['sala'].upper() == sala.upper() and (pocetak_dok_traje or kraj_dok_traje) and dan_postoji:
             return False
         
     projekcije.append({
@@ -105,4 +116,7 @@ def dodaj_projekciju(sifra, sala, pocetak, kraj, dani, film, cena):
         'cena':cena
     })
     upisi_projekcije()
+    termin.ucitaj_termine()
     return True
+
+

@@ -1,2 +1,3 @@
 1111;A1;19:55;22:15;Ponedeljak Sreda Petak;fight club;500
 1221;A2;17:45;20:45;Utorak Cetvrtak;wolf of the wall street;600
+5432;A3;20:00;22:45;Ponedeljak Subota;shutter island;450

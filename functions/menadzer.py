@@ -253,7 +253,8 @@ def dodaj_projekciju():
     if cena==';':return
     while not cena.isdigit(): cena = input('Unesite cenu: ')
 
-    projekcija.dodaj_projekciju(sifra, sala.upper(), pocetak, kraj, naziv_filma, cena)
+    if not projekcija.dodaj_projekciju(sifra, sala.upper(), pocetak, kraj, dani, naziv_filma, cena):
+        print('Nije moguce dodati projekciju')
 
 def unos_vremena(koji):
     while True:

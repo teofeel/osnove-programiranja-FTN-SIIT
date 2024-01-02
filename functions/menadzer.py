@@ -83,7 +83,7 @@ def izmena_filma():
         if not unos.isdigit(): continue
         unos = int(unos)
 
-        if unos==1: continue
+        if unos==1: dodaj_film()
         if unos==2: 
             print('1. Direktna izmena | 2. Prikaz svih filmova')
             unos = input('Odaberite: ')
@@ -107,4 +107,32 @@ def izmena_filma():
 
             film.obrisi_film(naziv_filma)
 
+def dodaj_film():
+    naziv = input('Unesite naziv: ')
+    if naziv==';': return
+    zanr = input('Unesite zanr: ')
+    if zanr==';':return
+    
+    trajanje=input('Unesite trajanje: ')
+    if trajanje==';':return
+    while not trajanje.isdigit():   
+        trajanje=input('Unesite trajanje: ')
 
+    reziser = input('Reziser: ')
+    if reziser==';':return
+    uloge = input('Glumci: ')
+    if uloge==';':return
+    zemlja_porekla = input('Zemlja porekla filma: ')
+    if zemlja_porekla==';':return
+    
+    godina = input('Godina objave filma: ')
+    if godina==';':return
+    while not godina.isdigit(): 
+        godina = input('Godina objave filma: ')
+
+    opis=input('Kratak opis filma: ')
+    if opis==';':return
+
+    if not film.dodaj_film(naziv,zanr,trajanje,reziser,
+                           uloge,zemlja_porekla,godina,opis):
+        print('Film vec postoji')

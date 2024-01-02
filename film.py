@@ -60,7 +60,21 @@ def pretraga_filmova_(filteri, vrednosti):
     return 
 
 def dodaj_film(naziv, zanr, trajanje, reziser, uloge, zemlja_porekla, godina, opis):
-    return
+    for film in filmovi:
+        if film['naziv'].lower()==naziv.lower():
+            return False
+    filmovi.append({
+        "naziv": naziv,
+        "zanr": zanr,
+        "trajanje":trajanje,
+        "reziser":reziser,
+        "uloge":uloge,
+        "zemlja porekla":zemlja_porekla,
+        "godina":godina,
+        "opis":opis
+    })
+    upisi_filmove()
+    return True
 
 def upisi_filmove():
     fajl = open('data/filmovi.txt','w')

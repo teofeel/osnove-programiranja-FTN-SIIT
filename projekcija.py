@@ -50,6 +50,13 @@ def obrisi_projekciju(naziv_filma):
     termin.ucitaj_termine()
     upisi_projekcije()
 
+from prettytable import PrettyTable
+def ispisi_projekcije():
+    t = PrettyTable(['Sifra','Sala', 'Pocetak', 'Kraj', 'Dani','Film','Cena'])
+    for p in projekcije:
+        t.add_row([p['sifra'],p['sala'],p['pocetak'],p['kraj'],p['dani'],p['film'],p['cena']])
+    print(t)
+
 from sala import sale
 from film import filmovi
 def dodaj_projekciju(sifra, sala, pocetak, kraj, dani, film, cena):

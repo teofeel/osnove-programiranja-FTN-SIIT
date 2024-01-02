@@ -213,9 +213,17 @@ def izmena_projekcije():
         unos= int(unos)
 
         if unos==1:
+            print('Vec postojece projekcije')
+            projekcija.ispisi_projekcije()
             dodaj_projekciju()
         elif unos==2:
-            continue
+            print('Postojece projekcije')
+            projekcija.ispisi_projekcije()
+
+            sifra = input('Unesite sifru projekcije: ')
+            if sifra==';': return
+            while not sifra.isdigit(): sifra = input('Unesite sifru projekcije: ')
+            izmeni_polja_projekcije(sifra)
         elif unos==3:
             print('1. Direktan unos | 2. Pregled filmova')
             unos = input('Unesite: ')
@@ -278,3 +286,7 @@ def unos_dana():
                 br=0
         if br==0: continue
         return dani
+    
+
+def izmeni_polja_projekcije(sifra):
+    return

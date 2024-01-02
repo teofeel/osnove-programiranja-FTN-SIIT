@@ -44,7 +44,7 @@ def upisi_projekcije():
 
 def obrisi_projekciju(naziv_filma):
     for projekcija in projekcije:
-        if projekcija['film'].upper() == naziv_filma:
+        if projekcija['film'].upper() == naziv_filma.upper():
             termin.obrisi_termin(projekcija['sifra'])
             projekcije.remove(projekcija)
     upisi_projekcije()

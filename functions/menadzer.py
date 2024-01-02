@@ -24,7 +24,7 @@ def main(korisnicko_ime):
             dodaj_zaposlenog('menadzer')
         elif unos==3: 
             izmena_filma()
-        elif unos==4: continue
+        elif unos==4: izmena_projekcije()
         elif unos==5:
             ulogovani_korisnici.izmena_licnih_podataka(_id)
         elif unos==6:
@@ -203,4 +203,27 @@ def izmena_polja_filma(naziv_original):
         opet = input('Da li zelite jos nesta da promenite (y/n): ')
         if opet.lower()=='n': film.izmeni_film(naziv_original, filter, vrednosti)    
         
-        
+import projekcija    
+def izmena_projekcije():
+    while True:
+        print('1. Dodaj bioskopsku projekciju | 2. Izmeni bioskopsku projekciju | 3. Obrisi bioskopsku projekciju')
+        unos = input('Odaberite: ')
+        if unos==';':return
+        if not unos.isdigit(): continue
+        unos= int(unos)
+
+        if unos==1:
+            continue
+        elif unos==2:
+            continue
+        elif unos==3:
+            print('1. Direktan unos | 2. Pregled filmova')
+            unos = input('Unesite: ')
+            if unos==';':return
+            if not unos.isdigit(): continue
+            unos=int(unos)
+            if unos==2: svi_korisnici.pregled_filmova_main()
+            
+            naziv = input('Unesite naziv filma: ')
+            if naziv==';':return
+            projekcija.obrisi_projekciju(naziv)

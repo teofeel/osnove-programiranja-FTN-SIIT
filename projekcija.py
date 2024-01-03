@@ -126,4 +126,35 @@ def dodaj_projekciju(sifra, sala, pocetak, kraj, dani, film, cena):
     termin.ucitaj_termine()
     return True
 
+def izmeni_polje(sifra_projekcije, polje, vrednost):
+    try:
+        if polje=='film':
+            br=0
+            for f in filmovi:
+                if f['naziv'].lower()==vrednost.lower():
+                    br+=1
+            if br==0: raise Exception('Film ne postoji')
+        
+        elif polje=='sala':
+            br=0
+            for s in sale:
+                if s['naziv'].lower()==vrednost.lower(): err = False
+                br+=1
+            if br==0: raise Exception('Sala ne postoji')
 
+        
+        
+        for p in projekcije:
+            if p['sifra']==sifra_projekcije and not polje=='vreme':
+                p[polje]=vrednost
+                upisi_projekcije()
+                return
+            elif p['sifra']==sifra_projekcije and polje=='vreme':
+                p['pocetak']=vrednost[0]
+                p['kraj']=vrednost[1]
+                upisi_projekcije()
+                return  
+        raise Exception('Projekcija je nepostojeca')        
+    except Exception as e:
+        print(e)
+        return

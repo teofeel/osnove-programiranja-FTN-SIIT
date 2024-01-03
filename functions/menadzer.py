@@ -289,4 +289,64 @@ def unos_dana():
     
 
 def izmeni_polja_projekcije(sifra):
-    return
+    while True:
+        print('1. Film | 2. Cena | 3. Vreme | 4. Dani | 5. Sala')
+        unos = input('Odaberite: ')
+        if unos==';': return
+        if not unos.isdigit(): continue
+        unos=int(unos)
+
+        if unos==1: izmeni_projekciju_film(sifra)
+
+        elif unos==2:
+            cena = input('Unesi novu cenu: ')
+            if cena==';':return
+            while not cena.isdigit(): cena = input('Unesi novu cenu: ')
+            projekcija.izmeni_polje(sifra,'cena',cena)
+
+        elif unos==3: izmeni_projekciju_vreme(sifra)
+        elif unos==4: izmeni_projekciju_dani(sifra)
+        elif unos==5: izmeni_projekciju_sala(sifra)
+        
+        opet = input('Da li ocete jos nesta da izmenite (y/n): ')
+        if opet.lower()=='n': return
+
+def izmeni_projekciju_film(sifra):
+    svi_korisnici.pregled_filmova_main()
+    naziv = input('Unesite novi naziv filma: ')
+    if naziv==';':return
+
+    projekcija.izmeni_polje(sifra,'film',naziv)
+
+def izmeni_projekciju_dani(sifra):
+    dani = input('Unesite dane projekcije (razdavajati sa ` `): ')
+    if dani ==';': return
+
+    dani_projekcije=dani.split(' ')
+
+    for i in range(len(dani_projekcije)):
+        while not (dani_projekcije[i].lower()=='ponedeljak' or dani_projekcije[i].lower()=='utorak' or dani_projekcije[i].lower()=='sreda' or 
+                   dani_projekcije[i].lower()=='cetvrtak' or dani_projekcije[i].lower()=='petak' or dani_projekcije[i].lower()=='subota' 
+                   or dani_projekcije[i].lower()=='nedelja'):
+            
+            dani_projekcije[i] = input('Dan `{0}` nije postojeci. Unesite opet: '.format(dani_projekcije[i]))
+
+        dani_projekcije[i] = dani_projekcije[i].capitalize()
+
+    projekcija.izmeni_polje(sifra,'dani', ' '.join(dani_projekcije))
+
+
+def izmeni_projekciju_sala(sifra):
+    sala = input('Unesite naziv sale: ')
+    if sala ==';':return
+
+    projekcija.izmeni_polje(sifra, 'sala', sala)
+
+def izmeni_projekciju_vreme(sifra):
+    pocetak = unos_vremena('pocetak')
+    if pocetak ==';':return
+
+    kraj = unos_vremena('kraj')
+    if kraj == ';':return
+
+    projekcija.izmeni_polje(sifra,'vreme', [pocetak,kraj])

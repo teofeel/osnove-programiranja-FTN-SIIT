@@ -16,14 +16,19 @@ def izvestaji_main():
 
         if unos==1:
             izvestaji_datum_prodaje()
-        if unos==4: 
+        elif unos==3: 
+            izvestaji_datum_prodavac()
+        elif unos==4: 
             broj_cena_dan_prodaje()
+        elif unos==7:
+            ukupno_dan_prodavac()
 
 from datetime import datetime
 from bioskopske_karte import karte
 from prettytable import PrettyTable
 from projekcija import projekcije
 import projekcija
+from termin import dan_projekcije
 
 def izvestaji_datum_prodaje():
     while True:
@@ -37,10 +42,27 @@ def izvestaji_datum_prodaje():
         t = PrettyTable(['Ime', 'Termin', 'Sediste', 'Datum Prodaje', 'Status', 'Prodavac'])
         for karta in karte:
             if karta['datum_prodaje']==datum and karta['status']=='kupljena':
-                t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],''])
+                t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
         print(t)
 
-from termin import dan_projekcije
+def izvestaji_datum_prodavac():
+    while True:
+        ime_prodavca = input('Unesite ime prodavca: ')
+        if ime_prodavca==';':return
+
+        datum = input('Unesite zeljeni datum: ')
+        if datum==';': return
+
+        while not proveri_datum(datum):
+            datum = input('Unesite zeljeni datum: ')
+            if datum==';': return
+        t = PrettyTable(['Ime', 'Termin', 'Sediste', 'Datum Prodaje', 'Status', 'Prodavac'])
+
+        for karta in karte:
+            if karta['datum_prodaje']==datum and karta['prodavac'].lower() == ime_prodavca.lower() and karta['status']=='kupljena':
+                t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
+        print(t)
+
 def broj_cena_dan_prodaje():
     while True:
         dan = input('Unesite zeljeni dan u nedelji: ')
@@ -57,7 +79,7 @@ def broj_cena_dan_prodaje():
 
             if (dan_prodaje == datetime(int(karta_dan_prodaje[2]),int(karta_dan_prodaje[1]),int(karta_dan_prodaje[0])).weekday()
                 and karta['status']=='kupljena'):
-                t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],''])
+                t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
 
                 broj_prodatih_karata+=1
                 for p in projekcije:
@@ -96,6 +118,36 @@ def broj_cena_dan_projekcije():
         print('Ukupno prodatih karata: ',broj_prodatih_karata)
         print('Ukupna vrednost prodatih karata: ',ukupna_cena)
 
+def ukupno_dan_prodavac():
+    while True:
+        ime_prodavca = input('Unesite ime prodavca: ')
+        if ime_prodavca==';':return
+
+        dan = input('Unesite zeljeni dan u nedelji: ')
+        if dan==';':return
+
+        dan= dan_projekcije(dan)
+        t = PrettyTable(['Ime', 'Termin', 'Sediste', 'Datum Prodaje', 'Status', 'Prodavac'])
+        broj_prodatih_karata = 0 
+        ukupna_cena = 0
+
+        for karta in karte:
+            karta_dan_prodaje = karta['datum_prodaje'].split('.')
+            if ((dan == datetime(int(karta_dan_prodaje[2]),int(karta_dan_prodaje[1]),int(karta_dan_prodaje[0])).weekday()) 
+                and karta['prodavac'].lower() == ime_prodavca.lower() and karta['status']=='kupljena'):
+
+                t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
+                broj_prodatih_karata+=1
+
+                for p in projekcije:
+                    if p['sifra']==izvuci_broj_stringa(karta['termin']):
+                        ukupna_cena+=int(p['cena'])
+        if dan==1:
+            ukupna_cena-=broj_prodatih_karata*50
+            
+        print(t)
+        print('Ukupno prodatih karata: ',broj_prodatih_karata)
+        print('Ukupna vrednost prodatih karata: ',ukupna_cena)    
 
 def izvuci_broj_stringa(str):
     res = ''

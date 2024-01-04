@@ -4,6 +4,7 @@ def ucitaj_karte():
     global karte
     with open('data/bioskopske_karte.txt') as karte_fajl:
         lines = karte_fajl.readlines()
+        if lines ==[]: return
         for line in lines:
             data  = line.split(';')
             karte.append({
@@ -18,7 +19,7 @@ def ucitaj_karte():
 def pisi_fajl():
     karte_fajl = open('data/bioskopske_karte.txt', 'w')
     for k in karte:
-        karte_fajl.write(k['ime']+';'+k['termin']+';'+k['sediste']+';'+k['datum_prodaje']+';'+k['status']+'\n')
+        karte_fajl.write(k['ime']+';'+k['termin']+';'+k['sediste']+';'+k['datum_prodaje']+';'+k['status']+';'+k['prodavac']+'\n')
 
 import re
 import termin
@@ -37,7 +38,8 @@ def rezervisi_kartu(ime, sifra_termina, sediste):
         'termin':sifra_termina,
         'sediste':sediste,
         'datum_prodaje':str(datetime.now().day)+'.'+str(datetime.now().month)+'.'+str(datetime.now().year)+'.',      # izmeniti datum
-        'status':'rezervisana'
+        'status':'rezervisana',
+        'prodavac':''
     }
 
     karte.append(nova_rezervcaija)

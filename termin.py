@@ -19,6 +19,7 @@ def ucitaj_termine():
             if c.isdigit(): res+=c
         return res
     def dodaj_termine(projekcija, pocetni_datum, krajnji_datum, pocetna_sifra):
+        print(pocetni_datum, krajnji_datum, projekcija)
         dani_projekcije = projekcija['dani'].split(' ')
         for d in dani_projekcije:
             dan = dan_projekcije(d.upper())
@@ -63,13 +64,14 @@ def ucitaj_termine():
 
         poslednji_datum_termina_projekcije = datetime.now()
         for termin in termini:
-            if projekcija['sifra']==sifra_iz_stringa(termin['sifra']):
-                poslednji_datum_termina_projekcije = termin['datum']
+            datum_termina = datetime(int(termin['datum'].split('.')[2]),int(termin['datum'].split('.')[1]),int(termin['datum'].split('.')[0]))
+
+            if projekcija['sifra']==sifra_iz_stringa(termin['sifra']) and datum_termina>poslednji_datum_termina_projekcije:
+                poslednji_datum_termina_projekcije = datum_termina
+                
                 pocetna_sifra = incr_str(pocetna_sifra) 
-                # if termin['datum'] < trenutni_datum+ 14_dana: dodaj_termine(projekcija['sifra'], termin['datum'], trenutni_datum+14_dana) 
-        datum_termina = poslednji_datum_termina_projekcije.split('.')
         
-        poslednji_datum_termina_projekcije = datetime(int(datum_termina[2]),int(datum_termina[1]),int(datum_termina[0]))
+        poslednji_datum_termina_projekcije +=timedelta(days=1)
         poslednji_datum = (trenutni_datum+timedelta(days=14))
         
         if poslednji_datum_termina_projekcije < (trenutni_datum+timedelta(days=14)):

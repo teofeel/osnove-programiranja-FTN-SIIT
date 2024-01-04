@@ -16,6 +16,8 @@ def izvestaji_main():
 
         if unos==1:
             izvestaji_datum_prodaje()
+        elif unos==2:
+            izvestaj_po_terminu()
         elif unos==3: 
             izvestaji_datum_prodavac()
         elif unos==4: 
@@ -32,7 +34,7 @@ from bioskopske_karte import karte
 from prettytable import PrettyTable
 from projekcija import projekcije
 import projekcija
-from termin import dan_projekcije
+from termin import dan_projekcije, termini
 from functions import svi_korisnici
 
 def izvestaji_datum_prodaje():
@@ -49,6 +51,35 @@ def izvestaji_datum_prodaje():
             if karta['datum_prodaje']==datum and karta['status']=='kupljena':
                 t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
         print(t)
+
+def izvestaj_po_terminu():
+    while True:
+        projekcija.ispisi_projekcije()
+        sifra_projekcije = input('Unesite siftu projekcije: ')
+        if sifra_projekcije == ';':return
+        elif not sifra_projekcije.isdigit():continue
+
+        datum = input('Unesite zeljeni datum: ')
+        if datum==';': return
+
+        while not proveri_datum(datum):
+            datum = input('Unesite zeljeni datum: ')
+            if datum==';': return
+        datum+='\n'
+
+        sifra_termina = ''
+        for termin in termini:
+            if sifra_projekcije in termin['sifra'] and termin['datum']==datum:
+                sifra_termina = termin['sifra']
+
+        t = PrettyTable(['Ime', 'Termin', 'Sediste', 'Datum Prodaje', 'Status', 'Prodavac'])
+        for karta in karte:
+            if karta['termin'].upper()==sifra_termina.upper() and karta['status']=='kupljena':
+                t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
+        print(t)
+
+        nazad = input('Da li zelite da se vratite nazad (y/n): ')
+        if nazad==';' or nazad.lower()=='y':return
 
 def izvestaji_datum_prodavac():
     while True:

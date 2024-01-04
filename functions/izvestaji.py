@@ -22,6 +22,8 @@ def izvestaji_main():
             broj_cena_dan_prodaje()
         elif unos==7:
             ukupno_dan_prodavac()
+        elif unos==8:
+            ukupno_prodavac_mesec()
 
 from datetime import datetime
 from bioskopske_karte import karte
@@ -82,16 +84,12 @@ def broj_cena_dan_prodaje():
                 t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
 
                 broj_prodatih_karata+=1
-                for p in projekcije:
-                    if p['sifra']==izvuci_broj_stringa(karta['termin']):
-                        ukupna_cena+=int(p['cena'])
-
-        if dan_prodaje==1:
-            ukupna_cena-=broj_prodatih_karata*50
+                ukupna_cena+=ukupna_vrednost_prodatih(karta['termin'],dan_prodaje)
 
         print(t)
-        print('Ukupno prodatih karata: ',broj_prodatih_karata)
-        print('Ukupna vrednost prodatih karata: ',ukupna_cena)
+        t=PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost prodatih karata'])
+        t.add_row([broj_prodatih_karata, ukupna_cena])
+        print(t)
 
 def broj_cena_dan_projekcije():
     while True:
@@ -115,8 +113,9 @@ def broj_cena_dan_projekcije():
                    # ovo nije zavrseno do kraja 
                     
         print(t)
-        print('Ukupno prodatih karata: ',broj_prodatih_karata)
-        print('Ukupna vrednost prodatih karata: ',ukupna_cena)
+        t=PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost prodatih karata'])
+        t.add_row([broj_prodatih_karata, ukupna_cena])
+        print(t)
 
 def ukupno_dan_prodavac():
     while True:
@@ -138,16 +137,42 @@ def ukupno_dan_prodavac():
 
                 t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
                 broj_prodatih_karata+=1
-
-                for p in projekcije:
-                    if p['sifra']==izvuci_broj_stringa(karta['termin']):
-                        ukupna_cena+=int(p['cena'])
-        if dan==1:
-            ukupna_cena-=broj_prodatih_karata*50
+                ukupna_cena+=ukupna_vrednost_prodatih(karta['termin'], dan)
             
         print(t)
-        print('Ukupno prodatih karata: ',broj_prodatih_karata)
-        print('Ukupna vrednost prodatih karata: ',ukupna_cena)    
+        t=PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost prodatih karata'])
+        t.add_row([broj_prodatih_karata, ukupna_cena])
+        print(t)
+
+def ukupno_prodavac_mesec():
+    while True:
+        naziv_prodavca = input('Unesite naziv prodavca: ')
+        if naziv_prodavca==';':return
+
+        t = PrettyTable(['Ime', 'Termin', 'Sediste', 'Datum Prodaje', 'Status', 'Prodavac'])
+        broj_prodatih_karata=0
+        ukupna_cena = 0
+        for karta in karte:
+            datum_prodaje = karta['datum_prodaje'].split('.')
+
+            datum_prodaje = datetime(int(datum_prodaje[2]), int(datum_prodaje[1]), int(datum_prodaje[0]))
+            dani_od_prodaje = (datetime.now()-datum_prodaje).days
+
+            if naziv_prodavca.lower() == 'svi' and karta['status']=='kupljena' and dani_od_prodaje<30:
+                t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
+                broj_prodatih_karata+=1
+                ukupna_cena += ukupna_vrednost_prodatih(karta['termin'], datum_prodaje.weekday())
+
+            if karta['prodavac'].lower() == naziv_prodavca.lower() and karta['status']=='kupljena' and dani_od_prodaje<=30:
+                t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
+                broj_prodatih_karata+=1
+                ukupna_cena += ukupna_vrednost_prodatih(karta['termin'], datum_prodaje.weekday())
+
+        print(t)
+        t = PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost'])
+        t.add_row([broj_prodatih_karata, ukupna_cena])
+        print(t)
+
 
 def izvuci_broj_stringa(str):
     res = ''
@@ -155,6 +180,15 @@ def izvuci_broj_stringa(str):
         if c.isdigit():
             res+=c
     return res
+
+def ukupna_vrednost_prodatih(termin, dan_prodaje):
+        for p in projekcije:
+            if p['sifra']==izvuci_broj_stringa(termin) and dan_prodaje==1:
+                return (int(p['cena'])-50)
+            elif p['sifra']==izvuci_broj_stringa(termin):
+                return int(p['cena'])
+            
+
 def proveri_datum(datum):
         try:
             datetime.strptime(datum, '%d.%m.%Y.')

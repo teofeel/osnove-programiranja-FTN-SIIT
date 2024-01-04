@@ -13,7 +13,72 @@ def ucitaj_termine():
         new_s = lpart[:-1] + incr_chr(lpart[-1]) if lpart else 'A'
         new_s += 'A' * num_replacements
         return new_s
+    def sifra_iz_stringa(str):
+        res=''
+        for c in str:
+            if c.isdigit(): res+=c
+        return res
+    def dodaj_termine(projekcija, pocetni_datum, krajnji_datum, pocetna_sifra):
+        dani_projekcije = projekcija['dani'].split(' ')
+        for d in dani_projekcije:
+            dan = dan_projekcije(d.upper())
 
+            pocetak_minuti = int(projekcija['pocetak'].split(':')[1])
+            pocetak_sati = int(projekcija['pocetak'].split(':')[0])
+
+            if (dan == pocetni_datum.weekday() and (pocetni_datum.time().hour < pocetak_sati or 
+                (pocetni_datum.time().hour==pocetak_sati and pocetni_datum.time().minute<pocetak_minuti))):
+                datum = str(pocetni_datum.date().day)+'.'+str(pocetni_datum.date().month)+'.'+str(pocetni_datum.date().year)+'.'
+                termini.append({
+                    'sifra':projekcija['sifra']+pocetna_sifra,
+                    'datum':datum+'\n'
+                })
+                pocetna_sifra = incr_str(pocetna_sifra)
+
+            razlika_dana =  (krajnji_datum - pocetni_datum).days
+            for i in range(razlika_dana):
+                pocetni_datum = pocetni_datum + timedelta(days=1)
+                datum = str(pocetni_datum.date().day)+'.'+str(pocetni_datum.date().month)+'.'+str(pocetni_datum.date().year)+'.'
+                if dan == pocetni_datum.weekday():
+                    termini.append({
+                        'sifra': projekcija['sifra']+pocetna_sifra,
+                        'datum':datum+'\n'
+                    })
+                    pocetna_sifra = incr_str(pocetna_sifra) 
+        return
+    
+
+    with open('data/termini_projekcije.txt') as termini_fajl:
+        lines = termini_fajl.readlines()
+        for line in lines:
+            data = line.split(';')
+            termini.append({
+                'sifra':data[0],
+                'datum':data[1]
+            })
+
+    for projekcija in projekcije:
+        pocetna_sifra = 'AA'
+        trenutni_datum = datetime.now()
+
+        poslednji_datum_termina_projekcije = datetime.now()
+        for termin in termini:
+            if projekcija['sifra']==sifra_iz_stringa(termin['sifra']):
+                poslednji_datum_termina_projekcije = termin['datum']
+                pocetna_sifra = incr_str(pocetna_sifra) 
+                # if termin['datum'] < trenutni_datum+ 14_dana: dodaj_termine(projekcija['sifra'], termin['datum'], trenutni_datum+14_dana) 
+        datum_termina = poslednji_datum_termina_projekcije.split('.')
+        
+        poslednji_datum_termina_projekcije = datetime(int(datum_termina[2]),int(datum_termina[1]),int(datum_termina[0]))
+        poslednji_datum = (trenutni_datum+timedelta(days=14))
+        
+        if poslednji_datum_termina_projekcije < (trenutni_datum+timedelta(days=14)):
+            dodaj_termine(projekcija, poslednji_datum_termina_projekcije, poslednji_datum, pocetna_sifra)
+
+
+    upisi_termine()
+
+    return
     for projekcija in projekcije:
         pocetna_sifra='AA'
         dani_projekcije = projekcija['dani'].split(' ')

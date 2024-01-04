@@ -20,6 +20,8 @@ def izvestaji_main():
             izvestaji_datum_prodavac()
         elif unos==4: 
             broj_cena_dan_prodaje()
+        elif unos==6:
+            ukupno_film_projekcije()
         elif unos==7:
             ukupno_dan_prodavac()
         elif unos==8:
@@ -31,6 +33,7 @@ from prettytable import PrettyTable
 from projekcija import projekcije
 import projekcija
 from termin import dan_projekcije
+from functions import svi_korisnici
 
 def izvestaji_datum_prodaje():
     while True:
@@ -116,6 +119,30 @@ def broj_cena_dan_projekcije():
         t=PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost prodatih karata'])
         t.add_row([broj_prodatih_karata, ukupna_cena])
         print(t)
+
+def ukupno_film_projekcije():
+    while True:
+        svi_korisnici.pregled_filmova_main()
+        naziv_filma = input('Unesite naziv filma: ') 
+        if naziv_filma==';':return
+
+        t = PrettyTable(['Ime', 'Termin', 'Sediste', 'Datum Prodaje', 'Status', 'Prodavac'])
+        ukupna_cena = 0
+        for p in projekcije:
+            if p['film'].lower()==naziv_filma.lower():
+
+                for karta in karte:
+                    if p['sifra'] in karta['termin']:
+
+                        t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
+                        ukupna_cena+=int(p['cena'])
+        print(t)
+        t = PrettyTable(['Ukupna vrednost'])
+        t.add_row([ukupna_cena])
+        print(t)
+
+        opet=input('Da li ocete da se vratite na sve izvestaje (y/n): ')
+        if opet.lower()=='y' or opet==';':return
 
 def ukupno_dan_prodavac():
     while True:

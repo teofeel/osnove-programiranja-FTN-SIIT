@@ -11,7 +11,8 @@ def ucitaj_karte():
                 'termin':data[1],
                 'sediste':data[2],
                 'datum_prodaje':data[3],
-                'status':data[4].replace('\n','')
+                'status':data[4].replace('\n',''),
+                'prodavac':data[5].replace('\n','')
             })
 
 def pisi_fajl():
@@ -106,24 +107,25 @@ def pronadji_karte(termin, ime, datum, status):
 
     print(t)
         
-def prodaj_kartu(ime, termin, sediste):
+def prodaj_kartu(ime, termin, sediste, naziv_prodavca):
     karta = {
         'ime':ime,
         'termin':termin,
         'sediste':sediste,
         'datum_prodaje':str(datetime.now().day)+'.'+str(datetime.now().month)+'.'+str(datetime.now().year)+'.',
-        'status':'kupljena'
+        'status':'kupljena',
+        'prodavac':naziv_prodavca
     }
     karte.append(karta)
     pisi_fajl()
 
-def prodaj_rezervisanu(sifra_termin, sediste):
+def prodaj_rezervisanu(sifra_termin, sediste, prodavac):
     for karta in karte:
         if (karta['termin']==sifra_termin and karta['sediste']==sediste and karta['status']=='rezervisana'):
 
             karta['datum_prodaje'] = str(datetime.now().day)+'.'+str(datetime.now().month)+'.'+str(datetime.now().year)+'.'
             karta['status']='kupljena'
-            
+            karta['prodavac']=prodavac
             pisi_fajl()
 
             return True

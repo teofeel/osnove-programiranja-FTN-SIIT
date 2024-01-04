@@ -1,6 +1,6 @@
 from functions import ulogovani_korisnici
 import korisnik
-
+from functions import izvestaji
 def main(korisnicko_ime):
     _id = korisnicko_ime
 
@@ -8,11 +8,12 @@ def main(korisnicko_ime):
         print('Ulogovani Menadzer')
         print('1. Dodaj novog prodavca')
         print('2. Dodaj novog menadzera')
-        print('3. Izmena filma')
-        print('4. Izmena bioskopske projekcije')
-        print('5. Izmena licnih podataka')
-        print('6. Odjava')
-        print('7. Izlazak iz aplikacije')
+        print('3. Izvestaji')
+        print('4. Izmena filma')
+        print('5. Izmena bioskopske projekcije')
+        print('6. Izmena licnih podataka')
+        print('7. Odjava')
+        print('8. Izlazak iz aplikacije')
 
         unos = input('Izaberite: ')
         if not unos.isdigit(): continue
@@ -23,13 +24,16 @@ def main(korisnicko_ime):
         elif unos==2:
             dodaj_zaposlenog('menadzer')
         elif unos==3: 
+            izvestaji.izvestaji_main()
+        elif unos==4: 
             izmena_filma()
-        elif unos==4: izmena_projekcije()
-        elif unos==5:
-            ulogovani_korisnici.izmena_licnih_podataka(_id)
+        elif unos==5: 
+            izmena_projekcije()
         elif unos==6:
-            return
+            ulogovani_korisnici.izmena_licnih_podataka(_id)
         elif unos==7:
+            return
+        elif unos==8:
             exit()
 
 def dodaj_zaposlenog(zaposleni='prodavac'):

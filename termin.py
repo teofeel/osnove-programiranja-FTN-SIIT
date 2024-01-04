@@ -5,14 +5,6 @@ from datetime import datetime, timedelta
 
 termini = []
 def ucitaj_termine():
-    #with open('data/termini_projekcije.txt') as termini_fajl:
-        #lines = termini_fajl.readlines()
-        #for line in lines:
-            #data = line.split(';')
-            #termini.append({
-             #   'sifra':data[0],
-              #  'datum':data[1].replace('\n',''),
-            #})
     def incr_chr(c):
         return chr(ord(c) + 1) if c != 'Z' else 'A'
     def incr_str(s):
@@ -71,11 +63,18 @@ def dan_projekcije(dan):
 
 from projekcija import projekcije
 def pretrazi_termine(filter, vrednost):
+    def broj_iz_stringa(str):
+        res = ''
+        for c in str:
+            if c.isdigit(): res+=c
+        return res
+    
     t = PrettyTable(['Naziv','Sala','Pocetak termina','Kraj Termina','Datum','Sifra termina'])
     for projekcija in projekcije:
+        
         if filter == 'datum': 
             for termin in termini:
-                if termin['datum'] == vrednost and projekcija['sifra'] in termin['sifra']:
+                if termin['datum'] == vrednost and projekcija['sifra'] == broj_iz_stringa(termin['sifra']):
                     t.add_row([projekcija['film'], projekcija['sala'], projekcija['pocetak'], 
                                projekcija['kraj'], termin['datum'], termin['sifra']])
                     
@@ -84,10 +83,10 @@ def pretrazi_termine(filter, vrednost):
                 datum_str = termin['datum'].split('.')
                 for dan in projekcija['dani'].split(' '):
                     if (datetime(int(datum_str[2]),int(datum_str[1]),int(datum_str[0])).weekday() 
-                        == dan_projekcije(dan)):  
+                        == dan_projekcije(dan) and projekcija['sifra'] == broj_iz_stringa(termin['sifra'])):  
                         t.add_row([projekcija['film'], projekcija['sala'], projekcija['pocetak'], 
                                projekcija['kraj'], termin['datum'], termin['sifra']])
-                        
+        
     print(t)
 
 

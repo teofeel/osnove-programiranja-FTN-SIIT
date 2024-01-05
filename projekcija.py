@@ -62,18 +62,21 @@ from film import filmovi
 def dodaj_projekciju(sifra, sala, pocetak, kraj, dani, film, cena):
     for projekcija in projekcije:
         if projekcija['sifra']==sifra:
+            print('Sifra problem')
             return False
         
         s_br=0
         for s in sale:
             if s['naziv']==sala.upper(): s_br+=1
         if s_br==0: 
+            print('Sala problem')
             return False
 
         f_br=0
         for f in filmovi:
             if f['naziv'].upper()==film.upper(): f_br+=1
         if f_br==0: 
+            print('Naziv problem')
             return False
 
         vreme_pocetka_projekcija = projekcija['pocetak'].split(':')
@@ -111,6 +114,7 @@ def dodaj_projekciju(sifra, sala, pocetak, kraj, dani, film, cena):
                 if d.upper()==d1.upper(): dan_postoji=True
 
         if projekcija['sala'].upper() == sala.upper() and (pocetak_dok_traje or kraj_dok_traje) and dan_postoji:
+            print('Vreme problem')
             return False
         
     projekcije.append({

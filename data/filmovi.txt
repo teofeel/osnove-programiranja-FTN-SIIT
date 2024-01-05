@@ -1,3 +1,4 @@
 fight club;akcija;140;David Fincher;Brad Pitt, Edward Norton, Meat Loaf;SAD;1999;Sizofreni lik se bori protiv svog zamisljenog drugara
 wolf of the wall street;Komedija;180;Martin Scorsese;Leonardo di Caprio, Jonah Hill, Margot Robbie;SAD;2013;Broker krene da ga lomi
 shutter island;psiholoski;138;Martin Scorsese;Leonardo di Caprio, Emily Mortimer, Mark Ruffalo;SAD;2010;Istrazuju ubistvo u mentalnoj bolnici
+the hangover;komedija;110;todd philips;bradley cooper, ed helms, zach galifianakis ;SAD;2009;Avanturica po vegasu

@@ -283,11 +283,18 @@ def unos_dana():
         dani = input('Unesite dane (razdavajnje sa ` `): ')
         if dani==';':return dani
 
+        dani_lista = dani.split(' ')
+
         br=1
-        for d in dani.split(' '):
-            if not (d=='Ponedeljak' or d=='Utorak' or d=='Sreda' or 
-                    d=='Cetvrtak' or d=='Petak' or d=='Subota' or d=='Nedelja'):
+        for d in range(len(dani_lista)):
+            if not (dani_lista[d].lower()=='ponedeljak' or dani_lista[d].lower()=='utorak' or dani_lista[d].lower()=='sreda' or 
+                    dani_lista[d].lower()=='cetvrtak' or dani_lista[d].lower()=='petak' or dani_lista[d].lower()=='subota' or dani_lista[d].lower()=='nedelja'):
                 br=0
+            
+            dani_lista[d] = dani_lista[d].capitalize()
+
+        dani = ' '.join(dani_lista)
+        print(dani)
         if br==0: continue
         return dani
     

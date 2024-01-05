@@ -129,7 +129,9 @@ def broj_cena_dan_prodaje():
 
 def ukupno_dan_projekcija():
     while True:
-        svi_korisnici.pretraga_termina()
+        prikazi_projekcije = input('Da li ocete da pretrazite projekcije (y/n): ')
+        if prikazi_projekcije.lower()=='y':svi_korisnici.pretraga_termina()
+
         sifra_projekcije = input('Unesite sifru termina: ')
         if sifra_projekcije==';':return
         if not sifra_projekcije.isdigit(): continue
@@ -170,10 +172,10 @@ def ukupno_film_projekcije():
         t = PrettyTable(['Ime', 'Termin', 'Sediste', 'Datum Prodaje', 'Status', 'Prodavac'])
         ukupna_cena = 0
         for p in projekcije:
-            if p['film'].lower()==naziv_filma.lower():
+            if naziv_filma.lower() in p['film'].lower():
 
                 for karta in karte:
-                    if p['sifra'] in karta['termin']:
+                    if p['sifra'] in karta['termin'] and karta['status']=='kupljena':
 
                         t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
                         ukupna_cena+=int(p['cena'])

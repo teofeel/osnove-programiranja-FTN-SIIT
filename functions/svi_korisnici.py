@@ -261,3 +261,5 @@ def pretraga_termina():
                 yn = input('Da li zelite da nastavite sa pretragom po kraju y/n: ')
                 if yn == 'y': continue
                 else: break
+
+        return

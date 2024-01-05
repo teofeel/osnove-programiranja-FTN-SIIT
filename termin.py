@@ -19,7 +19,7 @@ def ucitaj_termine():
             if c.isdigit(): res+=c
         return res
     def dodaj_termine(projekcija, pocetni_datum, krajnji_datum, pocetna_sifra):
-        print(pocetni_datum, krajnji_datum, projekcija)
+        
         dani_projekcije = projekcija['dani'].split(' ')
         for d in dani_projekcije:
             dan = dan_projekcije(d.upper())

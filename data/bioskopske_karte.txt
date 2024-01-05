@@ -1,3 +1,9 @@
 TEODOR PERUNICIC;1111AA;A8;4.1.2024.;kupljena;janko
 EKI KUPAC;5432AA;D13;4.1.2024.;kupljena;janko
-JORDAN;1221AB;I12;4.1.2024.;rezervisana;
+NIKOLA;1221AD;D12;5.1.2024.;rezervisana;
+STEFKE;1111AE;J10;5.1.2024.;rezervisana;
+OPET NEKO;5432AD;F10;5.1.2024.;kupljena;janko
+KUPAC1;1111AE;G8;5.1.2024.;kupljena;menadzer
+KUPAC2;1221AC;F11;5.1.2024.;kupljena;menadzer
+KUPAC3;5432AB;A10;5.1.2024.;rezervisana;
+KUPAC4;1111AB;G8;5.1.2024.;rezervisana;

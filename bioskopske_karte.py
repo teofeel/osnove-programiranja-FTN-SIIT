@@ -51,7 +51,7 @@ def pregled_rezervacija(ime, pregled_svih, prodavac):
     t = PrettyTable(['Termin bioskopske projekcije','Naziv filma', 'Datum', 'Vreme pocetka', 'Vreme Kraja', 'Sediste'])
     ime_kupca_column = []
     for karta in karte:
-        if pregled_svih or (karta['ime'].upper() == ime.upper() and karta['status']=='rezervisana'):
+        if (pregled_svih or karta['ime'].upper() == ime.upper()) and karta['status']=='rezervisana':
             oznaka_termina = karta['termin']
 
             for termin in termini:

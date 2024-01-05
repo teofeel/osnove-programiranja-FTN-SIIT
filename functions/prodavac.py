@@ -63,7 +63,7 @@ def main(korisnicko_ime):
 
 
 def ponistavanje_rezervacija_kupvoina():
-    ime = input('Unesite ime ')
+    ime = input('Unesite ime: ')
     rezervacija = input('Da li je rezervacija y/n: ')
 
     while not (rezervacija.upper()=='Y' or rezervacija.upper()=='N'):
@@ -180,7 +180,7 @@ def prodaja_rezervisane_karte(naziv_prodavca):
         if opet.lower()=='y': continue
         return
 
-    
+from prettytable import PrettyTable
 def izmeni_kartu():
     def izmeni_info_karte(karta):
         while True:
@@ -255,7 +255,11 @@ def izmeni_kartu():
         if sediste==';':return
 
         karta = bioskopske_karte.postojeca_karta(sifra_termina.upper(), ime.upper(), sediste.upper())
-        print(karta)
+
+        t = PrettyTable(['Ime','Termin','Sediste','Status'])
+        t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['status']])
+        print(t)
+
         if not karta:
             probaj = input('Karta ne postoji. Ocete opet? (y/n): ')
             if probaj.lower()=='n':return 

@@ -8,3 +8,4 @@ menadzer;idi;Teodor;perun;prodavac
 prodavac1;marinaJank1;Marina;Jankovic;registrovani kupac
 janko;janko1;Jaran;Jankovic;prodavac
 nikolaos;sifraneka1;nikola;petrovic;menadzer
+test1;testlozinka2;test novo ime;prezime;registrovani kupac

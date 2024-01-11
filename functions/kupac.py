@@ -17,7 +17,7 @@ def main(korisnicko_ime):
         print('2. Pretraga filmova')
         print('3. Visekriterijumska pretraga filmova')
         print('4. Pretraga termina')
-        print('5. Rezervisi sediste')
+        print('5. Rezervisi kartu')
         print('6. Pregled rezervacija')
         print('7. Ponisti rezervaciju')
         print('8. Izmeni licne podatke')

@@ -30,9 +30,22 @@ def provera_slobodnog_mesta(sifra_termina, sediste):
                 return False
             
     return termin.slobodna_sedista(sifra_termina, sediste)
-
+def provera_proslog_datum(sifra_termina):
+    for termin in termini:
+        if sifra_termina.upper() == termin['sifra']:
+            datum_termina = termin['datum'].split('.')
+            datum_termina = datetime(int(datum_termina[2]),int(datum_termina[1]),int(datum_termina[0]))
+            
+            if datum_termina<datetime.now():
+                return False
+    return True
+            
 from datetime import datetime
 def rezervisi_kartu(ime, sifra_termina, sediste):
+    if not provera_proslog_datum(sifra_termina.upper()): 
+        print('Karta se ne moze rezervisati, datum je prosao')
+        return
+
     nova_rezervcaija = {
         'ime':ime,
         'termin':sifra_termina,
@@ -110,6 +123,10 @@ def pronadji_karte(termin, ime, datum, status):
     print(t)
         
 def prodaj_kartu(ime, termin, sediste, naziv_prodavca):
+    if not provera_proslog_datum(termin.upper()): 
+        print('Karta se ne moze prodati, datum je prosao')
+        return
+    
     karta = {
         'ime':ime,
         'termin':termin,
@@ -122,6 +139,10 @@ def prodaj_kartu(ime, termin, sediste, naziv_prodavca):
     pisi_fajl()
 
 def prodaj_rezervisanu(sifra_termin, sediste, prodavac):
+    if not provera_proslog_datum(sifra_termin.upper()): 
+        print('Karta se ne moze prodati, datum je prosao')
+        return
+    
     for karta in karte:
         if (karta['termin']==sifra_termin and karta['sediste']==sediste and karta['status']=='rezervisana'):
 

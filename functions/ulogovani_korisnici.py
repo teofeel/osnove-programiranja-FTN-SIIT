@@ -117,8 +117,8 @@ def ponisti_rezervaciju_prodaju(ime, rezervacija):
         unos = int(unos)
 
         if unos==2:
-            bioskopske_karte.pregled_rezervacija(ime,0,0)
-        
+            bioskopske_karte.pregled_rezervacija(ime.upper(),0,0)
+    
         termin = input('Unesite termin projekcije: ')
         if termin==';': return
 

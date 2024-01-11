@@ -119,7 +119,9 @@ def pronadji_karte(termin, ime, datum, status):
         for karta in karte:
             if karta['status']==status:
                 t.add_row([karta['termin'],karta['ime'],karta['sediste'],karta['datum_prodaje'],karta['status']])
-
+    else:
+        for karta in karte:
+            t.add_row([karta['termin'],karta['ime'],karta['sediste'],karta['datum_prodaje'],karta['status']])
     print(t)
         
 def prodaj_kartu(ime, termin, sediste, naziv_prodavca):

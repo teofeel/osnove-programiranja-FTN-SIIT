@@ -75,7 +75,7 @@ def ponistavanje_rezervacija_kupvoina():
 
 def pretraga_karata():
     while True:
-        print('1. Sifra projekcije | 2. Imenu (i prezimenu) kupca | 3. Datumu | 4. Status karte')
+        print('1. Sifra projekcije | 2. Imenu (i prezimenu) kupca | 3. Datumu | 4. Status karte | 5. Pregled svih')
 
         unos = input('Odaberite neku od opcija za pretragu (; za nazad): ')
         if unos==';':return
@@ -120,6 +120,9 @@ def pretraga_karata():
             else: rezervacija='rezervisana'
 
             bioskopske_karte.pronadji_karte(None,None,None, rezervacija)
+            
+        elif unos==5:
+            bioskopske_karte.pronadji_karte(None,None,None,None)
     
 
 def direktna_prodaja_karte(naziv_prodavca):

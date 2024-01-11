@@ -1,4 +1,4 @@
-TEO;1111AD;C7;11.1.2024.;rezervisana;
+TEO;1111AD;H7;11.1.2024.;rezervisana;
 N;1234AD;A9;11.1.2024.;kupljena;janko
 NEKI KUPAC;1221AC;A11;11.1.2024.;kupljena;janko
 nikola;5432AE;A10;11.1.2024.;rezervisana;

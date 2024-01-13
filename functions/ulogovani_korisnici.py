@@ -109,15 +109,17 @@ def ponisti_rezervaciju_prodaju(ime, rezervacija):
         if rezervacija:
             print('1. Direktno obrisite rezervaciju unosom termina i sedista | 2. Pregled rezervacija')
         else:
-            print('1. Direktno obrisite kupljenu kartu unosom termina i sedista | 2. Pregled rezervacija')
+            print('1. Direktno obrisite kupljenu kartu unosom termina i sedista | 2. Pregled prodatih karata')
         unos = input('Odaberite opciju (; za nazad): ')
 
         if unos == ';':return
         elif not unos.isdigit(): continue
         unos = int(unos)
 
-        if unos==2:
+        if unos==2 and rezervacija:
             bioskopske_karte.pregled_rezervacija(ime.upper(),0,0)
+        if unos==2 and not rezervacija:
+            bioskopske_karte.pronadji_kupljene_karte(ime.upper())
     
         termin = input('Unesite termin projekcije: ')
         if termin==';': return

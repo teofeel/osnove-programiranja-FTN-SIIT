@@ -123,7 +123,17 @@ def pronadji_karte(termin, ime, datum, status):
         for karta in karte:
             t.add_row([karta['termin'],karta['ime'],karta['sediste'],karta['datum_prodaje'],karta['status']])
     print(t)
-        
+
+
+def pronadji_kupljene_karte(ime):
+    t = PrettyTable(['Termin','Ime','Sediste','Datum','Status'])
+    for karta in karte:
+        if karta['ime'].upper() == ime.upper() and karta['status']=='kupljena':
+            t.add_row([karta['termin'],karta['ime'],karta['sediste'],karta['datum_prodaje'],karta['status']])
+
+    print(t)
+    
+
 def prodaj_kartu(ime, termin, sediste, naziv_prodavca):
     if not provera_proslog_datum(termin.upper()): 
         print('Karta se ne moze prodati, datum je prosao')

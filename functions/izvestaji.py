@@ -31,7 +31,8 @@ def izvestaji_main():
         elif unos==8:
             ukupno_prodavac_mesec()
 
-from datetime import datetime
+from datetime import datetime, timedelta, date
+from dateutil import relativedelta
 from bioskopske_karte import karte
 from prettytable import PrettyTable
 from projekcija import projekcije
@@ -52,7 +53,10 @@ def izvestaji_datum_prodaje():
         for karta in karte:
             if karta['datum_prodaje']==datum and karta['status']=='kupljena':
                 t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
+
         print(t)
+        with open('data/izvestaji/dan_prodaje_{0}'.format(datum), 'w') as izvestaj_txt:
+            izvestaj_txt.write(str(t))
 
 def izvestaj_po_terminu():
     while True:
@@ -80,6 +84,9 @@ def izvestaj_po_terminu():
                 t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
         print(t)
 
+        with open('data/izvestaji/projekcija_{0}_datum_prodaje_{1}'.format(sifra_projekcije,datum.replace('\n','')), 'w') as izvestaj_txt:
+            izvestaj_txt.write(str(t))
+        
         nazad = input('Da li zelite da se vratite nazad (y/n): ')
         if nazad==';' or nazad.lower()=='y':return
 
@@ -100,6 +107,9 @@ def izvestaji_datum_prodavac():
             if karta['datum_prodaje']==datum and karta['prodavac'].lower() == ime_prodavca.lower() and karta['status']=='kupljena':
                 t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
         print(t)
+
+        with open('data/izvestaji/prodavac_{0}_datum_prodaje_{1}'.format(ime_prodavca, datum),'w') as f:
+            f.write(str(t))
 
 def broj_cena_dan_prodaje():
     while True:
@@ -123,22 +133,27 @@ def broj_cena_dan_prodaje():
                 ukupna_cena+=ukupna_vrednost_prodatih(karta['termin'],dan_prodaje)
 
         print(t)
-        t=PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost prodatih karata'])
-        t.add_row([broj_prodatih_karata, ukupna_cena])
-        print(t)
+        t1=PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost prodatih karata'])
+        t1.add_row([broj_prodatih_karata, ukupna_cena])
+        print(t1)
+
+        with open('data/izvestaji/dan_prodaje_{0}'.format(dan), 'w') as f:
+            f.write(str(t))
+            f.write('\n')
+            f.write(str(t1))
 
 def ukupno_dan_projekcija():
     while True:
         prikazi_projekcije = input('Da li ocete da pretrazite projekcije (y/n): ')
-        if prikazi_projekcije.lower()=='y':svi_korisnici.pretraga_termina()
+        if prikazi_projekcije.lower()=='y':projekcija.ispisi_projekcije()
 
         sifra_projekcije = input('Unesite sifru termina: ')
         if sifra_projekcije==';':return
         if not sifra_projekcije.isdigit(): continue
 
-        dan = input('Unesite dan projekcije: ')
-        if dan==';': return
-        dan = dan_projekcije(dan)
+        dan_projekcija = input('Unesite dan projekcije: ')
+        if dan_projekcija==';': return
+        dan = dan_projekcije(dan_projekcija)
 
         t = PrettyTable(['Ime', 'Termin', 'Sediste', 'Datum Prodaje', 'Status', 'Prodavac'])
         broj_prodatih_karata = 0 
@@ -156,9 +171,14 @@ def ukupno_dan_projekcija():
                         ukupna_cena+=ukupna_vrednost_prodatih(karta['termin'], dan)
         
         print(t)
-        t=PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost prodatih karata'])
-        t.add_row([broj_prodatih_karata, ukupna_cena])
-        print(t)
+        t1=PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost prodatih karata'])
+        t1.add_row([broj_prodatih_karata, ukupna_cena])
+        print(t1)
+
+        with open('data/izvestaji/sifra_{0}_dan_{1}'.format(sifra_projekcije, dan_projekcija), 'w') as f:
+            f.write(str(t))
+            f.write('\n')
+            f.write(str(t1))
 
         nazad = input('Da li ocete da se vratite na sve izvestaje (y/n): ')
         if nazad.lower()=='y' or nazad==';':return
@@ -173,7 +193,7 @@ def ukupno_film_projekcije():
         ukupna_cena = 0
         for p in projekcije:
             if naziv_filma.lower() in p['film'].lower():
-
+                naziv_filma = p['film']
                 for karta in karte:
                     if p['sifra'] in karta['termin'] and karta['status']=='kupljena':
 
@@ -184,6 +204,9 @@ def ukupno_film_projekcije():
         t.add_row([ukupna_cena])
         print(t)
 
+        with open('data/izvestaji/film_{0}'.format(naziv_filma),'w') as f:
+            f.write(str(t))
+
         opet=input('Da li ocete da se vratite na sve izvestaje (y/n): ')
         if opet.lower()=='y' or opet==';':return
 
@@ -192,10 +215,10 @@ def ukupno_dan_prodavac():
         ime_prodavca = input('Unesite ime prodavca: ')
         if ime_prodavca==';':return
 
-        dan = input('Unesite zeljeni dan u nedelji: ')
-        if dan==';':return
+        dan_projekcija = input('Unesite zeljeni dan u nedelji: ')
+        if dan_projekcija==';':return
 
-        dan= dan_projekcije(dan)
+        dan= dan_projekcije(dan_projekcija)
         t = PrettyTable(['Ime', 'Termin', 'Sediste', 'Datum Prodaje', 'Status', 'Prodavac'])
         broj_prodatih_karata = 0 
         ukupna_cena = 0
@@ -210,9 +233,14 @@ def ukupno_dan_prodavac():
                 ukupna_cena+=ukupna_vrednost_prodatih(karta['termin'], dan)
             
         print(t)
-        t=PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost prodatih karata'])
-        t.add_row([broj_prodatih_karata, ukupna_cena])
-        print(t)
+        t1=PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost prodatih karata'])
+        t1.add_row([broj_prodatih_karata, ukupna_cena])
+        print(t1)
+
+        with open('data/izvestaji/dan_prodaje_{0}_prodavac_{1}'.format(dan_projekcija, ime_prodavca), 'w') as f:
+            f.write(str(t))
+            f.write('\n')
+            f.write(str(t1))
 
 def ukupno_prodavac_mesec():
     while True:
@@ -239,9 +267,18 @@ def ukupno_prodavac_mesec():
                 ukupna_cena += ukupna_vrednost_prodatih(karta['termin'], datum_prodaje.weekday())
 
         print(t)
-        t = PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost'])
-        t.add_row([broj_prodatih_karata, ukupna_cena])
-        print(t)
+        t1 = PrettyTable(['Ukupno prodatih karata', 'Ukupna vrednost'])
+        t1.add_row([broj_prodatih_karata, ukupna_cena])
+        print(t1)
+
+        danasnji_datum = datetime.now()
+        mesec_dana_ranije = datetime.strftime(danasnji_datum + timedelta(days=-30), '%d.%m.%Y')
+        danasnji_datum = datetime.strftime(danasnji_datum, '%d.%m.%Y')
+        with open('data/izvestaji/prodavac_{0}_od_{1}_do_{2}'.format(naziv_prodavca, danasnji_datum, mesec_dana_ranije),'w') as f:
+            f.write(str(t))
+            f.write('\n')
+            f.write(str(t1))
+
 
 
 def izvuci_broj_stringa(str):

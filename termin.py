@@ -13,11 +13,6 @@ def ucitaj_termine():
         new_s = lpart[:-1] + incr_chr(lpart[-1]) if lpart else 'A'
         new_s += 'A' * num_replacements
         return new_s
-    def sifra_iz_stringa(str):
-        res=''
-        for c in str:
-            if c.isdigit(): res+=c
-        return res
     
     def dodaj_termine(projekcija, pocetni_datum, broj_dana, pocetna_sifra):
         dani_projekcije = projekcija['dani'].split(' ')
@@ -60,8 +55,7 @@ def ucitaj_termine():
         broj_dana = ((datetime.now()+timedelta(days=14))-pocetni_datum).days
 
         dodaj_termine(projekcija, pocetni_datum, broj_dana, incr_str(pocetna_sifra)) 
-
-                
+ 
 
     upisi_termine()
     return

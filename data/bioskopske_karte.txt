@@ -1,6 +1,6 @@
 TEO;1111AD;H7;11.1.2024.;rezervisana;
 NEKI KUPAC;1221AC;A11;11.1.2024.;kupljena;janko
-nikola;5432AE;A10;11.1.2024.;rezervisana;
+nikola;5432AA;A10;14.1.2024.;kupljena;janko
 MILAN;1111AA;A8;4.1.2024.;kupljena;janko
 jole;1234AC;A10;13.1.2024.;rezervisana;
 mara m;1112AC;H10;11.1.2024.;kupljena;janko
@@ -33,7 +33,7 @@ andrej a;1234AB;C8;12.1.2024.;rezervisana;
 MILAN M;1234AB;D8;13.1.2024.;rezervisana;
 MILAN;0897AB;B1;14.1.2024.;rezervisana;
 MILAN;0897AB;A2;13.1.2024.;kupljena;noviProdavac
-veljko v;0897AB;F1;12.1.2024.;kupljena;noviProdavac
+veljko v;0897AB;F1;12.1.2024.;rezervisana;
 veljko v;1234AB;E1;11.1.2024.;kupljena;noviProdavac
 teodor t;1234AB;C1;10.1.2024.;kupljena;noviProdavac
 nevena n;1234AD;A1;14.1.2024.;kupljena;noviProdavac
@@ -47,4 +47,6 @@ lebron james;5432AB;D1;9.1.2024.;kupljena;janko
 nikola jokic;9758AB;A8;10.1.2024.;rezervisana;
 milos bikovic;9758AB;B1;11.1.2024.;kupljena;menadzer
 sale s;9758AB;C1;12.1.2024.;rezervisana;
-sashka s;9758AB;D4;13.1.2024.;kupljena;janko
+nikola;3894AA;A11;14.1.2024.;rezervisana;
+nikola;5432AB;A6;14.1.2024.;rezervisana;
+MARKO M;1221AC;A10;14.1.2024.;kupljena;janko

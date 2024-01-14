@@ -200,12 +200,14 @@ def ukupno_film_projekcije():
                         t.add_row([karta['ime'],karta['termin'],karta['sediste'],karta['datum_prodaje'],karta['status'],karta['prodavac']])
                         ukupna_cena+=int(p['cena'])
         print(t)
-        t = PrettyTable(['Ukupna vrednost'])
-        t.add_row([ukupna_cena])
-        print(t)
+        t1 = PrettyTable(['Ukupna vrednost'])
+        t1.add_row([ukupna_cena])
+        print(t1)
 
         with open('data/izvestaji/film_{0}'.format(naziv_filma),'w') as f:
             f.write(str(t))
+            f.write('\n')
+            f.write(str(t1))
 
         opet=input('Da li ocete da se vratite na sve izvestaje (y/n): ')
         if opet.lower()=='y' or opet==';':return

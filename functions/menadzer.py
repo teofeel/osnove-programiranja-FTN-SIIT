@@ -1,6 +1,7 @@
 from functions import ulogovani_korisnici
 import korisnik
 from functions import izvestaji
+from film import filmovi
 def main(korisnicko_ime):
     _id = korisnicko_ime
 
@@ -241,8 +242,13 @@ def izmena_projekcije():
             projekcija.obrisi_projekciju(naziv)
 
 import re
-from datetime import datetime
+from datetime import datetime,timedelta
+import termin
 def dodaj_projekciju():
+    svi_korisnici.pregled_filmova_main()
+    naziv_filma = input('Unesite naziv filma: ')
+    if naziv_filma ==';': return
+
     sifra = input('Unesite sifru: ')
     if sifra==';': return
     while not sifra.isdigit(): sifra = input('Unesite sifru: ')
@@ -252,14 +258,10 @@ def dodaj_projekciju():
 
     pocetak = unos_vremena('pocetak')
     if pocetak ==';':return
-    kraj = unos_vremena('kraj')
-    if kraj == ';':return
+    kraj = dodaj_vreme_filma(naziv_filma.upper(), pocetak)
 
     dani = unos_dana()
     if dani==';':return
-
-    naziv_filma = input('Unesite naziv: ')
-    if naziv_filma==';':return
     
     cena = input('Unesite cenu: ')
     if cena==';':return
@@ -267,6 +269,16 @@ def dodaj_projekciju():
 
     if not projekcija.dodaj_projekciju(sifra, sala.upper(), pocetak, kraj, dani, naziv_filma, cena):
         print('Nije moguce dodati projekciju')
+
+
+
+def dodaj_vreme_filma(naziv_filma, pocetak):
+    for film in filmovi:
+        if film['naziv'].upper() == naziv_filma.upper():
+            pocetak_data = pocetak.split(':')
+            pocetak_dt = datetime.strptime(pocetak, '%H:%M')
+            kraj = pocetak_dt + timedelta(minutes = int(film['trajanje']))
+            return str(datetime.strftime(kraj,'%H:%M'))
 
 def unos_vremena(koji):
     while True:
@@ -294,7 +306,7 @@ def unos_dana():
             dani_lista[d] = dani_lista[d].capitalize()
 
         dani = ' '.join(dani_lista)
-        print(dani)
+       
         if br==0: continue
         return dani
     

@@ -3,3 +3,48 @@ NEKI KUPAC;1221AC;A11;11.1.2024.;kupljena;janko
 nikola;5432AE;A10;11.1.2024.;rezervisana;
 MILAN;1111AA;A8;4.1.2024.;kupljena;janko
 jole;1234AC;A10;13.1.2024.;rezervisana;
+mara m;1112AC;H10;11.1.2024.;kupljena;janko
+tara t;1112AC;A9;14.1.2024.;kupljena;janko
+lara l;1112AC;B8;13.1.2024.;kupljena;menadzer
+vara v;1112AC;C8;12.1.2024.;kupljena;menadzer
+nikola;9758AC;A9;11.1.2024.;rezervisana;
+nikolaa n;9758AC;B8;12.1.2024.;kupljena;janko
+nikolaaa n;9758AC;C8;14.1.2024.;kupljena;menadzer
+nikolaaoo n;9758AC;D8;14.1.2024.;kupljena;menadzer
+andrej a;3894AA;A8;14.1.2024.;kupljena;janko
+milica m;3894AA;B8;12.1.2024.;kupljena;janko
+mica m;3894AA;C8;11.1.2024.;rezervisana;
+comi c;3894AA;D8;13.1.2024.;rezervisana;
+comika c;1111AA;A8;13.1.2024.;kupljena;janko
+ana a;7675AD;A8;10.1.2024.;kupljena;menadzer
+pera;1111AA;A10;10.1.2024.;kupljena;menadzer
+kupac1;1111AA;A11;10.1.2024.;kupljena;janko
+mare;9875AC;D10;11.1.2024.;rezervisana;
+jole;9875AC;E8;11.1.2024.;rezervisana;
+jole;9875AC;F8;12.1.2024.;rezervisana;
+prodavac1;9875AC;A1;9.1.2024.;kupljena;
+test1;0897AD;A8;6.1.2024.;rezervisana;
+test1;0897AD;B8;7.1.2024.;kupljena;janko
+test1;0897AD;C8;8.1.2024.;rezervisana;
+jole;0897AD;D8;9.1.2024.;rezervisana;
+jole;1234AB;A8;10.1.2024.;kupljena;janko
+andrej a;1234AB;B8;11.1.2024.;kupljena;menadzer
+andrej a;1234AB;C8;12.1.2024.;rezervisana;
+MILAN M;1234AB;D8;13.1.2024.;rezervisana;
+MILAN;0897AB;B1;14.1.2024.;rezervisana;
+MILAN;0897AB;A2;13.1.2024.;kupljena;noviProdavac
+veljko v;0897AB;F1;12.1.2024.;kupljena;noviProdavac
+veljko v;1234AB;E1;11.1.2024.;kupljena;noviProdavac
+teodor t;1234AB;C1;10.1.2024.;kupljena;noviProdavac
+nevena n;1234AD;A1;14.1.2024.;kupljena;noviProdavac
+masa m;1234AD;B1;13.1.2024.;kupljena;noviProdavac
+jelena j;1234AD;C1;12.1.2024.;rezervisana;
+ksenija k;1234AD;D1;11.1.2024.;kupljena;janko
+sinisa t;5432AB;A1;10.1.2024.;rezervisana;
+nikola p;5432AB;B1;9.1.2024.;kupljena;menadzer
+dzoni dz;5432AB;C1;8.1.2024.;rezervisana;
+lebron james;5432AB;D1;9.1.2024.;kupljena;janko
+nikola jokic;9758AB;A8;10.1.2024.;rezervisana;
+milos bikovic;9758AB;B1;11.1.2024.;kupljena;menadzer
+sale s;9758AB;C1;12.1.2024.;rezervisana;
+sashka s;9758AB;D4;13.1.2024.;kupljena;janko

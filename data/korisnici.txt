@@ -9,3 +9,4 @@ prodavac1;marinaJank1;Marina;Jankovic;registrovani kupac
 janko;janko1;Jaran;Jankovic;prodavac
 nikolaos;sifraneka1;nikola;petrovic;menadzer
 test1;testlozinka2;test novo ime;prezime;registrovani kupac
+noviProdavac;sifra1;novi prodavac ime; novi prodavac prezime;prodavac

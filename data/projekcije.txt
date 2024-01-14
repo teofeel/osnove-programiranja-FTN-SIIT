@@ -2,3 +2,9 @@
 1221;A2;17:45;20:45;Utorak Cetvrtak;wolf of the wall street;550
 5432;A3;20:00;22:45;Ponedeljak Subota;shutter island;450
 1234;A3;17:45;19:20;Ponedeljak Sreda;the hangover;640
+1112;A1;22:30;00:46;Utorak Cetvrtak;the matrix;600
+9758;A3;21:50;01:00;Cetvrtak Petak;babylon;500
+3894;A2;21:00;23:00;Utorak Cetvrtak;the bourne identity;350
+0897;A1;21:30;00:40;Ponedeljak Subota;babylon;700
+9875;A2;20:30;22:50;Ponedeljak Sreda;fight club;550
+7675;A1;18:30;21:30;Cetvrtak Nedelja;wolf of the wall street;550

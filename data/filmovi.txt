@@ -2,3 +2,6 @@ fight club;akcija;140;David Fincher;Brad Pitt, Edward Norton, Meat Loaf;SAD;1999
 wolf of the wall street;Komedija;180;Martin Scorsese;Leonardo di Caprio, Jonah Hill, Margot Robbie;SAD;2013;Broker krene da ga lomi
 shutter island;psiholoski;138;Martin Scorsese;Leonardo di Caprio, Emily Mortimer, Mark Ruffalo;SAD;2010;Istrazuju ubistvo u mentalnoj bolnici
 the hangover;komedija;110;todd philips;bradley cooper, ed helms, zach galifianakis ;SAD;2009;Avanturica po vegasu
+The Bourne Identity;akcija;120;Doug Liman;Matt Damon, Franka Potente, Julia Stiles, Brian Cox;SAD;2002;A group of strangers find a man with bullet-ridden body and take care of him
+The Matrix;Sci-Fi;136;The Wachowskis;Keanu Reeves, Laurance Fishburne, Carrie-Anne Moss;SAD;1999;Neo, a computer programmer and hacker, has always questioned the reality of the world around him
+Babylon;Komedi Drama;190;Famien Chazelle;Brad Pitt, Margo Robbie, Diego Calva;SAD;2022;Decadence, depravity and outrageous excess lead to the rise and fall of several ambitious dreamers in 1920s Hollywood as the industry begins to transition from silent pictures to the world of sound films

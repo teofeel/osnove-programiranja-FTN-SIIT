@@ -45,13 +45,18 @@ def ucitaj_termine():
 
     for projekcija in projekcije:
         pocetna_sifra = 'AA'
-        datum_termina = datetime.now()
+        br=0
         for termin in termini:
             if projekcija['sifra'] in termin['sifra']:
                 pocetna_sifra = "".join(re.split("[^a-zA-Z]*", termin['sifra']))
                 datum_termina = termin['datum'].split('.')
-                
-        pocetni_datum = datetime(int(datum_termina[2]),int(datum_termina[1]),int(datum_termina[0]))
+                br+=1
+
+        if not br==0:
+            pocetni_datum = datetime(int(datum_termina[2]),int(datum_termina[1]),int(datum_termina[0]))
+        else:
+            pocetni_datum = datetime.now()
+
         broj_dana = ((datetime.now()+timedelta(days=14))-pocetni_datum).days
 
         dodaj_termine(projekcija, pocetni_datum, broj_dana, incr_str(pocetna_sifra)) 

@@ -7,7 +7,6 @@ mara m;1112AC;H10;11.1.2024.;kupljena;janko
 tara t;1112AC;A9;14.1.2024.;kupljena;janko
 lara l;1112AC;B8;13.1.2024.;kupljena;menadzer
 vara v;1112AC;C8;12.1.2024.;kupljena;menadzer
-nikola;9758AC;A9;11.1.2024.;rezervisana;
 nikolaa n;9758AC;B8;12.1.2024.;kupljena;janko
 nikolaaa n;9758AC;C8;14.1.2024.;kupljena;menadzer
 nikolaaoo n;9758AC;D8;14.1.2024.;kupljena;menadzer
@@ -50,3 +49,6 @@ sale s;9758AB;C1;12.1.2024.;rezervisana;
 nikola;3894AA;A11;14.1.2024.;rezervisana;
 nikola;5432AB;A6;14.1.2024.;rezervisana;
 MARKO M;1221AC;A10;14.1.2024.;kupljena;janko
+nikola;9875AF;A9;17.1.2024.;rezervisana;
+NIKOLA NN;1111AE;B7;17.1.2024.;kupljena;janko
+NIKOLA NIKOLIC;1111AF;C7;17.1.2024.;kupljena;janko

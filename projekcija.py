@@ -24,6 +24,7 @@ def vreme_do_projeckije(sifra_termina):
     
     for projekcija in projekcije:
         for dan in projekcija['dani'].split(' '):
+            
             if (datetime(int(datum_str[2]),int(datum_str[1]),int(datum_str[0])).date()
                 == datetime.now().date()):
                 
